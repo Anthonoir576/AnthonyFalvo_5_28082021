@@ -14,7 +14,7 @@ EN COURS DE DEVELOPPEMENT ...
 ## Scénario
 L'objectif est développer en **JavaScript**, et **sans framework**, le **Front-End** d'un site e-commerce.  
 L'entreprise fictive est Orinoco, qui crée des applications thématiques ne vendant qu'un seul type de produit. 
-Carte blanche est donnée au design de la maquette.
+Le design de la maquette est libre de choix.
 
 ## Objectifs du projet
 1. Développement Front-End en Javascript d'un site e-commerce.
