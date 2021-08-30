@@ -1,20 +1,60 @@
-@media only screen and (max-width: 705px) {
+// Partie NAVIGATION
+@media only screen and (max-width: 716px) {
 
- .header-nav {
+    .header-nav {
 
-    display: block;
-    margin: 0 10px;
+        display: block;
+        margin: 0 10px;
 
-    & nav {
+        & nav {
 
-        margin-top: 20px;
+            margin-top: 20px;
 
-        & ul {
+            & ul {
 
-            & li {
+                & li {
 
-                padding: 5px 5px;
-                white-space: nowrap;
+                    padding: 5px 5px;
+                    white-space: nowrap;
+
+                }
+
+            }
+
+        }
+
+        & h1 {
+
+            text-align: center;
+
+        }
+
+    }
+
+}
+
+@media only screen and (max-width: 310px) {
+
+    .header-nav {
+
+        display: block;
+        margin: 0 5px;
+        padding: 10px 0 5px 0;
+
+        & nav {
+
+            height: 100%;
+
+            & ul {
+
+                display: block;
+                text-align: center;
+
+                & li {
+
+                    padding: 10px 5px;
+
+                }
 
             }
 
@@ -22,12 +62,20 @@
 
     }
 
-    & h1 {
+}
 
-        text-align: center;
+@media only screen and (max-width: 253px) {
+
+    .header-nav {
+
+        & h1 img {
+
+            display: block;
+            margin: 0 auto;
+        
+        }
 
     }
 
- }
-
 }
+
