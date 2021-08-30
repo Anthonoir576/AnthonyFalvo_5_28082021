@@ -1,6 +1,8 @@
 # OpenClassrooms P5 
 ## Construisez un site e-commerce :
 
+![screen Site](./front-end/source/md-picture/mdpix.png)
+
 EN COURS DE DEVELOPPEMENT ... 
 
 ## Pour tester l'application

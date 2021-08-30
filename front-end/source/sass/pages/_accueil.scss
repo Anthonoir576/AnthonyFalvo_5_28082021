@@ -1,9 +1,16 @@
 
-// banner accueil
+// banner accueil + config flexbox body
 .body-accueil {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
     width: 100vw;
     height: 100vh;
+
+    min-width: 100vw;
+    min-height: 100vh;
 
     background: linear-gradient(rgba(0, 0, 0, .2), rgba(0, 0, 0, .6)), url(../image/banner1.jpg) center/cover no-repeat;
 
@@ -70,7 +77,7 @@
 
             font-family: 'Prompt', sans-serif;
             display: inline-block;
-            padding: 8px 13px 13px 13px;
+            padding: 8px 15px;
             height: 45px;
 
             background:  rgba(255, 255, 255, 0.05);
@@ -104,6 +111,47 @@
                 border: 1px dotted red;
 
                 box-shadow: 0 0 10px 1px rgb(114, 114, 114);
+
+            }
+
+        }
+
+    }
+
+}
+
+.footer-accueil {
+
+    margin: .5rem 0;
+
+    .social {
+
+        display: flex;
+        justify-content: center;
+
+        margin: 0 25px;
+
+        border-top: 2px solid white;
+
+        & a {
+
+            display: inline-block;
+            margin: 10px 10px 0px 10px;
+
+            & i {
+
+                font-size: 2rem;
+                
+                transition: color 300ms ease-in-out;
+
+            }
+
+            &:hover i {
+
+                transition: all 200ms ease-in-out;
+                transform: scale(1.13);
+
+                color: red;
 
             }
 
