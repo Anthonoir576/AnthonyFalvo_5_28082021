@@ -1,0 +1,39 @@
+@media only screen and (max-width: 705px) {
+
+ .header-nav {
+
+    display: block;
+    margin: 0 10px;
+
+    & nav {
+
+        margin-top: 20px;
+
+        & ul {
+
+            & li {
+
+                padding: 5px 5px;
+                white-space: nowrap;
+                
+                & a::first-letter {
+
+                    color: red;
+
+                }
+
+            }
+
+        }
+
+    }
+
+    & h1 {
+
+        text-align: center;
+
+    }
+
+ }
+
+}
