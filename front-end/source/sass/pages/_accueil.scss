@@ -40,6 +40,14 @@
             font-size: 3rem;
             font-weight: 600;
             text-shadow: 0 0 3px black;
+            letter-spacing: 1px;
+
+            &::first-letter {
+
+                color: red;
+                font-weight: 600;
+
+            }
 
         }
 
@@ -62,7 +70,7 @@
 
             font-family: 'Prompt', sans-serif;
             display: inline-block;
-            padding: 10px 13px 12px 13px;
+            padding: 8px 13px 13px 13px;
             height: 45px;
 
             background:  rgba(255, 255, 255, 0.05);
@@ -71,7 +79,7 @@
 
             letter-spacing: 1px;
             font-weight: 400;
-            font-size: .8rem;
+            font-size: 1rem;
 
             transition: all .3s ease-in-out;
             transform: translateX(0px);
@@ -93,7 +101,7 @@
 
                 font-weight: 700;
 
-                border: 2px dotted red;
+                border: 1px dotted red;
 
                 box-shadow: 0 0 10px 1px rgb(114, 114, 114);
 
