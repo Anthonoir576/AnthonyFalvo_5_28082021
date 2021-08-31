@@ -301,31 +301,30 @@ body {
   box-shadow: 0 0 10px 1px #727272;
 }
 
-.footer-accueil,
 .footer {
   margin: 0.5rem 0;
 }
-.footer-accueil .social,
 .footer .social {
   text-align: center;
   margin: 0 25px;
   border-top: 2px solid white;
 }
-.footer-accueil .social a,
 .footer .social a {
   display: inline-block;
   margin: 10px 10px 0px 10px;
 }
-.footer-accueil .social a i,
 .footer .social a i {
   font-size: 2rem;
   transition: color 300ms ease-in-out;
 }
-.footer-accueil .social a:hover i,
 .footer .social a:hover i {
   transition: all 200ms ease-in-out;
   transform: scale(1.13);
   color: red;
+}
+
+.body {
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.1)), url(../image/banner2.jpg) center/cover no-repeat;
 }
 
 /*# sourceMappingURL=style.css.map */
