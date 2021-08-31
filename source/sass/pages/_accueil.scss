@@ -69,7 +69,7 @@
             height: 1px;
 
             background: #fff;
-            box-shadow: 0 0 5px 1px white;
+            box-shadow: 0 0 5px 0px white;
 
         }
 
@@ -126,8 +126,7 @@
 
     .social {
 
-        display: flex;
-        justify-content: center;
+        text-align: center;
 
         margin: 0 25px;
 
@@ -141,7 +140,6 @@
             & i {
 
                 font-size: 2rem;
-                
                 transition: color 300ms ease-in-out;
 
             }

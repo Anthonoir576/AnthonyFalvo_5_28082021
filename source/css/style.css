@@ -245,7 +245,7 @@ body {
   min-width: 140px;
   height: 1px;
   background: #fff;
-  box-shadow: 0 0 5px 1px white;
+  box-shadow: 0 0 5px 0px white;
 }
 .main-accueil section a {
   font-family: "Prompt", sans-serif;
@@ -279,8 +279,7 @@ body {
   margin: 0.5rem 0;
 }
 .footer-accueil .social {
-  display: flex;
-  justify-content: center;
+  text-align: center;
   margin: 0 25px;
   border-top: 2px solid white;
 }
