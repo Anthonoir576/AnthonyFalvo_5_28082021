@@ -25,7 +25,7 @@ body {
   align-items: center;
   border-bottom: 2px solid white;
   margin: 0 50px;
-  padding: 0px 0px;
+  padding: 0px;
 }
 .header-nav nav {
   height: 30px;
@@ -103,12 +103,16 @@ body {
   .header-nav {
     display: block;
     margin: 0 10px;
+    padding-bottom: 10px;
   }
   .header-nav nav {
     margin-top: 20px;
   }
+  .header-nav nav ul {
+    justify-content: space-around;
+  }
   .header-nav nav ul li {
-    margin: 5px 5px;
+    margin: 5px;
     white-space: nowrap;
   }
   .header-nav h1 {
@@ -124,43 +128,43 @@ body {
   .header-nav nav {
     height: 100%;
   }
-  .header-nav nav ul {
-    display: block;
-    text-align: center;
-  }
   .header-nav nav ul li {
     margin: 10px 5px;
   }
 }
 @media only screen and (max-width: 253px) {
+  .header-nav nav ul {
+    display: block;
+    text-align: center;
+  }
   .header-nav h1 img {
     display: block;
     margin: 0 auto;
   }
 }
 @media only screen and (max-width: 650px) {
-  .body-accueil {
-    width: 100% !important;
-    height: 100% !important;
-    min-width: 100vw !important;
-    min-height: 100vh !important;
+  .body-accueil,
+.body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
-  .body-accueil .main-accueil {
+  .body-accueil .main-accueil,
+.body .main-accueil {
     align-items: flex-start;
     margin: 0 15px;
     max-height: 80%;
   }
-  .body-accueil .main-accueil section {
+  .body-accueil .main-accueil section,
+.body .main-accueil section {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     height: 100%;
     margin-top: 1rem;
   }
-  .body-accueil .main-accueil section h2 {
+  .body-accueil .main-accueil section h2,
+.body .main-accueil section h2 {
     text-align: center;
     font-weight: 600;
     letter-spacing: 2px;
@@ -168,38 +172,58 @@ body {
     border-radius: 10px;
     padding: 10px 0;
   }
-  .body-accueil .main-accueil section p {
+  .body-accueil .main-accueil section p,
+.body .main-accueil section p {
     text-align: center;
     font-size: 2.2rem;
     margin-bottom: 1rem;
   }
-  .body-accueil .main-accueil section p::after {
+  .body-accueil .main-accueil section p::after,
+.body .main-accueil section p::after {
     margin: 2rem auto 1rem auto;
   }
-  .body-accueil .main-accueil section a {
+  .body-accueil .main-accueil section button,
+.body .main-accueil section button {
     width: 100%;
     height: 50px;
     margin-bottom: 1rem;
     font-size: 1.2rem;
     text-align: center;
     letter-spacing: 3px;
+    white-space: nowrap;
   }
-  .body-accueil .main-accueil section a:hover {
+  .body-accueil .main-accueil section button:hover,
+.body .main-accueil section button:hover {
     transform: translateX(0);
   }
 }
 @media only screen and (max-width: 310px) {
-  .body-accueil .main-accueil {
-    max-height: 60%;
+  .body-accueil .main-accueil,
+.body .main-accueil {
+    max-height: 100%;
   }
-  .body-accueil .main-accueil section p {
+  .body-accueil .main-accueil section p,
+.body .main-accueil section p {
     margin: 0;
   }
-  .body-accueil .main-accueil section p::after {
+  .body-accueil .main-accueil section p::after,
+.body .main-accueil section p::after {
     margin: 1.5rem auto;
   }
+  .body-accueil .main-accueil section button,
+.body .main-accueil section button {
+    font-size: 1rem;
+  }
 }
-.body-accueil {
+@media only screen and (max-width: 253px) {
+  .body-accueil .main-accueil section button,
+.body .main-accueil section button {
+    font-size: 0.6rem;
+    padding: 0;
+  }
+}
+.body-accueil,
+.body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -248,11 +272,12 @@ body {
   background: #fff;
   box-shadow: 0 0 5px 0px white;
 }
-.main-accueil section a {
+.main-accueil section button {
   font-family: "Prompt", sans-serif;
   display: inline-block;
   padding: 8px 15px 8px 15px;
   height: 42px;
+  color: white;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid white;
   border-radius: 3px;
@@ -262,11 +287,11 @@ body {
   transition: all 0.3s ease-in-out;
   transform: translateX(0px);
 }
-.main-accueil section a::first-letter {
+.main-accueil section button::first-letter {
   color: red;
   font-weight: 600;
 }
-.main-accueil section a:hover {
+.main-accueil section button:hover {
   background: #fff;
   color: #000;
   transition: all 0.3s ease-in-out;
@@ -276,23 +301,28 @@ body {
   box-shadow: 0 0 10px 1px #727272;
 }
 
-.footer-accueil {
+.footer-accueil,
+.footer {
   margin: 0.5rem 0;
 }
-.footer-accueil .social {
+.footer-accueil .social,
+.footer .social {
   text-align: center;
   margin: 0 25px;
   border-top: 2px solid white;
 }
-.footer-accueil .social a {
+.footer-accueil .social a,
+.footer .social a {
   display: inline-block;
   margin: 10px 10px 0px 10px;
 }
-.footer-accueil .social a i {
+.footer-accueil .social a i,
+.footer .social a i {
   font-size: 2rem;
   transition: color 300ms ease-in-out;
 }
-.footer-accueil .social a:hover i {
+.footer-accueil .social a:hover i,
+.footer .social a:hover i {
   transition: all 200ms ease-in-out;
   transform: scale(1.13);
   color: red;
