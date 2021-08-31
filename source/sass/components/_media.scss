@@ -227,3 +227,85 @@
         }
     }        
 }
+
+
+
+// Partie panier
+@media only screen and (max-width: 508px) {
+
+    .body {
+
+        .main-panier {
+
+            margin: 20px 13px 0 13px;
+            padding: 10px 10px 10px 10px;
+    
+            & .panier {
+
+                & h2, p {
+
+                    margin-bottom: 1rem;
+                    
+                }
+
+                & h2 {
+
+                    font-size: 1rem;
+                    line-height: 1.3rem;
+
+                }
+
+                & p {
+
+                    & strong {
+
+                        display: block;
+
+                    }
+
+                }
+ 
+                & .fa-window-close {
+
+                    transform: translate( 20px, -22px);
+    
+                }
+
+                & a:hover {
+
+                    transform: translateX(0px);
+
+                }
+    
+            }
+    
+        }
+
+    }
+
+}
+
+@media only screen and (max-width: 302px) {
+
+    .body {
+
+        .main-panier {
+
+    
+            & .panier {
+
+                & a {
+
+                    padding: 4px 8px 4px 8px;
+                    height: auto;
+                    font-size: .7rem;
+
+                }
+               
+            }
+    
+        }
+
+    }
+
+}
