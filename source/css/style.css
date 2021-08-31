@@ -264,7 +264,7 @@ body {
 }
 
 .main-accueil {
-  margin: 0 50px;
+  margin: 25px 50px;
   display: flex;
   align-items: center;
   height: 100%;
@@ -315,6 +315,7 @@ body {
   font-size: 1rem;
   transition: all 0.3s ease-in-out;
   transform: translateX(0px);
+  cursor: pointer;
 }
 .main-accueil section button::first-letter {
   color: red;
