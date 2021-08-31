@@ -234,9 +234,6 @@ body {
     font-size: 1rem;
     line-height: 1.3rem;
   }
-  .body .main-panier .panier p strong {
-    display: block;
-  }
   .body .main-panier .panier .fa-window-close {
     transform: translate(20px, -22px);
   }
@@ -378,6 +375,7 @@ body {
   font-size: 1.5rem;
 }
 .main-panier .panier p strong {
+  display: block;
   font-weight: 900;
   letter-spacing: 5px;
   text-shadow: 0 0 10px black;
