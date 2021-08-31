@@ -327,4 +327,76 @@ body {
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.1)), url(../image/banner2.jpg) center/cover no-repeat;
 }
 
+.main-panier {
+  margin: 0 50px;
+  padding: 20px 10px 30px 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid white;
+  border-radius: 10px;
+}
+.main-panier .panier {
+  position: relative;
+  text-align: center;
+}
+.main-panier .panier h2, .main-panier .panier p {
+  margin-bottom: 2rem;
+  text-shadow: 0 0 5px black;
+  line-height: 2.2rem;
+}
+.main-panier .panier p {
+  font-size: 1.5rem;
+}
+.main-panier .panier p strong {
+  margin-left: 2rem;
+  font-weight: 900;
+  letter-spacing: 5px;
+  text-shadow: 0 0 10px black;
+}
+.main-panier .panier p em {
+  color: red;
+  font-weight: 600;
+}
+.main-panier .panier a {
+  display: inline-block;
+  font-family: "Prompt", sans-serif;
+  padding: 8px 15px 8px 15px;
+  height: 42px;
+  color: white;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid white;
+  border-radius: 3px;
+  letter-spacing: 1px;
+  font-weight: 400;
+  font-size: 1rem;
+  transition: all 0.3s ease-in-out;
+  transform: translateX(0px);
+}
+.main-panier .panier a::first-letter {
+  color: red;
+  font-weight: 600;
+}
+.main-panier .panier a:hover {
+  background: #fff;
+  color: #000;
+  transition: all 0.3s ease-in-out;
+  transform: translateX(8px);
+  font-weight: 700;
+  border: 1px dotted red;
+  box-shadow: 0 0 10px 1px #727272;
+}
+.main-panier .panier .fa-window-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(20px, -30px);
+  font-size: 1.5rem;
+  color: white;
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+}
+.main-panier .panier .fa-window-close:hover {
+  color: red;
+  transition: all 0.3s ease-in-out;
+}
+
 /*# sourceMappingURL=style.css.map */

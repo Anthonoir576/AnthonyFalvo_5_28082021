@@ -10,6 +10,117 @@
 
 .main-panier {
 
+    margin: 0 50px;
+    padding: 20px 10px 30px 10px;
     
+    background: rgba(255, 255, 255, .05);
+    border: 1px solid white;
+    border-radius: 10px;
+
+    & .panier {
+
+        position: relative;
+
+        text-align: center;
+
+        & h2, p {
+
+            margin-bottom: 2rem;
+            text-shadow: 0 0 5px black;
+            line-height: 2.2rem;
+
+        }
+
+        & p {
+
+            font-size: 1.5rem;
+
+            & strong {
+
+                margin-left: 2rem;
+
+                font-weight: 900;
+                letter-spacing: 5px;
+                text-shadow: 0 0 10px black;
+
+            }
+
+            & em {
+
+                color: red;
+                font-weight: 600;
+
+            }
+
+        }
+
+        & a {
+
+            display: inline-block;
+
+            font-family: 'Prompt', sans-serif;
+            padding: 8px 15px 8px 15px;
+            height: 42px;
+
+            color: white;
+            background:  rgba(0, 0, 0, .3);
+            border: 1px solid white;
+            border-radius: 3px;
+
+            letter-spacing: 1px;
+            font-weight: 400;
+            font-size: 1rem;
+
+            transition: all .3s ease-in-out;
+            transform: translateX(0px);
+
+            &::first-letter {
+
+                color: red;
+                font-weight: 600;
+
+            }
+
+            &:hover {
+
+                background:  #fff;
+                color: #000;
+
+                transition: all .3s ease-in-out;
+                transform: translateX(8px);
+
+                font-weight: 700;
+
+                border: 1px dotted red;
+
+                box-shadow: 0 0 10px 1px rgb(114, 114, 114);
+
+            }
+
+        }
+
+        & .fa-window-close {
+
+            position: absolute;
+            top: 0;
+            right: 0;
+            transform: translate(20px, -30px);
+
+            font-size: 1.5rem;
+            color: white;
+            cursor: pointer;
+
+            transition: color .3s ease-in-out;
+
+            &:hover {
+
+                color: red;
+                transition: all .3s ease-in-out;
+
+            }
+
+        }
+
+    }
 
 }
