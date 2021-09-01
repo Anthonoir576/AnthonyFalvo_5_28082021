@@ -126,7 +126,55 @@
 
 }
 
+#myBoutique {
 
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 1fr;
+
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+
+    margin: 1.5rem 0;
+
+    & .camera-item {
+
+        //width: 350px;
+        height: auto;
+
+        padding: 10px 0;
+
+        border: 1.5px solid red;
+        border-radius: 5px;
+
+        background: rgba(255, 255, 255, 0.103);
+
+        & img {
+
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+
+            border-top: 1px solid red;
+            border-bottom: 1px solid red;
+            
+
+        }
+
+        & .camera-info {
+
+            display: flex;
+            justify-content: space-between;
+
+            align-items: center;
+
+            padding: 15px 10px;
+
+        }
+
+    }
+
+}
 
 
 // Footer identique a chaque page

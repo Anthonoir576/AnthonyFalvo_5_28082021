@@ -44,13 +44,14 @@ const showCameras = async() => {
 
 };
 
+showCameras();
 
 /* Ma fonction permet au click d'afficher la boutique via le bouton voir nos produits */
-buttonShop.addEventListener('click', (e) => {
+// buttonShop.addEventListener('click', (e) => {
 
-    e.preventDefault();
-    showCameras();
-    accueil.style.display = "none";
+//     e.preventDefault();
+//     showCameras();
+//     accueil.style.display = "none";
 
 
-});
+// });
