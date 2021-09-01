@@ -182,8 +182,8 @@ body {
 .body .main-accueil .accueil-info p::after {
     margin: 2rem auto 1rem auto;
   }
-  .body-accueil .main-accueil .accueil-info button,
-.body .main-accueil .accueil-info button {
+  .body-accueil .main-accueil .accueil-info #buttonShop,
+.body .main-accueil .accueil-info #buttonShop {
     width: 100%;
     height: 50px;
     margin-bottom: 1rem;
@@ -192,8 +192,8 @@ body {
     letter-spacing: 3px;
     white-space: nowrap;
   }
-  .body-accueil .main-accueil .accueil-info button:hover,
-.body .main-accueil .accueil-info button:hover {
+  .body-accueil .main-accueil .accueil-info #buttonShop:hover,
+.body .main-accueil .accueil-info #buttonShop:hover {
     transform: translateX(0);
   }
 }
@@ -210,16 +210,49 @@ body {
 .body .main-accueil .accueil-info p::after {
     margin: 1.5rem auto;
   }
-  .body-accueil .main-accueil .accueil-info button,
-.body .main-accueil .accueil-info button {
+  .body-accueil .main-accueil .accueil-info #buttonShop,
+.body .main-accueil .accueil-info #buttonShop {
     font-size: 1rem;
   }
 }
 @media only screen and (max-width: 253px) {
-  .body-accueil .main-accueil .accueil-info button,
-.body .main-accueil .accueil-info button {
+  .body-accueil .main-accueil .accueil-info #buttonShop,
+.body .main-accueil .accueil-info #buttonShop {
     font-size: 0.6rem;
     padding: 0;
+  }
+}
+@media only screen and (max-width: 1625px) {
+  .main-accueil #myBoutique {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 30px;
+    grid-row-gap: 30px;
+  }
+}
+@media only screen and (max-width: 1290px) {
+  .main-accueil #myBoutique {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+  }
+}
+@media only screen and (max-width: 970px) {
+  .main-accueil #myBoutique {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 30px;
+    grid-row-gap: 30px;
+  }
+}
+@media only screen and (max-width: 753px) {
+  .main-accueil #myBoutique {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 30px;
+    grid-row-gap: 30px;
+    width: 100%;
+    height: auto;
+    text-align: center;
   }
 }
 @media only screen and (max-width: 508px) {
@@ -268,6 +301,7 @@ body {
   height: 100%;
 }
 .main-accueil .accueil-info {
+  position: relative;
   margin: 0 auto;
 }
 .main-accueil .accueil-info h2 {
@@ -299,7 +333,7 @@ body {
   background: #fff;
   box-shadow: 0 0 5px 0px white;
 }
-.main-accueil .accueil-info button {
+.main-accueil .accueil-info #buttonShop {
   font-family: "Prompt", sans-serif;
   display: inline-block;
   padding: 8px 15px 8px 15px;
@@ -315,11 +349,11 @@ body {
   transform: translateX(0px);
   cursor: pointer;
 }
-.main-accueil .accueil-info button::first-letter {
+.main-accueil .accueil-info #buttonShop::first-letter {
   color: red;
   font-weight: 600;
 }
-.main-accueil .accueil-info button:hover {
+.main-accueil .accueil-info #buttonShop:hover {
   background: #fff;
   color: #000;
   transition: all 0.3s ease-in-out;
@@ -328,6 +362,22 @@ body {
   border: 1px dotted red;
   box-shadow: 0 0 10px 1px #727272;
 }
+.main-accueil .accueil-info #closeShop {
+  position: absolute;
+  right: 10px;
+  bottom: 22px;
+  font-size: 2rem;
+  color: white;
+  background: none;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  transition: color 250ms;
+}
+.main-accueil .accueil-info #closeShop:hover {
+  transition: color 400ms;
+  color: red;
+}
 
 #myBoutique {
   display: grid;
@@ -335,27 +385,91 @@ body {
   grid-template-rows: 1fr;
   grid-column-gap: 20px;
   grid-row-gap: 20px;
-  margin: 1.5rem 0;
+  margin: 1.5rem auto 0 auto;
 }
 #myBoutique .camera-item {
+  width: 100%;
   height: auto;
   padding: 10px 0;
-  border: 1.5px solid red;
+  border: 2px solid white;
   border-radius: 5px;
-  background: rgba(255, 255, 255, 0.103);
+  background: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  transition: transform 250ms ease-in-out;
+  transform: scale(1);
 }
-#myBoutique .camera-item img {
-  width: 300px;
-  height: 300px;
-  object-fit: cover;
+#myBoutique .camera-item::after {
+  display: block;
+  content: "";
+  width: 30%;
+  height: 2px;
+  background: transparent;
+  transform: translateY(20px);
+}
+#myBoutique .camera-item::before {
+  display: block;
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 30%;
+  height: 2px;
+  background: transparent;
+  transform: translateY(-10px);
+}
+#myBoutique .camera-item:hover {
+  transition: transform 350ms ease-in-out;
+  transform: scale(1.05);
+  background: white;
+  border-color: red;
+}
+#myBoutique .camera-item:hover h2, #myBoutique .camera-item:hover p {
+  color: black;
+}
+#myBoutique .camera-item:hover img {
   border-top: 1px solid red;
   border-bottom: 1px solid red;
+}
+#myBoutique .camera-item:hover::after {
+  display: block;
+  content: "";
+  width: 30%;
+  height: 2px;
+  background: red;
+  transform: translateY(20px);
+}
+#myBoutique .camera-item:hover::before {
+  display: block;
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 30%;
+  height: 2px;
+  background: red;
+  transform: translateY(-10px);
+}
+#myBoutique .camera-item img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
 }
 #myBoutique .camera-item .camera-info {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 15px 10px;
+}
+#myBoutique .camera-item .camera-info h2,
+#myBoutique .camera-item .camera-info p {
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+}
+#myBoutique .camera-item .camera-info h2::first-letter,
+#myBoutique .camera-item .camera-info p::first-letter {
+  color: red;
 }
 
 .footer {

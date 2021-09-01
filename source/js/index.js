@@ -15,7 +15,6 @@ const fetchCameras = async() => {
 };
 
 
-
 /* Fonction qui fait appel a l'api */
 const showCameras = async() => {
 
@@ -44,14 +43,41 @@ const showCameras = async() => {
 
 };
 
-showCameras();
 
 /* Ma fonction permet au click d'afficher la boutique via le bouton voir nos produits */
-// buttonShop.addEventListener('click', (e) => {
+buttonShop.addEventListener('click', (e) => {
 
-//     e.preventDefault();
-//     showCameras();
-//     accueil.style.display = "none";
+    e.preventDefault();
+    showCameras();
+    
+
+    accueil.innerHTML = (
+
+        `
+        <h2>
+            Canon EOS 5D Mark IV
+        </h2>
+        <p>
+            Nos Produits N'ont Rien À Envier Aux Dernières Générations
+        </p>
+        <button id="buttonShop" type="button" aria-label="Voir nos produits sur le site">
+            FERMER
+        </button> 
+
+        
+        `
+
+    );
+
+    
+});
 
 
-// });
+
+/*
+
+        <button id="closeShop">
+            <i class="fas fa-window-close" aria-label="fermer la fenêtre de la boutique"></i>
+        </button>
+
+*/
