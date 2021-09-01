@@ -155,16 +155,16 @@ body {
     margin: 0 15px;
     max-height: 80%;
   }
-  .body-accueil .main-accueil section,
-.body .main-accueil section {
+  .body-accueil .main-accueil .accueil-info,
+.body .main-accueil .accueil-info {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     height: 100%;
     margin-top: 1rem;
   }
-  .body-accueil .main-accueil section h2,
-.body .main-accueil section h2 {
+  .body-accueil .main-accueil .accueil-info h2,
+.body .main-accueil .accueil-info h2 {
     text-align: center;
     font-weight: 600;
     letter-spacing: 2px;
@@ -172,18 +172,18 @@ body {
     border-radius: 10px;
     padding: 10px 0;
   }
-  .body-accueil .main-accueil section p,
-.body .main-accueil section p {
+  .body-accueil .main-accueil .accueil-info p,
+.body .main-accueil .accueil-info p {
     text-align: center;
     font-size: 2.2rem;
     margin-bottom: 1rem;
   }
-  .body-accueil .main-accueil section p::after,
-.body .main-accueil section p::after {
+  .body-accueil .main-accueil .accueil-info p::after,
+.body .main-accueil .accueil-info p::after {
     margin: 2rem auto 1rem auto;
   }
-  .body-accueil .main-accueil section button,
-.body .main-accueil section button {
+  .body-accueil .main-accueil .accueil-info button,
+.body .main-accueil .accueil-info button {
     width: 100%;
     height: 50px;
     margin-bottom: 1rem;
@@ -192,8 +192,8 @@ body {
     letter-spacing: 3px;
     white-space: nowrap;
   }
-  .body-accueil .main-accueil section button:hover,
-.body .main-accueil section button:hover {
+  .body-accueil .main-accueil .accueil-info button:hover,
+.body .main-accueil .accueil-info button:hover {
     transform: translateX(0);
   }
 }
@@ -202,22 +202,22 @@ body {
 .body .main-accueil {
     max-height: 100%;
   }
-  .body-accueil .main-accueil section p,
-.body .main-accueil section p {
+  .body-accueil .main-accueil .accueil-info p,
+.body .main-accueil .accueil-info p {
     margin: 0;
   }
-  .body-accueil .main-accueil section p::after,
-.body .main-accueil section p::after {
+  .body-accueil .main-accueil .accueil-info p::after,
+.body .main-accueil .accueil-info p::after {
     margin: 1.5rem auto;
   }
-  .body-accueil .main-accueil section button,
-.body .main-accueil section button {
+  .body-accueil .main-accueil .accueil-info button,
+.body .main-accueil .accueil-info button {
     font-size: 1rem;
   }
 }
 @media only screen and (max-width: 253px) {
-  .body-accueil .main-accueil section button,
-.body .main-accueil section button {
+  .body-accueil .main-accueil .accueil-info button,
+.body .main-accueil .accueil-info button {
     font-size: 0.6rem;
     padding: 0;
   }
@@ -267,17 +267,17 @@ body {
   align-items: center;
   height: 100%;
 }
-.main-accueil section {
+.main-accueil .accueil-info {
   margin: 0 auto;
 }
-.main-accueil section h2 {
+.main-accueil .accueil-info h2 {
   margin-bottom: 1rem;
   font-family: "Prompt", sans-serif;
   font-size: 1.15rem;
   font-weight: 200;
   text-shadow: 0 0 2px white;
 }
-.main-accueil section p {
+.main-accueil .accueil-info p {
   margin-bottom: 2rem;
   font-family: "Prompt", sans-serif;
   font-size: 3rem;
@@ -285,11 +285,11 @@ body {
   text-shadow: 0 0 3px black;
   letter-spacing: 1px;
 }
-.main-accueil section p::first-letter {
+.main-accueil .accueil-info p::first-letter {
   color: red;
   font-weight: 600;
 }
-.main-accueil section p::after {
+.main-accueil .accueil-info p::after {
   display: block;
   content: "";
   margin: 1rem 0 4rem 0;
@@ -299,7 +299,7 @@ body {
   background: #fff;
   box-shadow: 0 0 5px 0px white;
 }
-.main-accueil section button {
+.main-accueil .accueil-info button {
   font-family: "Prompt", sans-serif;
   display: inline-block;
   padding: 8px 15px 8px 15px;
@@ -315,11 +315,11 @@ body {
   transform: translateX(0px);
   cursor: pointer;
 }
-.main-accueil section button::first-letter {
+.main-accueil .accueil-info button::first-letter {
   color: red;
   font-weight: 600;
 }
-.main-accueil section button:hover {
+.main-accueil .accueil-info button:hover {
   background: #fff;
   color: #000;
   transition: all 0.3s ease-in-out;

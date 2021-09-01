@@ -3,15 +3,18 @@
 
 /* declarations de ma variable en globale */
 let cameras;
+const accueil = document.querySelector('.accueil-info');
 const showShop = document.getElementById('myBoutique');
 const buttonShop = document.getElementById('buttonShop'); 
 
-/* constantes stockant ma fonction pour récupérer l'api */
+/* constantes stockant ma fonction pour récupérer les données de l'api */
 const fetchCameras = async() => {
 
     cameras = await fetch('http://localhost:3000/api/cameras/').then(res => res.json());
 
 };
+
+
 
 /* Fonction qui fait appel a l'api */
 const showCameras = async() => {
@@ -41,5 +44,13 @@ const showCameras = async() => {
 
 };
 
-buttonShop.addEventListener('click', showCameras());
 
+/* Ma fonction permet au click d'afficher la boutique via le bouton voir nos produits */
+buttonShop.addEventListener('click', (e) => {
+
+    e.preventDefault();
+    showCameras();
+    accueil.style.display = "none";
+
+
+});
