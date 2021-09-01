@@ -23,6 +23,7 @@
     margin: 25px 50px;
 
     display: flex;
+    flex-direction: column;
     align-items: center;
     height: 100%;
 
@@ -124,6 +125,8 @@
     }
 
 }
+
+
 
 
 // Footer identique a chaque page
