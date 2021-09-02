@@ -151,7 +151,7 @@
 
         background: rgba(0, 0, 0, 0.5);
 
-        transition: transform 250ms ease-in-out;
+        transition: transform 285ms ease-in-out;
         transform: scale(1);
 
         &::after {
@@ -187,7 +187,7 @@
 
         &:hover {
 
-            transition: transform 350ms ease-in-out;
+            transition: transform 290ms ease-in-out;
             transform: scale(1.05);
             background: rgb(255, 255, 255);
             border-color: red;

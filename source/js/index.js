@@ -52,7 +52,6 @@ function pricesSpace(prix) {
 };
 
 /* Ma fonction permet au click d'afficher la boutique via le bouton voir nos produits et créer un bouton fermer pour la masqué */
-
 buttonShop.addEventListener("click", () => {
 
     if(getComputedStyle(showShop).display != "none") {
@@ -78,5 +77,4 @@ buttonShop.addEventListener("click", () => {
     };
 
 });
-
 
