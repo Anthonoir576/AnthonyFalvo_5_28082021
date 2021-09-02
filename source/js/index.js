@@ -27,7 +27,7 @@ const showCameras = async() => {
             .map(camera => (
 
                 `
-                <a href="./produit.html" aria-label="Votre selection produit">
+                <a href="./produit.html?id=${camera._id}" aria-label="Votre selection produit" data-id="${camera._id}">
                     <div class="camera-item">
                         <img class="camera-img" src="${camera.imageUrl}" alt="article en vente" />
                         <div class="camera-info">
