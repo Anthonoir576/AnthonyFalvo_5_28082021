@@ -63,15 +63,20 @@ function majProduit(produit) {
     mySelection.innerHTML = (
 
         `
-        <a href="./produit.html?id=${produit._id}" aria-label="Votre selection produit" data-id="${produit._id}">
+        <section class="produit">
             <div class="camera-item">
                 <img class="camera-img" src="${produit.imageUrl}" alt="article en vente" />
                 <div class="camera-info">
                     <h2 class="camera-name">${produit.name}</h2>
+                    <p class="camera-description">${produit.description}</p>
                     <p class="camera-price">${pricesSpace(produit.price)} €</p>
                 </div>
+                <label for="quantityProduit">Quantité :</label>
+                <input type="number" name="quantityProduit" aria-label="quantité de produit" id="inputQuantity" min="1" />
+                <button id="panier" type="button" aria-label="ajouter votre appareil-photo au panier">
+                Ajouter au panier</button>
             </div>
-        </a>
+        </section>
         
         `
 

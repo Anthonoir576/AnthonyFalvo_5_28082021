@@ -1,2 +1,150 @@
 
 // page produit individuel
+
+.body {
+
+    .main-produit {
+
+        & .camera-item {
+
+            width: 70%;
+            height: auto;
+
+            margin: auto;
+
+
+            padding: 10px 0;
+    
+            border: 2px solid white;
+            border-radius: 5px;
+    
+            background: rgba(0, 0, 0, 0.5);
+    
+            transition: all 285ms ease-in-out;
+    
+            &::after {
+    
+                display: block;
+                content: '';
+    
+                width: 30%;
+                height: 2px;
+    
+                background: transparent;
+    
+                transform: translateY(20px);
+    
+            }
+    
+            &::before {
+    
+                display: block;
+                content: '';
+                position: absolute;
+                right: 0;
+                top: 0;
+    
+                width: 30%;
+                height: 2px;
+    
+                background: transparent;
+    
+                transform: translateY(-10px);
+    
+            }
+    
+            &:hover {
+    
+                transition: all 290ms ease-in-out;
+                background: rgb(255, 255, 255);
+                border-color: red;
+                
+                & h2, p {
+    
+                    color: black;
+    
+                }
+    
+    
+                & img {
+        
+                    border-top: 1px solid red;
+                    border-bottom: 1px solid red;
+                    
+                }
+    
+                &::after {
+    
+                    display: block;
+                    content: '';
+    
+                    width: 30%;
+                    height: 2px;
+    
+                    background: red;
+    
+                    transform: translateY(20px);
+    
+                }
+    
+                &::before {
+    
+                    display: block;
+                    content: '';
+                    position: absolute;
+                    right: 0;
+                    top: 0;
+                    
+
+                    width: 30%;
+                    height: 2px;
+    
+                    background: red;
+    
+                    transform: translateY(187px);
+    
+                }
+    
+            }
+    
+            & img {
+    
+                width: 100%;
+                height: 400px;
+                object-fit: cover;
+    
+                border-top: 1px solid white;
+                border-bottom: 1px solid white;
+                
+            }
+    
+    
+            & .camera-info {
+
+                align-items: center;
+    
+                padding: 15px 10px;
+    
+                & h2,
+                p {
+    
+                    font-size: 1.1rem;
+    
+                    letter-spacing: 2px;
+    
+                }
+    
+                & h2::first-letter,
+                p::first-letter {
+    
+                    color: red;
+    
+                }
+    
+            }
+    
+        }
+
+    }
+
+}
