@@ -362,25 +362,9 @@ body {
   border: 1px dotted red;
   box-shadow: 0 0 10px 1px #727272;
 }
-.main-accueil .accueil-info #closeShop {
-  position: absolute;
-  right: 10px;
-  bottom: 22px;
-  font-size: 2rem;
-  color: white;
-  background: none;
-  outline: none;
-  border: none;
-  cursor: pointer;
-  transition: color 250ms;
-}
-.main-accueil .accueil-info #closeShop:hover {
-  transition: color 400ms;
-  color: red;
-}
 
 #myBoutique {
-  display: grid;
+  display: none;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: 1fr;
   grid-column-gap: 20px;

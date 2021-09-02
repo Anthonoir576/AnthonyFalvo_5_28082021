@@ -5,7 +5,8 @@
 let cameras;
 const accueil = document.querySelector('.accueil-info');
 const showShop = document.getElementById('myBoutique');
-const buttonShop = document.getElementById('buttonShop'); 
+const buttonShop = document.getElementById('buttonShop');
+
 
 /* constantes stockant ma fonction pour récupérer les données de l'api */
 const fetchCameras = async() => {
@@ -15,7 +16,7 @@ const fetchCameras = async() => {
 };
 
 
-/* Fonction qui fait appel a l'api */
+/* Fonction qui fait appel a l'api et l'ecrit sous forme html */
 const showCameras = async() => {
 
     await fetchCameras();
@@ -23,7 +24,7 @@ const showCameras = async() => {
     showShop.innerHTML = (
 
         cameras
-            .filter(camera => camera.name.toLowerCase())
+            .filter(camera => camera)
             .map(camera => (
 
                 `
@@ -32,7 +33,7 @@ const showCameras = async() => {
                     <img class="camera-img" src="${camera.imageUrl}" alt="article en vente" />
                     <div class="camera-info">
                         <h2 class="camera-name">${camera.name}</h2>
-                        <p class="camera-price">${camera.price}</p>
+                        <p class="camera-price">${camera.price} €</p>
                     </div>
                 </div>
 
@@ -44,40 +45,32 @@ const showCameras = async() => {
 };
 
 
-/* Ma fonction permet au click d'afficher la boutique via le bouton voir nos produits */
-buttonShop.addEventListener('click', (e) => {
+/* Ma fonction permet au click d'afficher la boutique via le bouton voir nos produits et créer un bouton fermer pour la masqué */
 
-    e.preventDefault();
-    showCameras();
-    
+buttonShop.addEventListener("click", () => {
 
-    accueil.innerHTML = (
+    if(getComputedStyle(showShop).display != "none") {
 
-        `
-        <h2>
-            Canon EOS 5D Mark IV
-        </h2>
-        <p>
-            Nos Produits N'ont Rien À Envier Aux Dernières Générations
-        </p>
-        <button id="buttonShop" type="button" aria-label="Voir nos produits sur le site">
-            FERMER
-        </button> 
+        showShop.style.display = "none";
+        buttonShop.innerHTML = (
 
-        
-        `
+            `Voir nos produits`
 
-    );
+        );
 
+    } else {
+
+        showCameras();
+
+        showShop.style.display = "grid";
+        buttonShop.innerHTML = (
+
+            `FERMER`
+
+        );
+
+    };
     
 });
 
 
-
-/*
-
-        <button id="closeShop">
-            <i class="fas fa-window-close" aria-label="fermer la fenêtre de la boutique"></i>
-        </button>
-
-*/

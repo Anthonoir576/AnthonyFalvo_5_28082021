@@ -123,32 +123,6 @@
 
         }
 
-        & #closeShop {
-
-            position: absolute;
-            right: 10px;
-            bottom: 22px;
-
-            font-size: 2rem;
-            color: white;
-            background: none;
-
-            outline: none;
-            border: none;
-
-            cursor: pointer;
-
-            transition: color 250ms;
-
-            &:hover {
-
-                transition: color 400ms;
-                color: red;
-
-            }
-
-        }
-
     }
 
 }
@@ -156,7 +130,7 @@
 // Boutique créer dynamiquement en JS
 #myBoutique {
 
-    display: grid;
+    display: none;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: 1fr;
 
