@@ -554,8 +554,12 @@ body {
   transition: all 0.3s ease-in-out;
 }
 
-.body .main-produit .camera-item {
-  width: 70%;
+.body-produit {
+  background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.3)), url(../image/banner6.jpg) center/cover no-repeat;
+}
+.body-produit .main-produit .camera-item {
+  position: relative;
+  width: 80%;
   height: auto;
   margin: auto;
   padding: 10px 0;
@@ -564,74 +568,80 @@ body {
   background: rgba(0, 0, 0, 0.5);
   transition: all 285ms ease-in-out;
 }
-.body .main-produit .camera-item::after {
+.body-produit .main-produit .camera-item::after {
   display: block;
   content: "";
-  width: 30%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 15%;
   height: 2px;
   background: transparent;
-  transform: translateY(20px);
+  transform: translateY(10px);
 }
-.body .main-produit .camera-item::before {
+.body-produit .main-produit .camera-item::before {
   display: block;
   content: "";
   position: absolute;
   right: 0;
   top: 0;
-  width: 30%;
+  width: 15%;
   height: 2px;
   background: transparent;
   transform: translateY(-10px);
 }
-.body .main-produit .camera-item:hover {
+.body-produit .main-produit .camera-item:hover {
   transition: all 290ms ease-in-out;
-  background: white;
+  background: rgba(255, 255, 255, 0.95);
   border-color: red;
 }
-.body .main-produit .camera-item:hover h2, .body .main-produit .camera-item:hover p {
+.body-produit .main-produit .camera-item:hover h2, .body-produit .main-produit .camera-item:hover p {
   color: black;
 }
-.body .main-produit .camera-item:hover img {
+.body-produit .main-produit .camera-item:hover img {
   border-top: 1px solid red;
   border-bottom: 1px solid red;
 }
-.body .main-produit .camera-item:hover::after {
+.body-produit .main-produit .camera-item:hover::after {
   display: block;
   content: "";
-  width: 30%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 15%;
   height: 2px;
   background: red;
-  transform: translateY(20px);
+  transform: translateY(10px);
 }
-.body .main-produit .camera-item:hover::before {
+.body-produit .main-produit .camera-item:hover::before {
   display: block;
   content: "";
   position: absolute;
   right: 0;
   top: 0;
-  width: 30%;
+  width: 15%;
   height: 2px;
   background: red;
-  transform: translateY(187px);
+  transform: translateY(-10px);
 }
-.body .main-produit .camera-item img {
+.body-produit .main-produit .camera-item img {
   width: 100%;
-  height: 400px;
+  height: 500px;
   object-fit: cover;
   border-top: 1px solid white;
   border-bottom: 1px solid white;
 }
-.body .main-produit .camera-item .camera-info {
+.body-produit .main-produit .camera-item .camera-info {
   align-items: center;
   padding: 15px 10px;
 }
-.body .main-produit .camera-item .camera-info h2,
-.body .main-produit .camera-item .camera-info p {
+.body-produit .main-produit .camera-item .camera-info h2,
+.body-produit .main-produit .camera-item .camera-info p {
   font-size: 1.1rem;
   letter-spacing: 2px;
 }
-.body .main-produit .camera-item .camera-info h2::first-letter,
-.body .main-produit .camera-item .camera-info p::first-letter {
+.body-produit .main-produit .camera-item .camera-info h2::first-letter,
+.body-produit .main-produit .camera-item .camera-info p::first-letter {
   color: red;
 }
 

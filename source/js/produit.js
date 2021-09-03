@@ -14,7 +14,7 @@
 // Mes variables est constantes 
 /* Lendroit ou afficher le resultat */
 const mySelection = document.querySelector('.main-produit');
-
+const choixLentilles = document.getElementById('choiseLenses');
 
 
 // fonction
@@ -65,21 +65,41 @@ function majProduit(produit) {
         `
         <section class="produit">
             <div class="camera-item">
-                <img class="camera-img" src="${produit.imageUrl}" alt="article en vente" />
+                <img class="camera-img" src="${produit.imageUrl}" alt="appareil photo en vente" />
                 <div class="camera-info">
                     <h2 class="camera-name">${produit.name}</h2>
                     <p class="camera-description">${produit.description}</p>
                     <p class="camera-price">${pricesSpace(produit.price)} €</p>
                 </div>
-                <label for="quantityProduit">Quantité :</label>
-                <input type="number" name="quantityProduit" aria-label="quantité de produit" id="inputQuantity" min="1" />
+                <form>
+                <label for="choiseLenses">
+                    Choisissez votre lentille :
+                </label>
+                <select name="choix" id="choiseLenses">
+                    
+                </select>
+                <label for="inputQuantity">
+                    Quantité :
+                </label>
+                <input type="number" name="quantité" aria-label="quantité de produit" id="inputQuantity" min="1" />
                 <button id="panier" type="button" aria-label="ajouter votre appareil-photo au panier">
-                Ajouter au panier</button>
+                    Ajouter au panier
+                </button>
+                </form>
             </div>
         </section>
         
         `
 
     )
+
+    for(let i = 0; i < produit.lenses.length; i++) {
+
+        let lentille = produit.lenses[i];
+
+    };
+
+
+    console.log(produit.lenses[0], produit.lenses[1], produit.lenses[2]);
     
 };
