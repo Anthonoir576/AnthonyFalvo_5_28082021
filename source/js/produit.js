@@ -68,23 +68,30 @@ function majProduit(produit) {
                 <img class="camera-img" src="${produit.imageUrl}" alt="appareil photo en vente" />
                 <div class="camera-info">
                     <h2 class="camera-name">${produit.name}</h2>
-                    <p class="camera-description">${produit.description}</p>
+                    <div class="camera-description">
+                        <p>Description :</p>
+                        <p> ${produit.description}</p>
+                    </div>
                     <p class="camera-price">${pricesSpace(produit.price)} €</p>
                 </div>
-                <form>
-                <label for="choiseLenses">
-                    Choisissez votre lentille :
-                </label>
-                <select name="choix" id="choiseLenses">
-                    
-                </select>
-                <label for="inputQuantity">
-                    Quantité :
-                </label>
-                <input type="number" name="quantité" aria-label="quantité de produit" id="inputQuantity" min="1" />
-                <button id="panier" type="button" aria-label="ajouter votre appareil-photo au panier">
-                    Ajouter au panier
-                </button>
+                <form class="choiseForCart">
+                    <div class="cartQuantity">
+                        <div>
+                            <label for="choiseLenses">
+                                Modèles :
+                            </label>
+                            <select name="choix" id="choiseLenses"></select>
+                        </div>
+                        <div>
+                            <label for="inputQuantity">
+                            Quantité :
+                            </label>
+                            <input type="number" name="quantité" aria-label="quantité de produit" id="inputQuantity" min="1" />
+                        </div>
+                    </div>
+                    <button id="panier" type="submit" aria-label="ajouter votre appareil-photo au panier">
+                        Ajouter au panier
+                    </button>
                 </form>
             </div>
         </section>
@@ -93,7 +100,7 @@ function majProduit(produit) {
 
     )
 
-        /* Boucle qui parcours toute les lentilles du tableau lenses et les ajoute dans le select chaque option dynamiquement . Même si on en rajoute dans le tableau :D */
+    /* Boucle qui parcours toute les lentilles du tableau lenses pour chaque produit individuellement et les ajoute dans le select chaque option dynamiquement . Même si on en rajoute dans le tableau :D */
     for(let i = 0; i < produit.lenses.length; i++) {
 
         let lentille = produit.lenses[i];
