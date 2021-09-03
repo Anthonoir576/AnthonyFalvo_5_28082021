@@ -14,7 +14,7 @@
 // Mes variables est constantes 
 /* Lendroit ou afficher le resultat */
 const mySelection = document.querySelector('.main-produit');
-const choixLentilles = document.getElementById('choiseLenses');
+
 
 
 // fonction
@@ -93,13 +93,21 @@ function majProduit(produit) {
 
     )
 
+        /* Boucle qui parcours toute les lentilles du tableau lenses et les ajoute dans le select chaque option dynamiquement . Même si on en rajoute dans le tableau :D */
     for(let i = 0; i < produit.lenses.length; i++) {
 
         let lentille = produit.lenses[i];
+        const choixLentilles = document.getElementById('choiseLenses');
+
+        choixLentilles.insertAdjacentHTML ('afterbegin',
+
+            `
+            <option value="${lentille}" name="choiseLenses" aria-label="choix de lentille format ${lentille}">${lentille}</option>
+            
+            `
+
+        );
 
     };
-
-
-    console.log(produit.lenses[0], produit.lenses[1], produit.lenses[2]);
-    
+  
 };
