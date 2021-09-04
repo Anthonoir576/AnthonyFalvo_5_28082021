@@ -17,9 +17,7 @@ const mySelection = document.querySelector('.main-produit');
 
 
 
-// fonction
-
-/* Recupere dans lURL l'id */
+/* Recupere dans lURL l'id en l'occurence chaque article serra celui cliqué */
 function getProduitId() {
 
     return new URL(location.href).searchParams.get("id");
@@ -60,6 +58,7 @@ function pricesSpace(prix) {
 /* lecriture sur le html du resultat final apres selection du produit */
 function majProduit(produit) {
 
+    
     mySelection.innerHTML = (
 
         `
@@ -72,7 +71,7 @@ function majProduit(produit) {
                         <p>Description :</p>
                         <p> ${produit.description}</p>
                     </div>
-                    <p class="camera-price">${pricesSpace(produit.price)} € <span> / <em>unité</em></span></p>
+                    <p class="camera-price">${pricesSpace(produit.price)} € <span> /<em>Unité</em></span></p>
                 </div>
                 <form class="choiseForCart">
                     <div class="cartQuantity">
@@ -89,6 +88,8 @@ function majProduit(produit) {
                             <input type="number" name="quantité" aria-label="quantité de produit" id="inputQuantity" min="1" />
                         </div>
                     </div>
+                    <p class="camera-total">TOTAL :</p>
+                    <p class="camera-price-total">${pricesSpace(produit.price)} €</p>
                     <button id="panier" type="submit" aria-label="ajouter votre appareil-photo au panier">
                         Ajouter au panier
                     </button>
@@ -98,7 +99,8 @@ function majProduit(produit) {
         
         `
 
-    )
+    );
+
 
     /* Boucle qui parcours toute les lentilles du tableau lenses pour chaque produit individuellement et les ajoute dans le select chaque option dynamiquement . Même si on en rajoute dans le tableau :D */
     for(let i = 0; i < produit.lenses.length; i++) {

@@ -255,7 +255,7 @@ body {
     text-align: center;
   }
 }
-@media only screen and (max-width: 690px) {
+@media only screen and (max-width: 700px) {
   body.body-produit .main-produit .camera-item .choiseForCart .cartQuantity {
     display: block;
   }
