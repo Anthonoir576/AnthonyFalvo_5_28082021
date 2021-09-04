@@ -216,16 +216,22 @@
                     text-align: center;
                     background: #32CD32;
                     border-radius: 5px;
-                    box-shadow: 0 0 10px 0px rgba(255, 255, 255, 0.986);
+                    box-shadow: 0 0 10px 0px rgba(255, 255, 255, .7);
 
                     
                     font-family: 'Lato', sans-serif;
-                    font-weight: 300;
+                    font-weight: 400;
                     font-size: 1.2rem;
                     text-transform: uppercase;
                     text-shadow: 1px 1px 10px black;
                     letter-spacing: 1px;
 
+                    & i {
+
+                        margin-left: 1rem;
+                        font-size: 1.5rem;
+
+                    }
 
                 }
 

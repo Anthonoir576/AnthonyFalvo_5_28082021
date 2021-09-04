@@ -109,6 +109,8 @@ function majProduit(produit) {
         e.preventDefault();
 
         confirm.textContent = "Merci pour votre confiance. La selection est ajouté au panier";
+        confirm.insertAdjacentHTML('beforeend', `<i class="far fa-check-square"></i>`);
+        //confirm.insertAdjacentHTML('afterbegin', `<i class="far fa-check-square"></i>`);
         confirm.style.display = "block";
 
 
@@ -132,3 +134,4 @@ function majProduit(produit) {
     };
       
 };
+
