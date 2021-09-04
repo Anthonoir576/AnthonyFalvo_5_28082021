@@ -16,7 +16,6 @@
 const mySelection = document.querySelector('.main-produit');
 
 
-
 /* Recupere dans lURL l'id en l'occurence chaque article serra celui cliqué */
 function getProduitId() {
 
@@ -55,10 +54,11 @@ function pricesSpace(prix) {
 };
 
 
+
+
 /* lecriture sur le html du resultat final apres selection du produit */
 function majProduit(produit) {
 
-    
     mySelection.innerHTML = (
 
         `
@@ -77,7 +77,7 @@ function majProduit(produit) {
                     <div class="cartQuantity">
                         <div>
                             <label for="choiseLenses">
-                                Modèles :
+                                Modèles optiques :
                             </label>
                             <select name="choix" id="choiseLenses"></select>
                         </div>
@@ -85,11 +85,9 @@ function majProduit(produit) {
                             <label for="inputQuantity">
                             Quantité :
                             </label>
-                            <input type="number" name="quantité" aria-label="quantité de produit" id="inputQuantity" min="1" />
+                            <input type="number" name="quantité" aria-label="quantité de produit" id="inputQuantity" value="1" min="1" max="100" />
                         </div>
                     </div>
-                    <p class="camera-total">TOTAL :</p>
-                    <p class="camera-price-total">${pricesSpace(produit.price)} €</p>
                     <button id="panier" type="submit" aria-label="ajouter votre appareil-photo au panier">
                         Ajouter au panier
                     </button>
@@ -101,6 +99,7 @@ function majProduit(produit) {
 
     );
 
+    
 
     /* Boucle qui parcours toute les lentilles du tableau lenses pour chaque produit individuellement et les ajoute dans le select chaque option dynamiquement . Même si on en rajoute dans le tableau :D */
     for(let i = 0; i < produit.lenses.length; i++) {
@@ -108,7 +107,7 @@ function majProduit(produit) {
         let lentille = produit.lenses[i];
         const choixLentilles = document.getElementById('choiseLenses');
 
-        choixLentilles.insertAdjacentHTML ('afterbegin',
+        choixLentilles.insertAdjacentHTML('afterbegin',
 
             `
             <option value="${lentille}" name="choiseLenses" aria-label="choix de lentille format ${lentille}">${lentille}</option>
@@ -118,5 +117,5 @@ function majProduit(produit) {
         );
 
     };
-  
+      
 };

@@ -658,6 +658,14 @@ body {
 .body-produit .main-produit .camera-item .camera-info p::first-letter {
   color: red;
 }
+.body-produit .main-produit .camera-item .camera-info .camera-price span {
+  margin-left: 0.5rem;
+}
+.body-produit .main-produit .camera-item .camera-info .camera-price span em {
+  margin-left: 0.3rem;
+  font-size: 0.8rem;
+  font-weight: 300;
+}
 .body-produit .main-produit .camera-item .camera-info .camera-description {
   margin: 2rem 0;
 }

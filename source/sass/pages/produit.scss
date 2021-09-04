@@ -153,6 +153,21 @@
     
                 }
 
+                .camera-price span {
+
+                    margin-left: .5rem;
+
+                    & em {
+
+                        margin-left: .3rem;
+                        
+                        font-size: .8rem;
+                        font-weight: 300;
+
+                    }
+
+                }
+
                 .camera-description {
 
                     margin: 2rem 0;
