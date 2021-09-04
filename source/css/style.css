@@ -659,7 +659,8 @@ body {
   color: red;
 }
 .body-produit .main-produit .camera-item .camera-info .camera-price span {
-  margin-left: 0.5rem;
+  margin-left: 1rem;
+  font-weight: 300;
 }
 .body-produit .main-produit .camera-item .camera-info .camera-price span em {
   margin-left: 0.3rem;
@@ -686,6 +687,22 @@ body {
 .body-produit .main-produit .camera-item .choiseForCart .cartQuantity div {
   display: flex;
   flex-direction: column;
+}
+.body-produit .main-produit .camera-item .choiseForCart #confirmationAjoutPanier {
+  display: none;
+  width: 100%;
+  margin: 0 auto;
+  padding: 10px 5px 13px 5px;
+  text-align: center;
+  background: #32CD32;
+  border-radius: 5px;
+  box-shadow: 0 0 10px 0px rgba(255, 255, 255, 0.986);
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 10px black;
+  letter-spacing: 1px;
 }
 .body-produit .main-produit .camera-item .choiseForCart input, .body-produit .main-produit .camera-item .choiseForCart select {
   margin-bottom: 1.5rem;

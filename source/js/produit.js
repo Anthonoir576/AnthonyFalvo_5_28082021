@@ -88,6 +88,7 @@ function majProduit(produit) {
                             <input type="number" name="quantité" aria-label="quantité de produit" id="inputQuantity" value="1" min="1" max="100" />
                         </div>
                     </div>
+                    <p id="confirmationAjoutPanier"></p>
                     <button id="panier" type="submit" aria-label="ajouter votre appareil-photo au panier">
                         Ajouter au panier
                     </button>
@@ -98,8 +99,20 @@ function majProduit(produit) {
         `
 
     );
-
+     
     
+    /* Element qui permet de confirmer lenvoi dans le panier avec un message de confirmation  */
+    document.getElementById('panier').addEventListener('click', (e) => {
+
+        let confirm = document.getElementById('confirmationAjoutPanier');
+
+        e.preventDefault();
+
+        confirm.textContent = "Merci pour votre confiance. La selection est ajouté au panier";
+        confirm.style.display = "block";
+
+
+    });
 
     /* Boucle qui parcours toute les lentilles du tableau lenses pour chaque produit individuellement et les ajoute dans le select chaque option dynamiquement . Même si on en rajoute dans le tableau :D */
     for(let i = 0; i < produit.lenses.length; i++) {
