@@ -231,7 +231,7 @@
 
 
 
-// partie MAIN-ACCUEIL ===> myBoutique 
+// Partie MAIN-ACCUEIL ===> myBoutique 
 @media only screen and (max-width: 1625px) {
 
     .main-accueil {
@@ -308,7 +308,48 @@
 
 
 
-// Partie PANIER
+// Partie produit individuel selectionné 
+@media only screen and (max-width: 690px) {
+
+    body.body-produit {
+
+        & .main-produit {
+
+            & .camera-item {
+
+                & .choiseForCart {
+
+                    & .cartQuantity {
+
+                        display: block;
+
+                    }
+
+                    & input, select {
+
+                        width: 100%;
+
+                    }    
+
+                    & button {
+
+                        font-size: 1.2rem;
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+}
+
+
+
+// Partie PANIER par defaut (vide)
 @media only screen and (max-width: 508px) {
 
     .body {

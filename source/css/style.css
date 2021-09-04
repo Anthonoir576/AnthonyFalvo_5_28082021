@@ -255,6 +255,17 @@ body {
     text-align: center;
   }
 }
+@media only screen and (max-width: 690px) {
+  body.body-produit .main-produit .camera-item .choiseForCart .cartQuantity {
+    display: block;
+  }
+  body.body-produit .main-produit .camera-item .choiseForCart input, body.body-produit .main-produit .camera-item .choiseForCart select {
+    width: 100%;
+  }
+  body.body-produit .main-produit .camera-item .choiseForCart button {
+    font-size: 1.2rem;
+  }
+}
 @media only screen and (max-width: 508px) {
   .body .main-panier {
     margin: 20px 13px 0 13px;
@@ -557,11 +568,14 @@ body {
 .body-produit {
   background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.3)), url(../image/banner6.jpg) center/cover no-repeat;
 }
+.body-produit .main-produit {
+  padding: 0 20px;
+}
 .body-produit .main-produit .camera-item {
   position: relative;
   max-width: 1000px;
   height: auto;
-  margin: 0 auto;
+  margin: 1rem auto;
   padding: 10px 0;
   border: 2px solid white;
   border-radius: 5px;
@@ -670,6 +684,10 @@ body {
   width: 300px;
   height: 35px;
   border-radius: 5px;
+  outline: none;
+}
+.body-produit .main-produit .camera-item .choiseForCart input:focus, .body-produit .main-produit .camera-item .choiseForCart select:focus {
+  border: 3px solid red;
 }
 .body-produit .main-produit .camera-item .choiseForCart label {
   margin-bottom: 0.5rem;
@@ -685,17 +703,17 @@ body {
   letter-spacing: 3px;
   font-size: 1.5rem;
   text-transform: uppercase;
-  border: 2px solid white;
+  border: 1px solid white;
   border-radius: 5px;
+  outline: none;
   transition: all 0.4s ease-in-out;
   cursor: pointer;
 }
 .body-produit .main-produit .camera-item .choiseForCart button:hover {
   background: #fff;
   color: red;
-  border: 2px solid red;
+  border: 1px solid red;
   box-shadow: 0 0 5px 0 white;
-  filter: saturate(900%);
   transition: all 0.4s ease-in-out;
 }
 

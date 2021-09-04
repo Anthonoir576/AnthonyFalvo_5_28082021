@@ -72,7 +72,7 @@ function majProduit(produit) {
                         <p>Description :</p>
                         <p> ${produit.description}</p>
                     </div>
-                    <p class="camera-price">${pricesSpace(produit.price)} €</p>
+                    <p class="camera-price">${pricesSpace(produit.price)} € <span> / <em>unité</em></span></p>
                 </div>
                 <form class="choiseForCart">
                     <div class="cartQuantity">
