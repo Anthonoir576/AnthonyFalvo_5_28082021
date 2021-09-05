@@ -33,7 +33,7 @@ function getProduit(produitId) {
         return response.json()
 
     })
-    .then(function (articles) {
+    .then(function(articles) {
 
         return articles
 
@@ -56,7 +56,7 @@ function pricesSpace(prix) {
 
 
 
-/* lecriture sur le html du resultat final apres selection du produit */
+/* lecriture sur le html du resultat final apres selection du produit ainsi qu'une boucle qui recupere dynamiquement chaque option presente pour le produit, même si on en ajoute via le back-end, au clique sur le btn panier retourne un message de confirmation dajout panier avec le nom du produit implémenté dynamiquement . jannule le comportement par defaut du clique avec e.preventDefault fonction afin de pas quitter la page par defaut lors dun clique sur un bouton */
 function majProduit(produit) {
 
     mySelection.innerHTML = (
@@ -83,7 +83,7 @@ function majProduit(produit) {
                         </div>
                         <div>
                             <label for="inputQuantity">
-                            Quantité :
+                                Quantité :
                             </label>
                             <input type="number" name="quantité" aria-label="quantité de produit" id="inputQuantity" value="1" min="1" max="100" />
                         </div>
@@ -108,13 +108,14 @@ function majProduit(produit) {
 
         e.preventDefault();
 
-        confirm.textContent = "Merci pour votre confiance. La selection est ajouté au panier";
+        confirm.textContent = `Merci pour votre confiance. Le ${produit.name} est ajouté au panier`;
         confirm.insertAdjacentHTML('beforeend', `<i class="far fa-check-square"></i>`);
         //confirm.insertAdjacentHTML('afterbegin', `<i class="far fa-check-square"></i>`);
         confirm.style.display = "block";
 
-
     });
+
+
 
     /* Boucle qui parcours toute les lentilles du tableau lenses pour chaque produit individuellement et les ajoute dans le select chaque option dynamiquement . Même si on en rajoute dans le tableau :D */
     for(let i = 0; i < produit.lenses.length; i++) {
