@@ -101,19 +101,9 @@ function majProduit(produit) {
     document.getElementById('panier').addEventListener('click', (e) => {
 
         let confirm = document.getElementById('confirmationAjoutPanier');
-
-        e.preventDefault();
-
-        confirm.textContent = `Merci pour votre confiance. Le ${produit.name} est ajouté au panier`;
-        confirm.insertAdjacentHTML('beforeend', `<i class="far fa-check-square"></i>`);
-        //confirm.insertAdjacentHTML('afterbegin', `<i class="far fa-check-square"></i>`);
-        confirm.style.display = "block";
-      
-
         // Valeur de la quantité selectionné par l'utilisateur et la selection de la lentille
         let valueInputQuantity = document.getElementById('inputQuantity').value;
         let valueInputLenses = document.getElementById('choiseLenses').value;
-
         // objet créer au clique, permettant d'avoir les données du produit, ainsi que la quantité et le choix de l'utilisateur 
         let selectionUtilisateur = {
 
@@ -125,10 +115,25 @@ function majProduit(produit) {
             choise : valueInputLenses
 
         };
+
+        e.preventDefault();
+
+
+        confirm.insertAdjacentHTML('beforeend', `<i class="far fa-check-square"></i>`);
+        confirm.style.display = "block";
+
+        // LE ou LES par rapport à la quantité 
+        if(valueInputQuantity == 1) {
+
+            confirm.textContent = `Merci pour votre confiance. Le ${produit.name} ${valueInputLenses} est ajouté au panier`;
+
+        } else {
+
+            confirm.textContent = `Merci pour votre confiance. Les ${produit.name} ${valueInputLenses} sont ajoutés au panier`;
+
+        }
         
-        console.log(selectionUtilisateur);
-    
-        
+        console.log(selectionUtilisateur);  
 
     });
 
