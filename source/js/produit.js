@@ -113,7 +113,7 @@ function majProduit(produit) {
             * 
             * // 01 = affiche le message grace au changement de display, LE ou LES par rapport à la quantité, affiche le nom produit, ainsi que la lentille choisis dans le select, petit plus, injecte une icone de validation.
             * 
-            * 
+            * // 02 = regarde si le produit ajouter au local existe ou non, si il existe, il push le produit uniquement, mais si il existe pas il en crée un tableau, et l'injecte . JSON.stringify permet de convertir du js en json, et inversement pour JSON.parse.
         */
 
         e.preventDefault();
@@ -150,6 +150,7 @@ function majProduit(produit) {
         // -----------
 
 
+        // --- 02 ---
         let mesProduitsEnregistrer = JSON.parse(localStorage.getItem("mon panier"));
 
         if (mesProduitsEnregistrer != null) {
@@ -157,13 +158,15 @@ function majProduit(produit) {
             mesProduitsEnregistrer.push(selectionUtilisateur);
             localStorage.setItem("mon panier", JSON.stringify(mesProduitsEnregistrer));
 
-        }else{
+        } else {
 
             mesProduitsEnregistrer = [];
             mesProduitsEnregistrer.push(selectionUtilisateur);
             localStorage.setItem("mon panier", JSON.stringify(mesProduitsEnregistrer));
 
-        }
+        };
+        // -----------
+
 
         console.log(mesProduitsEnregistrer);
         //console.log(JSON.stringify(selectionUtilisateur));  
