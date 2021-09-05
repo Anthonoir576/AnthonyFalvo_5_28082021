@@ -150,16 +150,18 @@ function majProduit(produit) {
         // -----------
 
 
-        let mesProduitsEnregistrer = [];
+        let mesProduitsEnregistrer = JSON.parse(localStorage.getItem("mon panier"));
 
-        if (mesProduitsEnregistrer === true) {
+        if (mesProduitsEnregistrer != null) {
 
-
+            mesProduitsEnregistrer.push(selectionUtilisateur);
+            localStorage.setItem("mon panier", JSON.stringify(mesProduitsEnregistrer));
 
         }else{
 
+            mesProduitsEnregistrer = [];
             mesProduitsEnregistrer.push(selectionUtilisateur);
-            localStorage.setItem("mon panier", JSON.stringify(mesProduitsEnregistrer))
+            localStorage.setItem("mon panier", JSON.stringify(mesProduitsEnregistrer));
 
         }
 
