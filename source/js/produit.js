@@ -122,7 +122,7 @@ function majProduit(produit) {
         confirm.insertAdjacentHTML('beforeend', `<i class="far fa-check-square"></i>`);
         confirm.style.display = "block";
 
-        // LE ou LES par rapport à la quantité 
+        // LE ou LES par rapport à la quantité, affiche le nom produit, ainsiq que la lentille choisis dans le select
         if(valueInputQuantity == 1) {
 
             confirm.textContent = `Merci pour votre confiance. Le ${produit.name} ${valueInputLenses} est ajouté au panier`;
