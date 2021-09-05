@@ -14,7 +14,6 @@ const fetchCameras = async() => {
 
 };
 
-
 /* Fonction qui fait appel a l'api et l'ecrit sous forme html */
 const showCameras = async() => {
 
