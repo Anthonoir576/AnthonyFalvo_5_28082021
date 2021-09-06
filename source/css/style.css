@@ -267,26 +267,26 @@ body {
   }
 }
 @media only screen and (max-width: 508px) {
-  .body .main-panier {
+  .body #main-panier {
     margin: 20px 13px 0 13px;
     padding: 10px 10px 10px 10px;
   }
-  .body .main-panier .panier h2, .body .main-panier .panier p {
+  .body #main-panier .panier h2, .body #main-panier .panier p {
     margin-bottom: 1rem;
   }
-  .body .main-panier .panier h2 {
+  .body #main-panier .panier h2 {
     font-size: 1rem;
     line-height: 1.3rem;
   }
-  .body .main-panier .panier .fa-window-close {
+  .body #main-panier .panier .fa-window-close {
     transform: translate(20px, -22px);
   }
-  .body .main-panier .panier a:hover {
+  .body #main-panier .panier a:hover {
     transform: translateX(0px);
   }
 }
 @media only screen and (max-width: 302px) {
-  .body .main-panier .panier a {
+  .body #main-panier .panier a {
     padding: 4px 8px 4px 8px;
     height: auto;
     font-size: 0.7rem;
@@ -492,7 +492,7 @@ body {
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.1)), url(../image/banner2.jpg) center/cover no-repeat;
 }
 
-.main-panier {
+#main-panier {
   margin: 10px 50px 0 50px;
   padding: 20px 10px 30px 10px;
   background: rgba(255, 255, 255, 0.05);
@@ -500,29 +500,29 @@ body {
   border-radius: 10px;
   height: 100%;
 }
-.main-panier .panier {
+#main-panier .panier {
   position: relative;
   text-align: center;
 }
-.main-panier .panier h2, .main-panier .panier p {
+#main-panier .panier h2, #main-panier .panier p {
   margin-bottom: 2rem;
   text-shadow: 0 0 5px black;
   line-height: 2.2rem;
 }
-.main-panier .panier p {
+#main-panier .panier p {
   font-size: 1.5rem;
 }
-.main-panier .panier p strong {
+#main-panier .panier p strong {
   display: block;
   font-weight: 900;
   letter-spacing: 5px;
   text-shadow: 0 0 10px black;
 }
-.main-panier .panier p em {
+#main-panier .panier p em {
   color: red;
   font-weight: 600;
 }
-.main-panier .panier a {
+#main-panier .panier a {
   display: inline-block;
   font-family: "Prompt", sans-serif;
   padding: 8px 15px 8px 15px;
@@ -537,11 +537,11 @@ body {
   transition: all 0.3s ease-in-out;
   transform: translateX(0px);
 }
-.main-panier .panier a::first-letter {
+#main-panier .panier a::first-letter {
   color: red;
   font-weight: 600;
 }
-.main-panier .panier a:hover {
+#main-panier .panier a:hover {
   background: #fff;
   color: #000;
   transition: all 0.3s ease-in-out;
@@ -550,7 +550,7 @@ body {
   border: 1px dotted red;
   box-shadow: 0 0 10px 1px #727272;
 }
-.main-panier .panier .fa-window-close {
+#main-panier .panier .fa-window-close {
   position: absolute;
   top: 0;
   right: 0;
@@ -560,7 +560,7 @@ body {
   cursor: pointer;
   transition: color 0.3s ease-in-out;
 }
-.main-panier .panier .fa-window-close:hover {
+#main-panier .panier .fa-window-close:hover {
   color: red;
   transition: all 0.3s ease-in-out;
 }
