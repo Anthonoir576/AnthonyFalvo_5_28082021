@@ -52,6 +52,7 @@ function pricesSpace(prix) {
 
 };
 
+
 /* lecriture sur le html du resultat final apres selection du produit ainsi qu'une boucle qui recupere dynamiquement chaque option presente pour le produit, même si on en ajoute via le back-end, au clique sur le btn panier retourne un message de confirmation dajout panier avec le nom du produit implémenté dynamiquement . jannule le comportement par defaut du clique avec e.preventDefault fonction afin de pas quitter la page par defaut lors dun clique sur un bouton */
 function majProduit(produit) {
 
@@ -96,6 +97,24 @@ function majProduit(produit) {
 
     );
 
+    /* Boucle qui parcours toute les lentilles du tableau lenses pour chaque produit individuellement et les ajoute dans le select chaque option dynamiquement . Même si on en rajoute dans le tableau :D */
+    for(let i = 0; i < produit.lenses.length; i++) {
+
+        let lentille = produit.lenses[i];
+        const choixLentilles = document.getElementById('choiseLenses');
+
+        choixLentilles.insertAdjacentHTML('afterbegin',
+
+            `
+            <option value="${lentille}" name="choiseLenses" aria-label="choix de lentille format ${lentille}">${lentille}</option>
+            
+            `
+
+        );
+
+    };
+
+
 
     /* Element qui permet de confirmer lenvoi dans le panier avec un message de confirmation  */
     document.getElementById('panier').addEventListener('click', (e) => {
@@ -117,6 +136,7 @@ function majProduit(produit) {
         */
 
         e.preventDefault();
+        e.stopPropagation();
 
         let confirm = document.getElementById('confirmationAjoutPanier');
         let valueInputQuantity = document.getElementById('inputQuantity').value;
@@ -126,9 +146,9 @@ function majProduit(produit) {
             id : produit._id,
             picture : produit.imageUrl,
             name : produit.name,
-            price : pricesSpace(produit.price),
+            price : parseFloat(pricesSpace(produit.price) * valueInputQuantity),
             quantity : valueInputQuantity,
-            choise : valueInputLenses
+            choice : valueInputLenses
 
         };
         
@@ -153,45 +173,75 @@ function majProduit(produit) {
         // --- 02 ---
         let mesProduitsEnregistrer = JSON.parse(localStorage.getItem("mon panier"));
 
-        if (mesProduitsEnregistrer != null) {
+        /* Fonction afin de push dans le local storage afin deviter de repeter le code deux fois */  
+        let localSto = (selection, enregistrer) => {
 
-            mesProduitsEnregistrer.push(selectionUtilisateur);
-            localStorage.setItem("mon panier", JSON.stringify(mesProduitsEnregistrer));
+            enregistrer.push(selection);
+            localStorage.setItem("mon panier", JSON.stringify(enregistrer));
+
+        };
+
+
+        if (mesProduitsEnregistrer != null) {
+     
+            /*
+                for(let i = 0; i < mesProduitsEnregistrer.length; i++) {
+
+                    if(mesProduitsEnregistrer[i].id === selectionUtilisateur.id && mesProduitsEnregistrer[i].choice == selectionUtilisateur.choice) {
+
+
+                        let totalQuantité = parseInt(mesProduitsEnregistrer[i].quantity, 10) + parseInt(selectionUtilisateur.quantity ,10);
+
+                        let updateStorage = mesProduitsEnregistrer;
+
+                        updateStorage[i].quantity = totalQuantité;
+
+                        mesProduitsEnregistrer = updateStorage;
+
+                        
+                        localStorage.setItem('mon panier', JSON.stringify(mesProduitsEnregistrer));
+
+
+                    } else {
+
+                        localSto(selectionUtilisateur, mesProduitsEnregistrer);
+
+                    };
+
+                }; 
+            */
+
+            
+            localSto(selectionUtilisateur, mesProduitsEnregistrer);
+
 
         } else {
 
             mesProduitsEnregistrer = [];
-            mesProduitsEnregistrer.push(selectionUtilisateur);
-            localStorage.setItem("mon panier", JSON.stringify(mesProduitsEnregistrer));
+            localSto(selectionUtilisateur, mesProduitsEnregistrer);
 
         };
+
+
         // -----------
 
 
-        console.log(mesProduitsEnregistrer);
-        //console.log(JSON.stringify(selectionUtilisateur));  
+        //  ******************* TEST ************************
+        //console.log(selectionUtilisateur.id);  
+        //console.log(mesProduitsEnregistrer[0].id);  
+        //console.log(selectionUtilisateur.choice);
+        //console.log(selectionUtilisateur.quantity);
+        //console.log(mesProduitsEnregistrer[0].quantity);
+
+        //console.log(parseInt(mesProduitsEnregistrer[0].quantity, 10) + parseInt( selectionUtilisateur.quantity, 10));
         //console.log(JSON.parse(selectionUtilisateur.name));  
 
+        window.location.href ="panier.html"
     });
 
 
 
-    /* Boucle qui parcours toute les lentilles du tableau lenses pour chaque produit individuellement et les ajoute dans le select chaque option dynamiquement . Même si on en rajoute dans le tableau :D */
-    for(let i = 0; i < produit.lenses.length; i++) {
 
-        let lentille = produit.lenses[i];
-        const choixLentilles = document.getElementById('choiseLenses');
-
-        choixLentilles.insertAdjacentHTML('afterbegin',
-
-            `
-            <option value="${lentille}" name="choiseLenses" aria-label="choix de lentille format ${lentille}">${lentille}</option>
-            
-            `
-
-        );
-
-    };
       
 };
 
@@ -199,3 +249,8 @@ function majProduit(produit) {
 
 
 /************* PARTIE STOCKAGE DU PANIER AU CLIQUE DANS LE LOCALSTORAGE ***************/
+
+
+/* 
+
+*/
