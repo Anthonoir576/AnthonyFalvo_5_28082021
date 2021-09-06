@@ -32,11 +32,6 @@ function getProduit(produitId) {
         return response.json()
 
     })
-    .then(function(articles) {
-
-        return articles
-
-    })
     .catch(function(error) {
 
         return console.log(error);
@@ -136,7 +131,7 @@ function majProduit(produit) {
         */
 
         e.preventDefault();
-        e.stopPropagation();
+
 
         let confirm = document.getElementById('confirmationAjoutPanier');
         let valueInputQuantity = document.getElementById('inputQuantity').value;
@@ -146,7 +141,7 @@ function majProduit(produit) {
             id : produit._id,
             picture : produit.imageUrl,
             name : produit.name,
-            price : parseFloat(pricesSpace(produit.price) * valueInputQuantity),
+            price : parseFloat(pricesSpace(produit.price) * valueInputQuantity).toFixed(2),
             quantity : valueInputQuantity,
             choice : valueInputLenses
 
@@ -232,25 +227,12 @@ function majProduit(produit) {
         //console.log(selectionUtilisateur.choice);
         //console.log(selectionUtilisateur.quantity);
         //console.log(mesProduitsEnregistrer[0].quantity);
-
         //console.log(parseInt(mesProduitsEnregistrer[0].quantity, 10) + parseInt( selectionUtilisateur.quantity, 10));
         //console.log(JSON.parse(selectionUtilisateur.name));  
 
-        window.location.href ="panier.html"
+
+        // UNE FOIS la quantité et le choix selectionné, direction automatique au panier !
+        window.location.href ="panier.html";
     });
-
-
-
-
       
 };
-
-
-
-
-/************* PARTIE STOCKAGE DU PANIER AU CLIQUE DANS LE LOCALSTORAGE ***************/
-
-
-/* 
-
-*/
