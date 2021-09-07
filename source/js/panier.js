@@ -30,7 +30,7 @@ if (mesProduitsEnregistrer == null) {
     ); 
 
 
-
+// sinon c'est que des articles on été selectionné :
 } else {
 
     

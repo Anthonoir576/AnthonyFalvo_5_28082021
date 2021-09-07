@@ -147,25 +147,7 @@ function majProduit(produit) {
 
         };
         
-        
-        // --- 01 ---
-        confirm.style.display = "block";
 
-        if(valueInputQuantity == 1) {
-
-            confirm.textContent = `Merci pour votre confiance. Le ${produit.name} ${valueInputLenses} est ajouté au panier`; 
-
-        } else {
-
-            confirm.textContent = `Merci pour votre confiance. Les ${produit.name} ${valueInputLenses} sont ajoutés au panier`;
-            
-        };
-
-        confirm.insertAdjacentHTML('beforeend', `<i class="far fa-check-square"></i>`);
-        // -----------
-
-
-        // --- 02 ---
         let mesProduitsEnregistrer = JSON.parse(localStorage.getItem("mon panier"));
 
         /* Fonction afin de push dans le local storage afin deviter de repeter le code deux fois */  
@@ -177,51 +159,84 @@ function majProduit(produit) {
         };
 
 
-        if (mesProduitsEnregistrer != null) {
-     
-            /*
-                for(let i = 0; i < mesProduitsEnregistrer.length; i++) {
+         
+        
+        
+        confirm.style.display = "block";
 
-                    if(mesProduitsEnregistrer[i].id === selectionUtilisateur.id && mesProduitsEnregistrer[i].choice == selectionUtilisateur.choice) {
+        // LIMITER LE PANIER A DIX produits 
+        // la confirmation du panier a était mise en fonction pour evité les repetitions 
+        let confirmationFonction = () => {
 
+            confirm.style.background ="#32CD32";
 
-                        let totalQuantité = parseInt(mesProduitsEnregistrer[i].quantity, 10) + parseInt(selectionUtilisateur.quantity ,10);
+            if(valueInputQuantity == 1) {
+    
+                confirm.textContent = `Merci pour votre confiance. Le ${produit.name} ${valueInputLenses} est ajouté au panier`; 
+    
+            } else {
+    
+                confirm.textContent = `Merci pour votre confiance. Les ${produit.name} ${valueInputLenses} sont ajoutés au panier`;
+                
+            };
+    
+            confirm.insertAdjacentHTML('beforeend', `<i class="far fa-check-square"></i>`);
 
-                        let updateStorage = mesProduitsEnregistrer;
+        };
 
-                        updateStorage[i].quantity = totalQuantité;
-
-                        mesProduitsEnregistrer = updateStorage;
-
-                        
-                        localStorage.setItem('mon panier', JSON.stringify(mesProduitsEnregistrer));
-
-
-                    } else {
-
-                        localSto(selectionUtilisateur, mesProduitsEnregistrer);
-
-                    };
-
-                }; 
-            */
-
-            
-            localSto(selectionUtilisateur, mesProduitsEnregistrer);
-
-
-        } else {
-
+        if (mesProduitsEnregistrer == null) {
+ 
             mesProduitsEnregistrer = [];
+            confirmationFonction();
             localSto(selectionUtilisateur, mesProduitsEnregistrer);
+
+        } else if (mesProduitsEnregistrer != null && mesProduitsEnregistrer.length < 10) {
+
+            confirmationFonction();
+            localSto(selectionUtilisateur, mesProduitsEnregistrer);
+
+        } else if (mesProduitsEnregistrer.length >= 10) {
+            
+            confirm.style.background ="red";
+                
+            confirm.textContent = `VOTRE PANIER EST PLEIN`;
+            confirm.insertAdjacentHTML('beforeend', `<i class="far fa-times-circle"></i>`);
+
+            return
 
         };
 
 
-        // -----------
-
-
         //  ******************* TEST ************************
+
+        // LA FONCTION QUI BUG - Possible erreur de logique 
+        /*
+            for(let i = 0; i < mesProduitsEnregistrer.length; i++) {
+
+                if(mesProduitsEnregistrer[i].id === selectionUtilisateur.id && mesProduitsEnregistrer[i].choice == selectionUtilisateur.choice) {
+
+
+                    let totalQuantité = parseInt(mesProduitsEnregistrer[i].quantity, 10) + parseInt(selectionUtilisateur.quantity ,10);
+
+                    let updateStorage = mesProduitsEnregistrer;
+
+                    updateStorage[i].quantity = totalQuantité;
+
+                    mesProduitsEnregistrer = updateStorage;
+
+                    
+                    localStorage.setItem('mon panier', JSON.stringify(mesProduitsEnregistrer));
+
+
+                } else {
+
+                    localSto(selectionUtilisateur, mesProduitsEnregistrer);
+
+                };
+
+            }; 
+        */
+
         //console.log(selectionUtilisateur.id);  
         //console.log(mesProduitsEnregistrer[0].id);  
         //console.log(selectionUtilisateur.choice);
@@ -232,7 +247,7 @@ function majProduit(produit) {
 
 
         // UNE FOIS la quantité et le choix selectionné, direction automatique au panier !
-        window.location.href ="panier.html";
-    });
-      
+        //window.location.href ="panier.html";
+
+    });     
 };
