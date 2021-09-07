@@ -570,6 +570,44 @@ body {
   transition: all 0.3s ease-in-out;
 }
 
+#main-panier table {
+  width: 100%;
+  height: auto;
+  text-align: center;
+  border-collapse: collapse;
+  font-family: "josefin Sans", "lato", "Prompt", sans-serif;
+}
+#main-panier table thead .tab-title {
+  background: red;
+}
+#main-panier table thead .tab-title th {
+  height: 45px;
+  padding-top: 1px;
+  border: 1px solid rgba(255, 255, 255, 0.61);
+  letter-spacing: 3px;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+#main-panier table tbody td {
+  height: 60px;
+}
+#main-panier table tfoot {
+  width: 100%;
+  height: 40px;
+}
+#main-panier table tfoot tr {
+  width: 100%;
+  background: red;
+}
+#main-panier table tfoot tr td {
+  height: 45px;
+  padding-top: 1px;
+  border: 1px solid rgba(255, 255, 255, 0.829);
+  letter-spacing: 3px;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
 .body-produit {
   background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.3)), url(../image/banner6.jpg) center/cover no-repeat;
 }

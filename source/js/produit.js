@@ -12,6 +12,7 @@
 
 })()
 
+
 // Mes variables est constantes 
 /* Lendroit ou afficher le resultat */
 const mySelection = document.querySelector('.main-produit');
@@ -50,6 +51,7 @@ function pricesSpace(prix) {
 
 /* lecriture sur le html du resultat final apres selection du produit ainsi qu'une boucle qui recupere dynamiquement chaque option presente pour le produit, même si on en ajoute via le back-end, au clique sur le btn panier retourne un message de confirmation dajout panier avec le nom du produit implémenté dynamiquement . jannule le comportement par defaut du clique avec e.preventDefault fonction afin de pas quitter la page par defaut lors dun clique sur un bouton */
 function majProduit(produit) {
+
 
     mySelection.innerHTML = (
 
@@ -91,6 +93,7 @@ function majProduit(produit) {
         `
 
     );
+
 
     /* Boucle qui parcours toute les lentilles du tableau lenses pour chaque produit individuellement et les ajoute dans le select chaque option dynamiquement . Même si on en rajoute dans le tableau :D */
     for(let i = 0; i < produit.lenses.length; i++) {
@@ -136,6 +139,7 @@ function majProduit(produit) {
         let confirm = document.getElementById('confirmationAjoutPanier');
         let valueInputQuantity = document.getElementById('inputQuantity').value;
         let valueInputLenses = document.getElementById('choiseLenses').value;
+
         let selectionUtilisateur = {
 
             id : produit._id,
@@ -148,8 +152,8 @@ function majProduit(produit) {
         };
         
 
-        let mesProduitsEnregistrer = JSON.parse(localStorage.getItem("mon panier"));
 
+        let mesProduitsEnregistrer = JSON.parse(localStorage.getItem("mon panier"));
         /* Fonction afin de push dans le local storage afin deviter de repeter le code deux fois */  
         let localSto = (selection, enregistrer) => {
 
@@ -157,13 +161,8 @@ function majProduit(produit) {
             localStorage.setItem("mon panier", JSON.stringify(enregistrer));
 
         };
-
-
-         
-        
-        
+   
         confirm.style.display = "block";
-
         // LIMITER LE PANIER A DIX produits 
         // la confirmation du panier a était mise en fonction pour evité les repetitions 
         let confirmationFonction = () => {
@@ -209,7 +208,7 @@ function majProduit(produit) {
 
         //  ******************* TEST ************************
 
-        // LA FONCTION QUI BUG - Possible erreur de logique 
+        // LA FONCTION QUI BUG - Erreur de logique en cours de correction . Parcours le tableau, et n'agis que si aucun des elements presents n'ont le meme id et la même option alors il crée cette element en objet OR si il trouve le meme id et option il ajoute que la quantité 
         /*
             for(let i = 0; i < mesProduitsEnregistrer.length; i++) {
 
