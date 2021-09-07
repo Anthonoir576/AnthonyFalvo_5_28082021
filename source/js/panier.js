@@ -1,45 +1,8 @@
-(async function() {
-
-    
-    const produitId = getProduitId();
-    const produit = await getProduit(produitId);
-
-    majPanier(produit);
-
-
-})()
-
 let mesProduitsEnregistrer = JSON.parse(localStorage.getItem("mon panier"));
 console.log(mesProduitsEnregistrer);
 
 let myPanier = document.getElementById('main-panier');
 let close = document.getElementById('closePop');
-
-
-
-/* Recupere dans lURL l'id en l'occurence chaque article serra celui cliqué */
-function getProduitId() {
-
-    return new URL(location.href).searchParams.get("id");
-
-};
-
-/* on nous retourne le produit selection en fonction de sont id grace a la fonction getProduitId */
-function getProduit(produitId) {
-
-    return fetch(`http://localhost:3000/api/cameras/${produitId}`)
-    .then(function(response) {
-
-        return response.json()
-
-    })
-    .catch(function(error) {
-
-        return console.log(error);
-
-    })
-
-};
 
 /* Mon parse de prix le même que sur lindex */
 function pricesSpace(prix) {
@@ -48,7 +11,7 @@ function pricesSpace(prix) {
 
 };
 
-function majPanier(produit) {
+function majPanier() {
 
     // si la page panier ne contient rien, afficher ce message :
     if (mesProduitsEnregistrer == null) {
@@ -77,6 +40,17 @@ function majPanier(produit) {
 
     // sinon c'est que des articles on été selectionné :
     } else {
+
+
+        let totaux = 0;    
+        
+        for (let i = 0; i < mesProduitsEnregistrer.length; i++) {
+
+            let price = Number(mesProduitsEnregistrer[i].price);
+
+            totaux += price; 
+
+        }
         
         myPanier.innerHTML = (
 
@@ -96,7 +70,7 @@ function majPanier(produit) {
                 <tfoot>
                 <tr>
                     <td>TOTAL :</td>
-                    <td> 0 </td>
+                    <td>${totaux.toFixed(2)} €</td>
                 </tr>
                 </tfoot>
             </table>
@@ -108,37 +82,26 @@ function majPanier(produit) {
 
         for(let i = 0; i < mesProduitsEnregistrer.length; i++) {
 
-            if(produit.id == mesProduitsEnregistrer[i].id) {
-
-                
-            bodyTab.insertAdjacentElement('beforeend', 
+            bodyTab.insertAdjacentHTML('beforeend', 
                 
                 `
-                <tr>
-                    <td>${produit.mesProduitsEnregistrer[i].picture}</td>
-                    <td>${produit.mesProduitsEnregistrer[i].name}</td>
-                    <td>${produit.mesProduitsEnregistrer[i].choice}</td>
-                    <td>${produit.mesProduitsEnregistrer[i].qunatity}</td>
-                    <td>${produit.mesProduitsEnregistrer[i].price}</td>
-                    <td><button></button></td>
+                <tr data-content="${mesProduitsEnregistrer[i].id}">
+                    <td><img src="${mesProduitsEnregistrer[i].picture}" alt="produit selectionné" /></td>
+                    <td>${mesProduitsEnregistrer[i].name}</td>
+                    <td>${mesProduitsEnregistrer[i].choice}</td>
+                    <td>${mesProduitsEnregistrer[i].quantity}</td>
+                    <td>${mesProduitsEnregistrer[i].price} €</td>
+                    <td><i class="far fa-trash-alt"></i></td>
                 </tr>
                 
                 `
             );
-          
-            
-            } else {
-    
-                return;
-    
-            }
 
-
-        }
+        };
 
 
     };
 
-}
+};
 
-
+majPanier();
