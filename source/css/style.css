@@ -587,7 +587,7 @@ body {
 }
 #main-panier table thead .tab-title th {
   height: 45px;
-  padding-top: 1px;
+  padding: 1px 0px 2px 0;
   border: 1px solid rgba(255, 255, 255, 0.61);
   letter-spacing: 3px;
   font-size: 1.5rem;
