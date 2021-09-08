@@ -20,7 +20,7 @@
 
     height: 100%;
 
-    & .panier {
+    & .panier-vide {
 
         position: relative;
 
@@ -159,7 +159,7 @@
 
                 & th {
 
-                    height: 45px;
+                    min-height: 45px;
                     padding: 1px 0px 2px 0;
 
                     border: 1px solid rgba(255, 255, 255, 0.61);

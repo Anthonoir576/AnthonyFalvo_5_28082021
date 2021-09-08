@@ -19,7 +19,7 @@ function majPanier() {
         myPanier.innerHTML = (
 
             `
-            <section class="panier">
+            <section class="panier-vide">
                 <h2>
                     Votre panier est actuellement vide. <br /> Vous pouvez vous rendre sur notre boutique en ligne.
                 </h2>
@@ -63,14 +63,13 @@ function majPanier() {
                     <th>Option :</th>
                     <th>Quantité :</th>
                     <th>Prix :</th>
-                    <th>Suppression :</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody id="bodyTab"></tbody>
                 <tfoot>
                 <tr>
-                    <td>TOTAL :</td>
-                    <td>${totaux.toFixed(2)} €</td>
+                    <td>Total : ${totaux.toFixed(2)} €</td>
                 </tr>
                 </tfoot>
             </table>

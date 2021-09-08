@@ -387,7 +387,7 @@
             margin: 20px 13px 0 13px;
             padding: 10px 10px 10px 10px;
     
-            & .panier {
+            & .panier-vide {
 
                 & h2, p {
 
@@ -429,8 +429,7 @@
 
         #main-panier {
 
-    
-            & .panier {
+            & .panier-vide {
 
                 & a {
 
@@ -449,7 +448,183 @@
 }
 
 // Partie PANIER (plein)
-// @media only screen and () {
+@media only screen and (max-width: 1000px) {
 
+    .body-panier {
 
-// }
+        & #main-panier {
+
+            margin: 20px 8px 0 8px;
+            padding: 10px 5px 10px 5px;
+
+            & table {
+
+                & img {
+
+                    width: 50px;
+                    padding: 0;
+
+                }
+
+                & thead {
+
+                    & .tab-title {
+
+                        & th {
+
+                            font-size: .7rem;
+
+                        }
+
+                    }
+
+                }
+
+                & #bodyTab {
+
+                    & tr {
+
+                        max-width: 100%;
+
+                        & i {
+
+                            padding: 0 10px;
+                            font-size: .5rem;
+
+                        }
+
+                        & td {
+                            
+                            font-size: .5rem;
+
+                        }
+
+                    }
+
+                }
+
+                & tfoot {
+
+                    & tr {
+
+                        & td {
+
+                            min-width: 120px;
+                            padding: 0 5px;
+                            font-size: .5rem;
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+}
+
+@media only screen and (max-width: 450px) {
+
+    .body-panier {
+
+        & #main-panier {
+
+            margin: 20px 13px 0 13px;
+            padding: 10px 5px 10px 5px;
+
+            & table {
+
+                & img {
+
+                    width: 50px;
+
+                }
+
+                & thead {
+
+                    & .tab-title {
+
+                        & th {
+
+                            font-size: .7rem;
+
+                        }
+
+                    }
+
+                }
+
+                & #bodyTab {
+
+                    & tr {
+
+                        & i {
+
+                            //font-size: .5rem;
+
+                        }
+
+                        & td {
+
+                            max-width: 50px!important;
+                            font-size: .5rem;
+
+                        }
+
+                    }
+
+                }
+
+                & tfoot {
+
+                    
+
+                    & tr {
+
+                        max-width: 100px;
+
+                        & td {
+                            max-width: 50px!important;
+                            font-size: .5rem;
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+}
+
+/*
+
+                <table>
+                <thead>
+                <tr class="tab-title">
+                    <th>Produit :</th>
+                    <th>Nom :</th>
+                    <th>Option :</th>
+                    <th>Quantité :</th>
+                    <th>Prix :</th>
+                    <th>Suppression :</th>
+                </tr>
+                </thead>
+                <tbody id="bodyTab"></tbody>
+                <tfoot>
+                <tr>
+                    <td>TOTAL :</td>
+                    <td>${totaux.toFixed(2)} €</td>
+                </tr>
+                </tfoot>
+            </table>
+
+*/
