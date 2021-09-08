@@ -69,7 +69,8 @@ function majPanier() {
                 <tbody id="bodyTab"></tbody>
                 <tfoot>
                 <tr>
-                    <td>Total : ${totaux.toFixed(2)} €</td>
+                    <td>TOTAL :</td>
+                    <td>${totaux.toFixed(2)} €</td>
                 </tr>
                 </tfoot>
             </table>
@@ -85,12 +86,12 @@ function majPanier() {
                 
                 `
                 <tr data-content="${mesProduitsEnregistrer[i].id}">
-                    <td><img src="${mesProduitsEnregistrer[i].picture}" alt="produit selectionné" /></td>
-                    <td>${mesProduitsEnregistrer[i].name}</td>
-                    <td>${mesProduitsEnregistrer[i].choice}</td>
-                    <td>${mesProduitsEnregistrer[i].quantity}</td>
-                    <td>${mesProduitsEnregistrer[i].price} €</td>
-                    <td><i class="far fa-trash-alt"></i></td>
+                    <td data-label="Produit :"><img class="produit-img" src="${mesProduitsEnregistrer[i].picture}" alt="produit selectionné" /></td>
+                    <td data-label="Nom :">${mesProduitsEnregistrer[i].name}</td>
+                    <td data-label="Option :">${mesProduitsEnregistrer[i].choice}</td>
+                    <td data-label="Quantité :">${mesProduitsEnregistrer[i].quantity}</td>
+                    <td data-label="Prix :">${mesProduitsEnregistrer[i].price} €</td>
+                    <td data-label="Supprimer :"><i class="far fa-trash-alt"></i></td>
                 </tr>
                 
                 `

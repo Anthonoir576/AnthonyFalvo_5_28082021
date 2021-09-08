@@ -377,6 +377,10 @@
 
 }
 
+
+
+
+
 // Partie PANIER par defaut (vide)
 @media only screen and (max-width: 508px) {
 
@@ -447,75 +451,174 @@
 
 }
 
-// Partie PANIER (plein)
-@media only screen and (max-width: 1000px) {
+// Partie PANIER plein
+@media only screen and (max-width: 800px) {
 
     .body-panier {
 
         & #main-panier {
 
-            margin: 20px 8px 0 8px;
-            padding: 10px 5px 10px 5px;
+            margin: 10px 15px 0 15px;
+            padding: 10px;
+           
+        }
+    
+    }
 
-            & table {
 
-                & img {
 
-                    width: 50px;
+}
+
+@media only screen and (max-width: 700px) {
+
+    .body-panier {
+
+        & #main-panier {
+
+            & table, thead, tbody, tfoot, tr, th, td {
+
+                display: block;
+
+            }
+
+            & tr {
+
+                margin: 1rem 0;
+
+                padding: 10px;
+                border: 1px solid rgba(255, 255, 255, 0.555);
+                border-radius: 10px;
+
+            }
+
+            & .tab-title {
+
+                display: none;
+
+            }
+
+
+
+            & td {
+
+                padding-left: 130px;
+                position: relative;
+
+            }
+
+            & th { 
+                
+                display: none;
+            
+            }
+
+            & td::before {
+
+                padding: 10px;
+                content: attr(data-label);
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                width: 100px;
+
+                background: red;
+                display: flex;
+                align-items: center;
+                font-weight: bold;
+
+                border: 1px solid rgba(255, 255, 255, 0.555);
+                
+            }
+
+            & tr :last-child::before {
+
+                border: none!important;
+                border-right: none!important;
+
+            }
+
+            tbody {
+
+                & tr :last-child {
+    
+                    text-align: center;
+                    background: red;
+                    border: 1px solid rgba(255, 255, 255, 0.555);
+                    
+    
+                    & i {
+    
+                        border: none;
+    
+                    }
+        
+                }
+
+            }
+
+            & tfoot {
+
+              
+                & tr {
+    
+                    display: block;
+                    border: none!important;
+                    background: none!important;
+                    
+    
+                    & td {
+    
+                        margin: 1rem 0;
+                        width: 150px;
+        
+                    }
+    
+                }
+    
+            }
+
+            & tfoot {
+
+                width: 100%;
+
+                & :last-child {
+
+                    text-align: right;
+    
+                } 
+
+                & :first-child {
+
+                    border-top: none;
+
+                }
+
+                & tr {
+
+                    margin: 0;
                     padding: 0;
-
+    
+                    & td {
+    
+                        margin: 5px 0;
+    
+                    }
+    
                 }
 
-                & thead {
+            }
 
-                    & .tab-title {
+            & tfoot tr td {
 
-                        & th {
+                width: 100%;
+                padding: 10px;
 
-                            font-size: .7rem;
+                text-align: right;
 
-                        }
+                &::before {
 
-                    }
-
-                }
-
-                & #bodyTab {
-
-                    & tr {
-
-                        max-width: 100%;
-
-                        & i {
-
-                            padding: 0 10px;
-                            font-size: .5rem;
-
-                        }
-
-                        & td {
-                            
-                            font-size: .5rem;
-
-                        }
-
-                    }
-
-                }
-
-                & tfoot {
-
-                    & tr {
-
-                        & td {
-
-                            min-width: 120px;
-                            padding: 0 5px;
-                            font-size: .5rem;
-
-                        }
-
-                    }
+                    display: none;
 
                 }
 
@@ -533,69 +636,75 @@
 
         & #main-panier {
 
-            margin: 20px 13px 0 13px;
-            padding: 10px 5px 10px 5px;
+            margin: 10px 10px 0 10px;
+            padding: 10px;
+            
+            & * {
 
-            & table {
+                font-size: .7rem;
 
-                & img {
+                & i {
 
-                    width: 50px;
-
-                }
-
-                & thead {
-
-                    & .tab-title {
-
-                        & th {
-
-                            font-size: .7rem;
-
-                        }
-
-                    }
+                    font-size: 1rem;
 
                 }
 
-                & #bodyTab {
+            }
 
-                    & tr {
+        }    
+  
+    }
 
-                        & i {
+}
 
-                            //font-size: .5rem;
+@media only screen and (max-width: 300px) {
 
-                        }
+    .body-panier {
 
-                        & td {
+        & #main-panier {
 
-                            max-width: 50px!important;
-                            font-size: .5rem;
+            & * {
 
-                        }
+                font-size: .65rem;
 
-                    }
+                & i {
 
-                }
-
-                & tfoot {
-
-                    
-
-                    & tr {
-
-                        max-width: 100px;
-
-                        & td {
-                            max-width: 50px!important;
-                            font-size: .5rem;
-
-                        }
-
-                    }
+                    font-size: 1rem;
 
                 }
+
+            }
+
+            & td {
+
+                padding-left: 100px;
+                position: relative;
+
+            }
+
+            & td::before {
+
+                padding: 10px;
+                content: attr(data-label);
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                width: 70px;
+
+                background: red;
+                display: flex;
+                align-items: center;
+                font-weight: bold;
+
+                border: 1px solid rgba(255, 255, 255, 0.555);
+                
+            }
+
+            & .produit-img {
+
+                width: 100%;
+                height: auto;
 
             }
 
@@ -605,26 +714,3 @@
 
 }
 
-/*
-
-                <table>
-                <thead>
-                <tr class="tab-title">
-                    <th>Produit :</th>
-                    <th>Nom :</th>
-                    <th>Option :</th>
-                    <th>Quantité :</th>
-                    <th>Prix :</th>
-                    <th>Suppression :</th>
-                </tr>
-                </thead>
-                <tbody id="bodyTab"></tbody>
-                <tfoot>
-                <tr>
-                    <td>TOTAL :</td>
-                    <td>${totaux.toFixed(2)} €</td>
-                </tr>
-                </tfoot>
-            </table>
-
-*/
