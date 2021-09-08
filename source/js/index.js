@@ -46,7 +46,7 @@ const showCameras = async() => {
 /* dans un premier temps la fonction utilise un separateur de millier et remplace par un point tous les trois chiffre on parle de tostring et replace. Ensuite on emglobe cette methode dans un parsefloat, suivi dun tous fixed avec pour argument 2 . parseFloat transforme une chaine de caractère en nombre, et to fixed nous donne 2 chiffres après la virgule grace a largument 2. Si javais mis 5, j'en aurait donc .... 5 */
 function pricesSpace(prix) {
 
-    return parseFloat(prix.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')).toFixed(2);
+    return parseFloat(prix / 100).toFixed(2);
 
 };
 

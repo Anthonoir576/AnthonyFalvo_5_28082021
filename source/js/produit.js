@@ -44,7 +44,7 @@ function getProduit(produitId) {
 /* Mon parse de prix le même que sur lindex */
 function pricesSpace(prix) {
 
-    return parseFloat(prix.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')).toFixed(2);
+    return parseFloat(prix / 100).toFixed(2);
 
 };
 
