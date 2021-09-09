@@ -52,9 +52,6 @@ body {
   transform: translateY(5px);
   background: white;
 }
-.header-nav nav ul li:hover:last-child::after {
-  display: none;
-}
 .header-nav nav ul li:hover a {
   transition: 175ms all;
   color: red;
@@ -492,6 +489,30 @@ body {
 }
 .body-panier #main-panier tfoot :first-child {
   border-right: none;
+}
+
+#main-panier #commander {
+  display: block;
+  margin: 0 auto;
+  padding: 8px 15px;
+  cursor: pointer;
+  font-family: "Lato", sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 1.3rem;
+  background: red;
+  border: 1px solid white;
+  border-radius: 5px;
+  color: white;
+  letter-spacing: 2px;
+  outline: none;
+}
+#main-panier #commander:hover {
+  filter: saturate(80%);
+  transform: translateX(5px);
+  background: white;
+  border: 1px solid red;
+  color: red;
 }
 
 .body-produit {

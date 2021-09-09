@@ -3,6 +3,8 @@ let mesProduitsEnregistrer = JSON.parse(localStorage.getItem("mon panier"));
 
 let myPanier = document.getElementById('main-panier');
 let close = document.getElementById('closePop');
+let bodyTab;
+let commander; 
 
 /* Mon parse de prix le même que sur lindex */
 function pricesSpace(prix) {
@@ -38,7 +40,7 @@ function majPanier() {
         ); 
 
 
-    // sinon c'est que des articles on été selectionné :
+    // sinon c'est que des articles on été ajouté au panier / localStorage :
     } else {
 
 
@@ -74,12 +76,16 @@ function majPanier() {
                 </tr>
                 </tfoot>
             </table>
+            <button id="commander" type="button">Commander</button>
             
             `
         );
 
-        let bodyTab = document.getElementById('bodyTab');
+        commander = document.getElementById('commander');
 
+
+        bodyTab = document.getElementById('bodyTab');
+        /* Chaque produit du localStorage, et ajouté dynamiquement dans mon tableau */    
         for(let i = 0; i < mesProduitsEnregistrer.length; i++) {
 
             bodyTab.insertAdjacentHTML('beforeend', 

@@ -204,49 +204,51 @@ function majProduit(produit) {
             return
 
         };
-
-
-        //  ******************* TEST ************************
-
-        // LA FONCTION QUI BUG - Erreur de logique en cours de correction . Parcours le tableau, et n'agis que si aucun des elements presents n'ont le meme id et la même option alors il crée cette element en objet OR si il trouve le meme id et option il ajoute que la quantité 
-        /*
-            for(let i = 0; i < mesProduitsEnregistrer.length; i++) {
-
-                if(mesProduitsEnregistrer[i].id === selectionUtilisateur.id && mesProduitsEnregistrer[i].choice == selectionUtilisateur.choice) {
-
-
-                    let totalQuantité = parseInt(mesProduitsEnregistrer[i].quantity, 10) + parseInt(selectionUtilisateur.quantity ,10);
-
-                    let updateStorage = mesProduitsEnregistrer;
-
-                    updateStorage[i].quantity = totalQuantité;
-
-                    mesProduitsEnregistrer = updateStorage;
-
-                    
-                    localStorage.setItem('mon panier', JSON.stringify(mesProduitsEnregistrer));
-
-
-                } else {
-
-                    localSto(selectionUtilisateur, mesProduitsEnregistrer);
-
-                };
-
-            }; 
-        */
-
-        //console.log(selectionUtilisateur.id);  
-        //console.log(mesProduitsEnregistrer[0].id);  
-        //console.log(selectionUtilisateur.choice);
-        //console.log(selectionUtilisateur.quantity);
-        //console.log(mesProduitsEnregistrer[0].quantity);
-        //console.log(parseInt(mesProduitsEnregistrer[0].quantity, 10) + parseInt( selectionUtilisateur.quantity, 10));
-        //console.log(JSON.parse(selectionUtilisateur.name));  
-
-
-        // UNE FOIS la quantité et le choix selectionné, direction automatique au panier !
-        //window.location.href ="panier.html";
-
     });     
 };
+
+
+
+//  ******************* TEST ************************
+
+// LA FONCTION QUI BUG - Erreur de logique en cours de correction . Parcours le tableau, et n'agis que si aucun des elements presents n'ont le meme id et la même option alors il crée cette element en objet OR si il trouve le meme id et option il ajoute que la quantité 
+/*
+    for(let i = 0; i < mesProduitsEnregistrer.length; i++) {
+
+        if(mesProduitsEnregistrer[i].id === selectionUtilisateur.id && mesProduitsEnregistrer[i].choice == selectionUtilisateur.choice) {
+
+
+            let totalQuantité = parseInt(mesProduitsEnregistrer[i].quantity, 10) + parseInt(selectionUtilisateur.quantity ,10);
+
+            let updateStorage = mesProduitsEnregistrer;
+
+            updateStorage[i].quantity = totalQuantité;
+
+            mesProduitsEnregistrer = updateStorage;
+
+            
+            localStorage.setItem('mon panier', JSON.stringify(mesProduitsEnregistrer));
+
+
+        } else {
+
+            localSto(selectionUtilisateur, mesProduitsEnregistrer);
+
+        };
+
+    }; 
+*/
+
+//console.log(selectionUtilisateur.id);  
+//console.log(mesProduitsEnregistrer[0].id);  
+//console.log(selectionUtilisateur.choice);
+//console.log(selectionUtilisateur.quantity);
+//console.log(mesProduitsEnregistrer[0].quantity);
+//console.log(parseInt(mesProduitsEnregistrer[0].quantity, 10) + parseInt( selectionUtilisateur.quantity, 10));
+//console.log(JSON.parse(selectionUtilisateur.name));  
+
+
+// UNE FOIS la quantité et le choix selectionné, direction automatique au panier !
+//window.location.href ="panier.html";
+
+
