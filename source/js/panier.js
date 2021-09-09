@@ -4,7 +4,8 @@ let mesProduitsEnregistrer = JSON.parse(localStorage.getItem("mon panier"));
 let myPanier = document.getElementById('main-panier');
 let close = document.getElementById('closePop');
 let bodyTab;
-let commander; 
+let commander;
+let supprimerSelection;
 
 /* Mon parse de prix le même que sur lindex */
 function pricesSpace(prix) {
@@ -16,7 +17,7 @@ function pricesSpace(prix) {
 function majPanier() {
 
     // si la page panier ne contient rien, afficher ce message :
-    if (mesProduitsEnregistrer == null) {
+    if (mesProduitsEnregistrer == null || mesProduitsEnregistrer == 0) {
 
         myPanier.innerHTML = (
 
@@ -83,7 +84,7 @@ function majPanier() {
 
         commander = document.getElementById('commander');
 
-
+        
         bodyTab = document.getElementById('bodyTab');
         /* Chaque produit du localStorage, et ajouté dynamiquement dans mon tableau */    
         for(let i = 0; i < mesProduitsEnregistrer.length; i++) {
@@ -106,8 +107,31 @@ function majPanier() {
         };
 
 
+        supprimerSelection = Array.from(document.querySelectorAll('.supprimerProduit'));
+        let tab = [];
+
+
+        // supprimer element
+        for (let i = 0; i < supprimerSelection.length; i++) {
+
+            supprimerSelection[i].addEventListener('click', () => {
+
+                supprimerSelection[i].parentElement.style.display ="none";
+                
+                
+                tab = mesProduitsEnregistrer;
+                tab.splice([i], 1);
+                
+                mesProduitsEnregistrer = localStorage.setItem('mon panier', JSON.stringify(tab));
+
+                window.location.href ="panier.html";
+
+            });
+
+        };
     };
 
 };
 
 majPanier();
+
