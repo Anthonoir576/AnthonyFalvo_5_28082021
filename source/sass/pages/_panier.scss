@@ -226,6 +226,70 @@
              
                 border-bottom: 1px solid rgba(255, 255, 255, 0.555)!important;
 
+            }
+
+            & tr td.supprimerProduit {
+
+                cursor: pointer;
+
+                transition: all .3s ease-in-out;
+                position: relative;
+                z-index: 0;
+
+                &::after {
+
+                    display: block;
+                    content: '';
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+
+                    transition: all 180ms ease-in;
+                    opacity: 0;
+                    transform: translateY(5px);
+
+                    width: 100%;
+                    height: 3px;
+
+                    background: #fff;
+
+                }
+
+                &:hover {
+
+                    background: rgba(255, 0, 0, 0.85);
+                    transition: all .4s ease-in-out;
+
+                    & i.fa-trash-alt {
+
+                        transition: all 150ms ease-in-out;
+                        background: rgba(255, 0, 0, 0.85);
+                        transform: scale(1.15);
+
+                    }
+
+                    
+                    &::after {
+
+                        display: block;
+                        content: '';
+                        position: absolute;
+                        z-index: -1;
+                        bottom: 0;
+                        left: 0;
+
+                        transition: all 180ms ease-in;
+                        opacity: 1;
+                        transform: translateY(0px);
+
+                        width: 100%;
+                        height: 3px;
+
+                        background: #fff;
+
+                    }
+
+                }
 
             }
 
@@ -297,9 +361,16 @@
 
             & :last-child {
 
+                border-left: none;
                 text-align: center;
 
-            }            
+            }
+            
+            & :first-child {
+
+                border-right: none;
+
+            }
         }
     }
 }

@@ -1,5 +1,5 @@
 let mesProduitsEnregistrer = JSON.parse(localStorage.getItem("mon panier"));
-console.log(mesProduitsEnregistrer);
+//console.log(mesProduitsEnregistrer);
 
 let myPanier = document.getElementById('main-panier');
 let close = document.getElementById('closePop');
@@ -91,7 +91,7 @@ function majPanier() {
                     <td data-label="Option :">${mesProduitsEnregistrer[i].choice}</td>
                     <td data-label="Quantité :">${mesProduitsEnregistrer[i].quantity}</td>
                     <td data-label="Prix :">${mesProduitsEnregistrer[i].price} €</td>
-                    <td data-label="Supprimer :"><i class="far fa-trash-alt"></i></td>
+                    <td data-label="Supprimer :" class="supprimerProduit"><i class="far fa-trash-alt"></i></td>
                 </tr>
                 
                 `

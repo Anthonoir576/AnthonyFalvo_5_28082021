@@ -417,6 +417,48 @@ body {
 .body-panier #main-panier tbody tr:last-child {
   border-bottom: 1px solid rgba(255, 255, 255, 0.555) !important;
 }
+.body-panier #main-panier tbody tr td.supprimerProduit {
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  z-index: 0;
+}
+.body-panier #main-panier tbody tr td.supprimerProduit::after {
+  display: block;
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transition: all 180ms ease-in;
+  opacity: 0;
+  transform: translateY(5px);
+  width: 100%;
+  height: 3px;
+  background: #fff;
+}
+.body-panier #main-panier tbody tr td.supprimerProduit:hover {
+  background: rgba(255, 0, 0, 0.85);
+  transition: all 0.4s ease-in-out;
+}
+.body-panier #main-panier tbody tr td.supprimerProduit:hover i.fa-trash-alt {
+  transition: all 150ms ease-in-out;
+  background: rgba(255, 0, 0, 0.85);
+  transform: scale(1.15);
+}
+.body-panier #main-panier tbody tr td.supprimerProduit:hover::after {
+  display: block;
+  content: "";
+  position: absolute;
+  z-index: -1;
+  bottom: 0;
+  left: 0;
+  transition: all 180ms ease-in;
+  opacity: 1;
+  transform: translateY(0px);
+  width: 100%;
+  height: 3px;
+  background: #fff;
+}
 .body-panier #main-panier th, .body-panier #main-panier tfoot td {
   background: red;
 }
@@ -445,7 +487,11 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.555);
 }
 .body-panier #main-panier tfoot :last-child {
+  border-left: none;
   text-align: center;
+}
+.body-panier #main-panier tfoot :first-child {
+  border-right: none;
 }
 
 .body-produit {
@@ -827,13 +873,13 @@ body {
     font-size: 0.7rem;
   }
 }
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 850px) {
   .body-panier #main-panier {
     margin: 10px 15px 0 15px;
     padding: 10px;
   }
 }
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 770px) {
   .body-panier #main-panier table, .body-panier #main-panier thead, .body-panier #main-panier tbody, .body-panier #main-panier tfoot, .body-panier #main-panier tr, .body-panier #main-panier th, .body-panier #main-panier td {
     display: block;
   }
@@ -878,6 +924,21 @@ body {
   }
   .body-panier #main-panier tbody tr :last-child i {
     border: none;
+  }
+  .body-panier #main-panier tbody tr td.supprimerProduit::after {
+    display: none;
+  }
+  .body-panier #main-panier tbody tr td.supprimerProduit:hover {
+    background: rgba(255, 0, 0, 0.7);
+    transition: all 0.4s ease-in-out;
+  }
+  .body-panier #main-panier tbody tr td.supprimerProduit:hover i.fa-trash-alt {
+    transition: all 150ms ease-in-out;
+    background: rgba(255, 0, 0, 0.7);
+    transform: scale(1.15);
+  }
+  .body-panier #main-panier tbody tr td.supprimerProduit:hover::after {
+    display: none;
   }
   .body-panier #main-panier tfoot tr {
     display: block;

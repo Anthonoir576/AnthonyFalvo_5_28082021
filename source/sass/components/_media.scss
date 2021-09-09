@@ -451,8 +451,14 @@
 
 }
 
+
+
+
+
+
+
 // Partie PANIER plein
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 850px) {
 
     .body-panier {
 
@@ -469,7 +475,7 @@
 
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 770px) {
 
     .body-panier {
 
@@ -555,6 +561,41 @@
         
                 }
 
+            }
+
+            & tbody {
+
+                & tr td.supprimerProduit {
+  
+                    &::after {
+    
+                        display: none;
+
+                    }
+    
+                    &:hover {
+    
+                        background: rgba(255, 0, 0, 0.70);
+                        transition: all .4s ease-in-out;
+    
+                        & i.fa-trash-alt {
+    
+                            transition: all 150ms ease-in-out;
+                            background: rgba(255, 0, 0, 0.70);
+                            transform: scale(1.15);
+    
+                        }
+                        
+                        &::after {
+    
+                            display: none;
+
+                        }
+    
+                    }
+    
+                }
+    
             }
 
             & tfoot {
