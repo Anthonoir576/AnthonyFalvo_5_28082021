@@ -784,3 +784,48 @@
 
 }
 
+
+
+
+
+// Panier FORMULAIRE
+@media only screen and (max-width: 1200px) {
+
+    
+// Panier FORMULAIRE
+    .body-panier {
+
+        #main-panier {
+
+            & form {
+
+                width: 100%;
+
+            }
+            
+
+        }
+
+    }
+
+}
+
+@media only screen and (max-width: 500px) {
+
+    
+    // Panier FORMULAIRE
+    .body-panier {
+
+        #main-panier {
+
+            & form {
+                
+                padding: 10px 10px;
+
+            }           
+
+        }
+
+    }
+    
+}
