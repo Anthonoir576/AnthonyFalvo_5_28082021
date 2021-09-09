@@ -501,18 +501,23 @@ body {
   text-transform: uppercase;
   font-size: 1.3rem;
   background: red;
-  border: 1px solid white;
+  border: 2px solid white;
   border-radius: 5px;
   color: white;
   letter-spacing: 2px;
   outline: none;
+  transform: translateX(0px);
+  transition: all 0.3s ease-in-out;
 }
 #main-panier #commander:hover {
-  filter: saturate(80%);
-  transform: translateX(5px);
+  padding: 8px 50px;
+  filter: saturate(500%);
   background: white;
-  border: 1px solid red;
+  border: 2px solid red;
   color: red;
+  transform: translateX(0px);
+  transition: all 0.35s ease-in-out;
+  box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.55);
 }
 
 .body-produit {
@@ -901,6 +906,19 @@ body {
   }
 }
 @media only screen and (max-width: 770px) {
+  .body-panier #main-panier #commander {
+    width: 100%;
+    margin-top: 2.5rem;
+  }
+  .body-panier #main-panier #commander::before {
+    display: block;
+    content: "";
+    width: 30%;
+    height: 2px;
+    margin: 0 auto;
+    transform: translateY(-30px);
+    background: #fff;
+  }
   .body-panier #main-panier table, .body-panier #main-panier thead, .body-panier #main-panier tbody, .body-panier #main-panier tfoot, .body-panier #main-panier tr, .body-panier #main-panier th, .body-panier #main-panier td {
     display: block;
   }
@@ -1008,6 +1026,9 @@ body {
   }
 }
 @media only screen and (max-width: 300px) {
+  .body-panier #main-panier #commander {
+    font-size: 1rem;
+  }
   .body-panier #main-panier * {
     font-size: 0.65rem;
   }
