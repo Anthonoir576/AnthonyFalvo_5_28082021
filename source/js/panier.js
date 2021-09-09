@@ -89,10 +89,7 @@ function majPanier() {
             
             `
         );
-
-        commander = document.getElementById('commander');
-
-        
+     
         bodyTab = document.getElementById('bodyTab');
         /* Chaque produit du localStorage, et ajouté dynamiquement dans mon tableau */    
         for(let i = 0; i < mesProduitsEnregistrer.length; i++) {
@@ -134,6 +131,60 @@ function majPanier() {
             });
 
         };
+
+
+        commander = document.getElementById('commander');
+        // Formulaire au clique 
+        commander.addEventListener('click', (e) => {
+
+            e.preventDefault();
+            commander.style.display ='none';
+
+            myPanier.insertAdjacentHTML('beforeend',
+            
+                `
+                <form id="FormulaireCommande" action="" method="POST">
+                <div><h2> Valider votre commande :</h2></div>
+
+                    <div>
+                        <label for="nom">Nom :</label>
+                        <input id="nom" type="text" />
+                    </div>
+                    <div>
+                        <label for="prenom">Prénom :</label>
+                        <input id="prenom" type="text" />
+                    </div>
+                    <div>
+                        <label for="mail">E-mail :</label>
+                        <input id="mail" type="email" />
+                    </div>
+                    <div>
+                        <label for="num">Numéros de téléphone :</label>
+                        <input id="num" type="text" />
+                    </div>
+                    <div>
+                        <label for="adresse">Adresse :</label>
+                        <input id="adresse" type="text" />
+                    </div>
+                    <div>
+                        <label for="postal">Code postal :</label>
+                        <input id="postal" type="text" />
+                    </div>
+                    <div>
+                        <label for="ville">Ville :</label>
+                        <input id="ville" type="text" />
+                    </div>
+
+                    <button type="submit"> Valider la commande </button>
+                </form>
+                
+                ` 
+            
+            );
+
+        });
+
+
     };
 
 };
