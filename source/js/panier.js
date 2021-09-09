@@ -6,6 +6,7 @@ let close = document.getElementById('closePop');
 let bodyTab;
 let commander;
 let supprimerSelection;
+let tab = [];
 
 /* Mon parse de prix le même que sur lindex */
 function pricesSpace(prix) {
@@ -38,7 +39,14 @@ function majPanier() {
             
             `
 
-        ); 
+        );
+            
+        // Enlever le tableau vide si les elements ont été supprimé 
+        if (mesProduitsEnregistrer == 0) {
+
+            localStorage.clear();
+
+        }
 
 
     // sinon c'est que des articles on été ajouté au panier / localStorage :
@@ -108,17 +116,14 @@ function majPanier() {
 
 
         supprimerSelection = Array.from(document.querySelectorAll('.supprimerProduit'));
-        let tab = [];
-
-
+        
         // supprimer element
         for (let i = 0; i < supprimerSelection.length; i++) {
 
             supprimerSelection[i].addEventListener('click', () => {
 
                 supprimerSelection[i].parentElement.style.display ="none";
-                
-                
+                 
                 tab = mesProduitsEnregistrer;
                 tab.splice([i], 1);
                 
