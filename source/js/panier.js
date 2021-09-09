@@ -148,31 +148,31 @@ function majPanier() {
 
                     <div>
                         <label for="nom">Nom :</label>
-                        <input id="nom" type="text" />
+                        <input id="nom" type="text" placeholder="nom" />
                     </div>
                     <div>
                         <label for="prenom">Prénom :</label>
-                        <input id="prenom" type="text" />
+                        <input id="prenom" type="text" placeholder="prénom" />
                     </div>
                     <div>
                         <label for="mail">E-mail :</label>
-                        <input id="mail" type="email" />
+                        <input id="mail" type="email" placeholder="e-mail"/>
                     </div>
                     <div>
                         <label for="num">Numéros de téléphone :</label>
-                        <input id="num" type="text" />
+                        <input id="num" type="text" placeholder="numéros de téléphone" />
                     </div>
                     <div>
                         <label for="adresse">Adresse :</label>
-                        <input id="adresse" type="text" />
+                        <input id="adresse" type="text" placeholder="adresse" />
                     </div>
                     <div>
                         <label for="postal">Code postal :</label>
-                        <input id="postal" type="text" />
+                        <input id="postal" type="text" placeholder="code postal" />
                     </div>
                     <div>
                         <label for="ville">Ville :</label>
-                        <input id="ville" type="text" />
+                        <input id="ville" type="text" placeholder="ville" />
                     </div>
 
                     <button type="submit"> Valider la commande </button>

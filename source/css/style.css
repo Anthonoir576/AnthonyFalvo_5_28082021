@@ -520,6 +520,48 @@ body {
   box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.55);
 }
 
+#main-panier form {
+  display: block;
+  margin: 1rem auto 1rem auto;
+  width: 50%;
+}
+#main-panier form h2 {
+  margin: 5rem 0 5rem 0;
+  background: red;
+  color: white;
+  padding: 10px 5px 15px 5px;
+  border: 1px solid white;
+  border-radius: 5px;
+  text-align: center;
+}
+#main-panier form label, #main-panier form input {
+  display: block;
+  margin: 0 auto;
+  text-align: left;
+}
+#main-panier form label {
+  margin-bottom: 1rem;
+  margin-left: 0.2rem;
+  background: red;
+  padding: 10px;
+  border-radius: 5px;
+}
+#main-panier form input {
+  width: 100%;
+  margin-bottom: 1rem;
+  height: 50px;
+  border-radius: 5px;
+  padding-left: 10px;
+}
+#main-panier form button {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  background: red;
+  color: #fff;
+  font-size: 1.5rem;
+}
+
 .body-produit {
   background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.3)), url(../image/banner6.jpg) center/cover no-repeat;
 }
