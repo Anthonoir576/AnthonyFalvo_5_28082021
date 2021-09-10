@@ -94,7 +94,6 @@ function majProduit(produit) {
 
     );
 
-
     /* Boucle qui parcours toute les lentilles du tableau lenses pour chaque produit individuellement et les ajoute dans le select chaque option dynamiquement . Même si on en rajoute dans le tableau :D */
     for(let i = 0; i < produit.lenses.length; i++) {
 
@@ -111,8 +110,6 @@ function majProduit(produit) {
         );
 
     };
-
-
 
     /* Element qui permet de confirmer lenvoi dans le panier avec un message de confirmation  */
     document.getElementById('panier').addEventListener('click', (e) => {
@@ -163,8 +160,7 @@ function majProduit(produit) {
 
         };
    
-        confirm.style.display = "block";
-        // LIMITER LE PANIER A DIX produits 
+        confirm.style.display = "block"; 
         // la confirmation du panier a était mise en fonction pour evité les repetitions 
         let confirmationFonction = () => {
 
@@ -184,7 +180,8 @@ function majProduit(produit) {
 
         };
 
-
+        // VERIFICATION DOUBLON !!!! 
+        // condition qui permet de pas avoir de doublon darticle via lid et loption choisis . et limite aussi le panier a 10 artiques différent. avec une quantité max de 100 pour chacun directement dans linput
         if (mesProduitsEnregistrer == null) {
 
             mesProduitsEnregistrer = [];
@@ -246,59 +243,6 @@ function majProduit(produit) {
  
 //  ******************* TEST ************************
 
-// LA FONCTION QUI BUG - Erreur de logique en cours de correction . Parcours le tableau, et n'agis que si aucun des elements presents n'ont le meme id et la même option alors il crée cette element en objet OR si il trouve le meme id et option il ajoute que la quantité 
-/*
-    for(let i = 0; i < mesProduitsEnregistrer.length; i++) {
-
-        if(mesProduitsEnregistrer[i].id === selectionUtilisateur.id && mesProduitsEnregistrer[i].choice == selectionUtilisateur.choice) {
-
-
-            let totalQuantité = parseInt(mesProduitsEnregistrer[i].quantity, 10) + parseInt(selectionUtilisateur.quantity ,10);
-
-            let updateStorage = mesProduitsEnregistrer;
-
-            updateStorage[i].quantity = totalQuantité;
-
-            mesProduitsEnregistrer = updateStorage;
-
-            
-            localStorage.setItem('mon panier', JSON.stringify(mesProduitsEnregistrer));
-
-
-        } else {
-
-            localSto(selectionUtilisateur, mesProduitsEnregistrer);
-
-        };
-
-    }; 
-
-
-
-
-     if (mesProduitsEnregistrer == null) {
- 
-            mesProduitsEnregistrer = [];
-            confirmationFonction();
-            localSto(selectionUtilisateur, mesProduitsEnregistrer);
-
-        } else if (mesProduitsEnregistrer != null && mesProduitsEnregistrer.length < 10) {
-
-            confirmationFonction();
-            localSto(selectionUtilisateur, mesProduitsEnregistrer);
-
-        } else if (mesProduitsEnregistrer.length >= 10) {
-            
-            confirm.style.background ="red";
-                
-            confirm.textContent = `VOTRE PANIER EST PLEIN`;
-            confirm.insertAdjacentHTML('beforeend', `<i class="far fa-times-circle"></i>`);
-
-            return
-
-        };
-*/
-
 //console.log(selectionUtilisateur.id);  
 //console.log(mesProduitsEnregistrer[0].id);  
 //console.log(selectionUtilisateur.choice);
@@ -310,5 +254,3 @@ function majProduit(produit) {
 
 // UNE FOIS la quantité et le choix selectionné, direction automatique au panier !
 //window.location.href ="panier.html";
-
-

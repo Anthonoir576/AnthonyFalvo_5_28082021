@@ -147,35 +147,27 @@ function majPanier() {
                 <div><h2> Valider votre commande :</h2></div>
 
                     <div>
-                        <label for="nom">Nom :</label>
-                        <input id="nom" type="text" placeholder="nom" />
+                        <label for="lastName">Nom :</label>
+                        <input id="lastName" type="text" placeholder="nom" />
                     </div>
                     <div>
-                        <label for="prenom">Prénom :</label>
-                        <input id="prenom" type="text" placeholder="prénom" />
+                        <label for="firstName">Prénom :</label>
+                        <input id="firstName" type="text" placeholder="prénom" />
                     </div>
                     <div>
-                        <label for="mail">E-mail :</label>
-                        <input id="mail" type="email" placeholder="e-mail"/>
+                        <label for="email">E-mail :</label>
+                        <input id="email" type="email" placeholder="e-mail"/>
                     </div>
                     <div>
-                        <label for="num">Numéros de téléphone :</label>
-                        <input id="num" type="text" placeholder="numéros de téléphone" />
+                        <label for="adress">Adresse :</label>
+                        <input id="adress" type="text" placeholder="adresse" />
                     </div>
                     <div>
-                        <label for="adresse">Adresse :</label>
-                        <input id="adresse" type="text" placeholder="adresse" />
-                    </div>
-                    <div>
-                        <label for="postal">Code postal :</label>
-                        <input id="postal" type="text" placeholder="code postal" />
-                    </div>
-                    <div>
-                        <label for="ville">Ville :</label>
-                        <input id="ville" type="text" placeholder="ville" />
+                        <label for="city">Ville :</label>
+                        <input id="city" type="text" placeholder="ville" />
                     </div>
 
-                    <button type="submit"> Valider la commande </button>
+                    <button action="post" type="submit"> Valider la commande </button>
                 </form>
                 
                 ` 
