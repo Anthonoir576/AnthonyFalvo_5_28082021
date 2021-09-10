@@ -154,6 +154,7 @@ function majProduit(produit) {
 
 
         let mesProduitsEnregistrer = JSON.parse(localStorage.getItem("mon panier"));
+
         /* Fonction afin de push dans le local storage afin deviter de repeter le code deux fois */  
         let localSto = (selection, enregistrer) => {
 
@@ -183,29 +184,63 @@ function majProduit(produit) {
 
         };
 
+
         if (mesProduitsEnregistrer == null) {
- 
+
             mesProduitsEnregistrer = [];
             confirmationFonction();
             localSto(selectionUtilisateur, mesProduitsEnregistrer);
 
-        } else if (mesProduitsEnregistrer != null && mesProduitsEnregistrer.length < 10) {
+        } else if (mesProduitsEnregistrer != null) {
 
-            confirmationFonction();
-            localSto(selectionUtilisateur, mesProduitsEnregistrer);
+            for(let i = 0; i < mesProduitsEnregistrer.length; i++) {
 
-        } else if (mesProduitsEnregistrer.length >= 10) {
-            
-            confirm.style.background ="red";
+                if (mesProduitsEnregistrer[i].id === selectionUtilisateur.id && mesProduitsEnregistrer[i].choice === selectionUtilisateur.choice) {
+                 
+                    let totalQuantité = parseInt(mesProduitsEnregistrer[i].quantity, 10) + parseInt(selectionUtilisateur.quantity ,10);
+                    
+                    let updateStorage = mesProduitsEnregistrer;
+        
+                    updateStorage[i].quantity = totalQuantité;
+        
+                    mesProduitsEnregistrer = updateStorage;
+                    
+                    confirmationFonction();
+                    localStorage.setItem('mon panier', JSON.stringify(mesProduitsEnregistrer));
+        
+                } else if ( (i + 1) < mesProduitsEnregistrer.length) {
+
+                    if (mesProduitsEnregistrer.length < 10) {
+
+                        continue;
+
+                    } else if ( mesProduitsEnregistrer.length == 10) {
+
+                        confirm.style.background ="red";
                 
-            confirm.textContent = `VOTRE PANIER EST PLEIN`;
-            confirm.insertAdjacentHTML('beforeend', `<i class="far fa-times-circle"></i>`);
+                        confirm.textContent = `VOTRE PANIER EST PLEIN`;
+                        confirm.insertAdjacentHTML('beforeend', `<i class="far fa-times-circle"></i>`);
+            
+                        return;
 
-            return
+                    };
+   
+                } else if ((i + 1) == mesProduitsEnregistrer.length && mesProduitsEnregistrer[i].id != selectionUtilisateur.id || mesProduitsEnregistrer[i].choice != selectionUtilisateur.choice) {
+   
+                    confirmationFonction();
+                    localSto(selectionUtilisateur, mesProduitsEnregistrer);
+
+                };
+
+                return;
+
+            };
 
         };
+  
     });     
 };
+
 
 
  
@@ -237,6 +272,31 @@ function majProduit(produit) {
         };
 
     }; 
+
+
+
+
+     if (mesProduitsEnregistrer == null) {
+ 
+            mesProduitsEnregistrer = [];
+            confirmationFonction();
+            localSto(selectionUtilisateur, mesProduitsEnregistrer);
+
+        } else if (mesProduitsEnregistrer != null && mesProduitsEnregistrer.length < 10) {
+
+            confirmationFonction();
+            localSto(selectionUtilisateur, mesProduitsEnregistrer);
+
+        } else if (mesProduitsEnregistrer.length >= 10) {
+            
+            confirm.style.background ="red";
+                
+            confirm.textContent = `VOTRE PANIER EST PLEIN`;
+            confirm.insertAdjacentHTML('beforeend', `<i class="far fa-times-circle"></i>`);
+
+            return
+
+        };
 */
 
 //console.log(selectionUtilisateur.id);  
