@@ -208,7 +208,7 @@ function majProduit(produit) {
 };
 
 
-
+ 
 //  ******************* TEST ************************
 
 // LA FONCTION QUI BUG - Erreur de logique en cours de correction . Parcours le tableau, et n'agis que si aucun des elements presents n'ont le meme id et la même option alors il crée cette element en objet OR si il trouve le meme id et option il ajoute que la quantité 
