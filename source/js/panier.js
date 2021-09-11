@@ -7,12 +7,9 @@ let bodyTab;
 let commander;
 let supprimerSelection;
 let tab = [];
+let formulaire;
 let validerCommande;
-let nom;
-let prenom;
-let ville;
-let adresse;
-let mail;
+
 
 /* Mon parse de prix le même que sur lindex */
 function pricesSpace(prix) {
@@ -97,6 +94,7 @@ function majPanier() {
         );
      
         bodyTab = document.getElementById('bodyTab');
+        
         /* Chaque produit du localStorage, et ajouté dynamiquement dans mon tableau */    
         for(let i = 0; i < mesProduitsEnregistrer.length; i++) {
 
@@ -120,7 +118,7 @@ function majPanier() {
 
         supprimerSelection = Array.from(document.querySelectorAll('.supprimerProduit'));
         
-        // supprimer element
+        // supprimer element panier au clique
         for (let i = 0; i < supprimerSelection.length; i++) {
 
             supprimerSelection[i].addEventListener('click', () => {
@@ -140,7 +138,7 @@ function majPanier() {
 
 
         commander = document.getElementById('commander');
-        // Formulaire au clique 
+        // Formulaire apparait au clique
         commander.addEventListener('click', (e) => {
 
             e.preventDefault();
@@ -149,28 +147,35 @@ function majPanier() {
             myPanier.insertAdjacentHTML('beforeend',
             
                 `
-                <form id="FormulaireCommande">
-                <div><h2> Valider votre commande :</h2></div>
+                <form id="formulaireCommande">
+                    <div>
+                        <h2> Valider votre commande :</h2>
+                    </div>
 
                     <div>
                         <label for="lastName">Nom :</label>
                         <input id="lastName" name="lastName" type="text" placeholder="nom" />
+                        <small></small>
                     </div>
                     <div>
                         <label for="firstName">Prénom :</label>
                         <input id="firstName" name="firstName" type="text" placeholder="prénom" />
+                        <small></small>
                     </div>
                     <div>
                         <label for="email">E-mail :</label>
                         <input id="email" name="email" type="email" placeholder="e-mail" />
+                        <small></small>
                     </div>
                     <div>
                         <label for="adress">Adresse :</label>
                         <input id="adress" name="adress" type="text" placeholder="adresse" />
+                        <small></small>
                     </div>
                     <div>
                         <label for="city">Ville :</label>
                         <input id="city" name="city" type="text" placeholder="ville" />
+                        <small></small>
                     </div>
 
                     <button id="validerCommande" type="submit"> Valider la commande </button>
@@ -182,20 +187,38 @@ function majPanier() {
 
             
             // formulaire
-            nom = document.getElementById('lastName');
-            prenom = document.getElementById('firstName');
-            ville = document.getElementById('city');
-            adresse = document.getElementById('adress');
-            mail = document.getElementById('email');
+            
+            /* Utilisation du form.name pour recup les inputs au lieu de créer plusieurs variable */
 
+            // nom = document.getElementById('lastName');
+            // prenom = document.getElementById('firstName');
+            // ville = document.getElementById('city');
+            // adresse = document.getElementById('adress');
+            // mail = document.getElementById('email');
+
+            formulaire = document.getElementById('formulaireCommande');
             validerCommande = document.getElementById('validerCommande');
 
             validerCommande.addEventListener('click', (e) => {
 
                 e.preventDefault();
-
+                
 
             });
+
+            const verificationFormulaire = () => {
+
+                // j'écoute le changement de l'input une fois le focus disparu, donc une fois que j'ai cliqué ailleurs
+                formulaire.email.addEventListener('change', () => {
+
+                    // test 
+                    console.log('changement ok');
+
+                });
+
+            };
+
+            verificationFormulaire();
 
         });
 
