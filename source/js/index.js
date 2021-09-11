@@ -31,7 +31,7 @@ const showCameras = async() => {
                         <img class="camera-img" src="${camera.imageUrl}" alt="article en vente" />
                         <div class="camera-info">
                             <h2 class="camera-name">${camera.name}</h2>
-                            <p class="camera-price">${pricesSpace(camera.price)} €</p>
+                            <p class="camera-price">${pricesSpace(camera.price)}</p>
                         </div>
                     </div>
                 </a>
@@ -43,10 +43,12 @@ const showCameras = async() => {
 
 };
 
-/* dans un premier temps la fonction utilise un separateur de millier et remplace par un point tous les trois chiffre on parle de tostring et replace. Ensuite on emglobe cette methode dans un parsefloat, suivi dun tous fixed avec pour argument 2 . parseFloat transforme une chaine de caractère en nombre, et to fixed nous donne 2 chiffres après la virgule grace a largument 2. Si javais mis 5, j'en aurait donc .... 5 */
+/* dans un premier temps la fonction utilise un separateur de millier et remplace par un point tous les trois chiffre on parle de tostring et replace. Ensuite on emglobe cette methode dans un parsefloat, suivi dun tous fixed avec pour argument 2 . parseFloat transforme une chaine de caractère en nombre, et to fixed nous donne 2 chiffres après la virgule grace a largument 2. Si javais mis 5, j'en aurait donc .... 5 MAJ remplacement par la methode toLocalString */
 function pricesSpace(prix) {
 
-    return parseFloat(prix / 100).toFixed(2);
+    let calcule = (prix / 100);  
+    
+    return calcule.toLocaleString("EUR", { style: "currency", currency: "EUR"});
 
 };
 
@@ -77,3 +79,7 @@ buttonShop.addEventListener("click", () => {
 
 });
 
+
+
+
+//console.log(pricesSpace(10000));

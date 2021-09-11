@@ -7,6 +7,12 @@ let bodyTab;
 let commander;
 let supprimerSelection;
 let tab = [];
+let validerCommande;
+let nom;
+let prenom;
+let ville;
+let adresse;
+let mail;
 
 /* Mon parse de prix le même que sur lindex */
 function pricesSpace(prix) {
@@ -81,7 +87,7 @@ function majPanier() {
                 <tfoot>
                 <tr>
                     <td>TOTAL :</td>
-                    <td>${totaux.toFixed(2)} €</td>
+                    <td>${totaux.toLocaleString("EUR", { style: "currency", currency: "EUR"})}</td>
                 </tr>
                 </tfoot>
             </table>
@@ -102,7 +108,7 @@ function majPanier() {
                     <td data-label="Nom :">${mesProduitsEnregistrer[i].name}</td>
                     <td data-label="Option :">${mesProduitsEnregistrer[i].choice}</td>
                     <td data-label="Quantité :">${mesProduitsEnregistrer[i].quantity}</td>
-                    <td data-label="Prix :">${mesProduitsEnregistrer[i].price} €</td>
+                    <td data-label="Prix :">${parseFloat(mesProduitsEnregistrer[i].price).toLocaleString("EUR", { style: "currency", currency: "EUR"})}</td>
                     <td data-label="Supprimer :" class="supprimerProduit"><i class="far fa-trash-alt"></i></td>
                 </tr>
                 
@@ -143,7 +149,7 @@ function majPanier() {
             myPanier.insertAdjacentHTML('beforeend',
             
                 `
-                <form id="FormulaireCommande" action="" method="POST">
+                <form id="FormulaireCommande">
                 <div><h2> Valider votre commande :</h2></div>
 
                     <div>
@@ -167,19 +173,38 @@ function majPanier() {
                         <input id="city" type="text" placeholder="ville" />
                     </div>
 
-                    <button action="post" type="submit"> Valider la commande </button>
+                    <button id="validerCommande" type="submit"> Valider la commande </button>
                 </form>
                 
                 ` 
             
             );
 
+            
+            // formulaire
+            nom = document.getElementById('lastName');
+            prenom = document.getElementById('firstName');
+            ville = document.getElementById('city');
+            adresse = document.getElementById('adress');
+            mail = document.getElementById('email');
+
+            validerCommande = document.getElementById('validerCommande');
+
+            validerCommande.addEventListener('click', (e) => {
+
+                e.preventDefault();
+
+
+            });
+
         });
 
-
     };
+
+
 
 };
 
 majPanier();
 
+//console.log((1000).toLocaleString("EUR", { style: "currency", currency: "EUR",}));

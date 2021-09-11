@@ -52,7 +52,7 @@ function pricesSpace(prix) {
 /* lecriture sur le html du resultat final apres selection du produit ainsi qu'une boucle qui recupere dynamiquement chaque option presente pour le produit, même si on en ajoute via le back-end, au clique sur le btn panier retourne un message de confirmation dajout panier avec le nom du produit implémenté dynamiquement . jannule le comportement par defaut du clique avec e.preventDefault fonction afin de pas quitter la page par defaut lors dun clique sur un bouton */
 function majProduit(produit) {
 
-
+    
     mySelection.innerHTML = (
 
         `
@@ -65,7 +65,7 @@ function majProduit(produit) {
                         <p>Description :</p>
                         <p> ${produit.description}</p>
                     </div>
-                    <p class="camera-price">${pricesSpace(produit.price)} € <span> /<em>Unité</em></span></p>
+                    <p class="camera-price">${(produit.price / 100).toLocaleString("EUR", { style: "currency", currency: "EUR"})}<span> /<em>Unité</em></span></p>
                 </div>
                 <form class="choiseForCart">
                     <div class="cartQuantity">
