@@ -94,7 +94,7 @@ function majPanier() {
         );
      
         bodyTab = document.getElementById('bodyTab');
-        
+
         /* Chaque produit du localStorage, et ajouté dynamiquement dans mon tableau */    
         for(let i = 0; i < mesProduitsEnregistrer.length; i++) {
 
@@ -211,8 +211,9 @@ function majPanier() {
                 // j'écoute le changement de l'input une fois le focus disparu, donc une fois que j'ai cliqué ailleurs
                 formulaire.email.addEventListener('change', () => {
 
-                    // test 
-                    console.log('changement ok');
+                    // verif email 
+                    let verifEmail = new RegExp('^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$', 'g');
+
 
                 });
 
