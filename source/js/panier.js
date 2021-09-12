@@ -164,7 +164,7 @@ function majPanier() {
                     </div>
                     <div>
                         <label for="email">E-mail :</label>
-                        <input id="email" name="email" type="email" placeholder="e-mail" />
+                        <input id="email" name="email" type="text" placeholder="e-mail" />
                         <small></small>
                     </div>
                     <div>
@@ -199,32 +199,45 @@ function majPanier() {
                     // verif input selectionner  
                     let verifEntrer = typeDeVerification;
                     let testEntrer = verifEntrer.test(input.value);
-                    
+                    let afficherMessage = input.nextElementSibling;
+
                     // Condition de verification de l'input en fonction des paramètres mise en deuxieme arguments et du type de regexp utilisé
-                    if(testEntrer == true) {
+                    if(testEntrer) {
 
                         //supprimer les small de base dans le fichier mypanier si pas besoin le insert ne correspond pas a ce que j'ai besoin dans ce cas precis, il faut ciblé lelement apres linput, et faire un inner pour ecrasé le message précedent
 
-                        input.insertAdjacentHTML('afterend', 
-                        
-                            `
+                        afficherMessage.style.display ="inline-block";
+                        afficherMessage.style.color ="#32CD32";
 
-                                <small>${input.value} est valide :)</small>
+                        afficherMessage.innerHTML = (
                             
                             `
-                        )
+                            
+                            "${input.value}" EST VALIDE
+
+                            `
+
+                        );
+
+                        input.style.border ="4px solid #32CD32";
 
                     } else {
 
-                        input.insertAdjacentHTML('afterend', 
-                        
-                        `
+                        afficherMessage.style.display ="inline-block";
+                        afficherMessage.style.color ="red";
 
-                            <small>${input.value} n'est pas valide :(</small>
-                        
-                        `
-                    )
+                        afficherMessage.innerHTML = (
+                            
+                            `
+                            
+                            "${input.value}" N'EST PAS VALIDE
 
+                            `
+
+                        );
+
+                        input.style.border ="4px solid red";
+                        
                     };
 
                 });
