@@ -237,11 +237,11 @@ function majPanier() {
             verificationFormulaire(formulaire.city, new RegExp("^([a-zA-Z-]+( [a-zA-Z-]+)*){5,50}$", 'g'));
             verificationFormulaire(formulaire.firstName, new RegExp("^[a-zA-Z-]{3,20}$", 'g'));
             verificationFormulaire(formulaire.lastName, new RegExp("^[a-zA-Z-]{3,20}$", 'g'));
-            verificationFormulaire(formulaire.adress, new RegExp("([a-zA-Z',.-]+( [a-zA-Z',.-]+)*){10,100}", 'g'));
+            verificationFormulaire(formulaire.adress, new RegExp("([a-zA-Z',.-]+( [a-zA-Z',.-]+)*){10,12}", 'g'));
 
 
             // BOUTON DENVOI FORMULAIRE / COMMANDE
-            validerCommande = document.getElementById('validerCommande');
+            validerCommande = document.getElementById('validerCommande');x
 
             validerCommande.addEventListener('click', (e) => {
 
