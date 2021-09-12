@@ -206,18 +206,8 @@ function majPanier() {
 
                         //supprimer les small de base dans le fichier mypanier si pas besoin le insert ne correspond pas a ce que j'ai besoin dans ce cas precis, il faut ciblé lelement apres linput, et faire un inner pour ecrasé le message précedent
 
-                        afficherMessage.style.display ="inline-block";
+                        afficherMessage.style.display ="none";
                         afficherMessage.style.color ="#32CD32";
-
-                        afficherMessage.innerHTML = (
-                            
-                            `
-                            
-                            "${input.value}" EST VALIDE
-
-                            `
-
-                        );
 
                         input.style.border ="4px solid #32CD32";
 
@@ -240,6 +230,7 @@ function majPanier() {
                         
                     };
 
+
                 });
 
             };
@@ -256,6 +247,8 @@ function majPanier() {
 
             // BOUTON DENVOI FORMULAIRE / COMMANDE
             validerCommande = document.getElementById('validerCommande');
+
+
             
             validerCommande.addEventListener('click', (e) => {
 
