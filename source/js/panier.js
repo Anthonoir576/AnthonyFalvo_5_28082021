@@ -137,8 +137,8 @@ function majPanier() {
         };
 
 
-        commander = document.getElementById('commander');
         // Formulaire apparait au clique
+        commander = document.getElementById('commander');
         commander.addEventListener('click', (e) => {
 
             e.preventDefault();
@@ -187,18 +187,63 @@ function majPanier() {
 
             
             // formulaire
-            
-            /* Utilisation du form.name pour recup les inputs au lieu de créer plusieurs variable */
-
-            // nom = document.getElementById('lastName');
-            // prenom = document.getElementById('firstName');
-            // ville = document.getElementById('city');
-            // adresse = document.getElementById('adress');
-            // mail = document.getElementById('email');
 
             formulaire = document.getElementById('formulaireCommande');
-            validerCommande = document.getElementById('validerCommande');
 
+            // fonction d'ecoute du formulaire en posant des conditions 
+            const verificationFormulaire = (input, typeDeVerification) => {
+
+                // j'écoute le changement de l'input une fois le focus disparu, donc une fois que j'ai cliqué ailleurs
+                input.addEventListener('change', () => {
+
+                    // verif input selectionner  
+                    let verifEntrer = typeDeVerification;
+                    let testEntrer = verifEntrer.test(input.value);
+                    
+                    // Condition de verification de l'input en fonction des paramètres mise en deuxieme arguments et du type de regexp utilisé
+                    if(testEntrer == true) {
+
+                        //supprimer les small de base dans le fichier mypanier si pas besoin le insert ne correspond pas a ce que j'ai besoin dans ce cas precis, il faut ciblé lelement apres linput, et faire un inner pour ecrasé le message précedent
+
+                        input.insertAdjacentHTML('afterend', 
+                        
+                            `
+
+                                <small>${input.value} est valide :)</small>
+                            
+                            `
+                        )
+
+                    } else {
+
+                        input.insertAdjacentHTML('afterend', 
+                        
+                        `
+
+                            <small>${input.value} n'est pas valide :(</small>
+                        
+                        `
+                    )
+
+                    };
+
+                });
+
+            };
+
+            // création argument, pour eviter de repeter le code 
+            verificationFormulaire(formulaire.email, new RegExp('^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$', 'g'));
+            // verificationFormulaire(formulaire.city);
+            // verificationFormulaire(formulaire.firstName);
+            // verificationFormulaire(formulaire.lastName);
+            // verificationFormulaire(formulaire.adress);
+
+
+
+
+            // BOUTON DENVOI FORMULAIRE / COMMANDE
+            validerCommande = document.getElementById('validerCommande');
+            
             validerCommande.addEventListener('click', (e) => {
 
                 e.preventDefault();
@@ -206,21 +251,7 @@ function majPanier() {
 
             });
 
-            const verificationFormulaire = () => {
-
-                // j'écoute le changement de l'input une fois le focus disparu, donc une fois que j'ai cliqué ailleurs
-                formulaire.email.addEventListener('change', () => {
-
-                    // verif email 
-                    let verifEmail = new RegExp('^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$', 'g');
-
-
-                });
-
-            };
-
-            verificationFormulaire();
-
+            
         });
 
     };
