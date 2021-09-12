@@ -139,6 +139,7 @@ function majPanier() {
 
         // Formulaire apparait au clique
         commander = document.getElementById('commander');
+
         commander.addEventListener('click', (e) => {
 
             e.preventDefault();
@@ -187,9 +188,8 @@ function majPanier() {
 
             
             // formulaire
-
             formulaire = document.getElementById('formulaireCommande');
-
+            
             // fonction d'ecoute du formulaire en posant des conditions 
             const verificationFormulaire = (input, typeDeVerification) => {
 
@@ -203,8 +203,6 @@ function majPanier() {
 
                     // Condition de verification de l'input en fonction des paramètres mise en deuxieme arguments et du type de regexp utilisé
                     if(testEntrer) {
-
-                        //supprimer les small de base dans le fichier mypanier si pas besoin le insert ne correspond pas a ce que j'ai besoin dans ce cas precis, il faut ciblé lelement apres linput, et faire un inner pour ecrasé le message précedent
 
                         afficherMessage.style.display ="none";
                         afficherMessage.style.color ="#32CD32";
@@ -227,36 +225,46 @@ function majPanier() {
                         );
 
                         input.style.border ="4px solid red";
-                        
+                                               
                     };
 
-
                 });
-
+  
             };
 
             // création argument, pour eviter de repeter le code 
             verificationFormulaire(formulaire.email, new RegExp('^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$', 'g'));
-            // verificationFormulaire(formulaire.city);
-            // verificationFormulaire(formulaire.firstName);
-            // verificationFormulaire(formulaire.lastName);
-            // verificationFormulaire(formulaire.adress);
-
-
+            verificationFormulaire(formulaire.city, new RegExp("^([a-zA-Z-]+( [a-zA-Z-]+)*){5,50}$", 'g'));
+            verificationFormulaire(formulaire.firstName, new RegExp("^[a-zA-Z-]{3,20}$", 'g'));
+            verificationFormulaire(formulaire.lastName, new RegExp("^[a-zA-Z-]{3,20}$", 'g'));
+            verificationFormulaire(formulaire.adress, new RegExp("([a-zA-Z',.-]+( [a-zA-Z',.-]+)*){10,100}", 'g'));
 
 
             // BOUTON DENVOI FORMULAIRE / COMMANDE
             validerCommande = document.getElementById('validerCommande');
 
-
-            
             validerCommande.addEventListener('click', (e) => {
 
                 e.preventDefault();
+
+                // la verification fonctionne
+                if (!new RegExp('^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$', 'g').test(formulaire.email.value) ||
+                    !new RegExp("^([a-zA-Z-]+( [a-zA-Z-]+)*){5,50}$", 'g').test(formulaire.city.value)  || 
+                    !new RegExp("^[a-zA-Z-]{3,20}$", 'g').test(formulaire.firstName.value)  ||
+                    !new RegExp("^[a-zA-Z-]{3,20}$", 'g').test(formulaire.lastName.value)  || 
+                    !new RegExp("([a-zA-Z',.-]+( [a-zA-Z',.-]+)*){10,100}", 'g').test(formulaire.adress.value) ) {
+
+                    console.log('une des conditions nest pas rempli');
+                                      
+                } else { 
+                    
+                    console.log('tous est béné ');
+
+                };
+
                 
 
             });
-
             
         });
 
