@@ -7,7 +7,6 @@ let bodyTab;
 let commander;
 let supprimerSelection;
 let tab = [];
-let formulaire;
 let validerCommande;
 
 
@@ -187,72 +186,226 @@ function majPanier() {
             );
 
             
-            // formulaire
-            formulaire = document.getElementById('formulaireCommande');
+
+            // FORMULAIRE ET VALIDATION DE L'INPUT VIA LES REGEXP
+            formulaire = document.querySelector('#formulaireCommande');
+
             
-            // fonction d'ecoute du formulaire en posant des conditions 
-            const verificationFormulaire = (input, typeDeVerification) => {
+            formulaire.lastName.addEventListener('change', function() {
 
-                // j'écoute le changement de l'input une fois le focus disparu, donc une fois que j'ai cliqué ailleurs
-                input.addEventListener('change', () => {
+                validationLastName(this);
 
-                    // verif input selectionner  
-                    let verifEntrer = typeDeVerification;
-                    let testEntrer = verifEntrer.test(input.value);
-                    let afficherMessage = input.nextElementSibling;
+            });
+                        
+            formulaire.firstName.addEventListener('change', function() {
 
-                    // Condition de verification de l'input en fonction des paramètres mise en deuxieme arguments et du type de regexp utilisé
-                    if(testEntrer) {
+                validationFirstName(this);
 
-                        afficherMessage.style.display ="none";
-                        afficherMessage.style.color ="#32CD32";
+            });
+            
+            formulaire.email.addEventListener('change', function() {
 
-                        input.style.border ="4px solid #32CD32";
+                validationEmail(this);
 
-                    } else {
+            });
 
-                        afficherMessage.style.display ="inline-block";
-                        afficherMessage.style.color ="red";
+            formulaire.adress.addEventListener('change', function() {
 
-                        afficherMessage.innerHTML = (
-                            
-                            `
-                            
-                            "${input.value}" N'EST PAS VALIDE
+                validationAdress(this);
 
-                            `
+            });
 
-                        );
+            formulaire.city.addEventListener('change', function() {
 
-                        input.style.border ="4px solid red";
-                                               
-                    };
+                validationCity(this);
 
-                });
-  
+            });
+
+
+            // AFFICHAGE DUN MESSAGE EN CAS DERREUR 
+            const conditionValidation = function(elementTest, input, affichage) {
+
+                if (elementTest) {
+
+                    affichage.style.display ="none";
+                    affichage.style.color ="#32CD32";
+
+                    input.style.border ="4px solid #32CD32";
+
+                // si aucune valeur    
+                } else if (input.value.length == 0) {
+
+                    affichage.style.display ="none";
+                    input.style.border ="none";
+                   
+                // si valeur fausse    
+                } else if (!elementTest) {
+
+                    affichage.style.display ="inline-block";
+                    affichage.style.color ="red";
+                    input.style.border ="4px solid red";
+
+                    affichage.innerHTML = (
+                        
+                        `
+                        
+                        "${input.value}" N'EST PAS VALIDE
+
+                        `
+
+                    );
+
+                };
+
             };
 
+
+
+            // LES REGEX et APPEL A CONDITION VALIDATION    
+            const validationLastName = function(inputLastName) {
+
+                let lastNameRegex = new RegExp('^[^0-9][a-zA-Z.-]{3,25}[ ]{0,2}$', 'g');
+
+                let testlastName = lastNameRegex.test(inputLastName.value);
+                let affichage = inputLastName.nextElementSibling;
+
+                conditionValidation(testlastName, inputLastName, affichage);
+
+            };
+
+            const validationFirstName = function(inputFirstName) {
+
+                let FirstNameRegex = new RegExp('^[^0-9][a-zA-Z.-]{3,25}[ ]{0,2}$', 'g');
+
+                let testFirstName = FirstNameRegex.test(inputFirstName.value);
+                let affichage = inputFirstName.nextElementSibling;
+
+                conditionValidation(testFirstName, inputFirstName, affichage);
+
+            };
+
+            const validationEmail = function(inputEmail) {
+
+                let emailRegex = new RegExp('^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}[ ]{0,2}$', 'g');
+
+                let testEmail = emailRegex.test(inputEmail.value);
+                let affichage = inputEmail.nextElementSibling;
+
+                conditionValidation(testEmail, inputEmail, affichage);
+
+            };
+
+            const validationAdress = function(inputAdress) {
+
+                let adressRegex = new RegExp('^[a-zA-Z0-9.,-_ ]{5,50}[ ]{0,2}$', 'g');
+
+                let testAdress = adressRegex.test(inputAdress.value);
+                let affichage = inputAdress.nextElementSibling;
+
+                conditionValidation(testAdress, inputAdress, affichage);
+
+            };
+  
+            const validationCity = function(inputCity) {
+
+                let cityRegex = new RegExp('^[^0-9][a-zA-Z.-]{3,25}[ ]{0,2}$', 'g');
+
+                let testCity = cityRegex.test(inputCity.value);
+                let affichage = inputCity.nextElementSibling;
+
+                conditionValidation(testCity, inputCity, affichage);
+
+            };
+
+        });
+
+    };
+
+
+
+};
+
+majPanier();
+
+//console.log((1000).toLocaleString("EUR", { style: "currency", currency: "EUR",}));
+
+/*
+
+    formulaire = document.getElementById('formulaireCommande');
+
+    // fonction d'ecoute du formulaire en posant des conditions 
+            const verificationFormulaire = (input, typeDeVerification) => {
+
+                // verif input selectionner  
+                let verifEntrer = typeDeVerification;
+                let testEntrer = verifEntrer.test(input.value);
+                let afficherMessage = input.nextElementSibling;
+
+                // si valeur est correcte
+                if (testEntrer) {
+
+                    afficherMessage.style.display ="none";
+                    afficherMessage.style.color ="#32CD32";
+
+                    input.style.border ="4px solid #32CD32";
+
+                    console.log(input.value);
+                    console.log(testEntrer);
+
+
+                // si aucune valeur    
+                } else if (input.value.length == 0) {
+
+                    afficherMessage.style.display ="none";
+                    input.style.border ="none";
+                   
+                // si valeur fausse    
+                } else if (!testEntrer) {
+
+                    console.log(input.value);
+                    console.log(testEntrer);
+
+                    afficherMessage.style.display ="inline-block";
+                    afficherMessage.style.color ="red";
+                    input.style.border ="4px solid red";
+
+                    afficherMessage.innerHTML = (
+                        
+                        `
+                        
+                        "${input.value}" N'EST PAS VALIDE
+
+                        `
+
+                    );
+
+                };
+
+            };
+            
+
             // création argument, pour eviter de repeter le code 
-            verificationFormulaire(formulaire.email, new RegExp('^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$', 'g'));
-            verificationFormulaire(formulaire.city, new RegExp("^([a-zA-Z-]+( [a-zA-Z-]+)*){5,50}$", 'g'));
-            verificationFormulaire(formulaire.firstName, new RegExp("^[a-zA-Z-]{3,20}$", 'g'));
-            verificationFormulaire(formulaire.lastName, new RegExp("^[a-zA-Z-]{3,20}$", 'g'));
-            verificationFormulaire(formulaire.adress, new RegExp("([a-zA-Z',.-]+( [a-zA-Z',.-]+)*){10,12}", 'g'));
+            verificationFormulaire(formulaire.email, new RegExp('^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}[ ]{0,2}$', 'g'));
+            verificationFormulaire(formulaire.city, new RegExp('^[^0-9][a-zA-Z.-]{3,25}[ ]{0,2}$', 'g'));
+            verificationFormulaire(formulaire.firstName, new RegExp('^[^0-9][a-zA-Z.-]{3,25}[ ]{0,2}$', 'g'));
+            verificationFormulaire(formulaire.lastName, new RegExp('^[^0-9][a-zA-Z.-]{3,25}[ ]{0,2}$', 'g'));
+            verificationFormulaire(formulaire.adress, new RegExp('^[a-zA-Z0-9.,-_ ]{5,50}[ ]{0,2}$', 'g'));
 
 
             // BOUTON DENVOI FORMULAIRE / COMMANDE
-            validerCommande = document.getElementById('validerCommande');x
+            validerCommande = document.getElementById('validerCommande');
 
             validerCommande.addEventListener('click', (e) => {
 
                 e.preventDefault();
 
+
                 // la verification fonctionne
                 if (!new RegExp('^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$', 'g').test(formulaire.email.value) ||
-                    !new RegExp("^([a-zA-Z-]+( [a-zA-Z-]+)*){5,50}$", 'g').test(formulaire.city.value)  || 
-                    !new RegExp("^[a-zA-Z-]{3,20}$", 'g').test(formulaire.firstName.value)  ||
-                    !new RegExp("^[a-zA-Z-]{3,20}$", 'g').test(formulaire.lastName.value)  || 
-                    !new RegExp("([a-zA-Z',.-]+( [a-zA-Z',.-]+)*){10,100}", 'g').test(formulaire.adress.value) ) {
+                    !new RegExp('^[^0-9][a-zA-Z.-]{3,25}$', 'g').test(formulaire.city.value)  || 
+                    !new RegExp('^[^0-9][a-zA-Z.-]{3,25}$', 'g').test(formulaire.firstName.value)  ||
+                    !new RegExp('^[^0-9][a-zA-Z.-]{3,25}$', 'g').test(formulaire.lastName.value)  || 
+                    !new RegExp('^[a-zA-Z0-9.,-_ ]{5,50}$', 'g').test(formulaire.adress.value) ) {
 
                     console.log('une des conditions nest pas rempli');
                                       
@@ -266,14 +419,42 @@ function majPanier() {
 
             });
             
-        });
 
-    };
-
+*/
 
 
-};
+/* 
 
-majPanier();
+            const tableauInputs = Array.from(document.querySelectorAll("#formulaireCommande input"));
+            let formulaire = document.getElementById('formulaireCommande');
 
-//console.log((1000).toLocaleString("EUR", { style: "currency", currency: "EUR",}));
+            for (let i = 0; i < tableauInputs.length; i++) {
+
+                let input = tableauInputs[i];
+                let value = input.value;
+
+                let verification = () => {
+
+                    new RegExp('^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}[ ]{0,2}$', 'g').test(formulaire.lastName.value);
+                    new RegExp('^[^0-9][a-zA-Z.-]{3,25}[ ]{0,2}$', 'g').test(formulaire.firstName.value);
+                    new RegExp('^[^0-9][a-zA-Z.-]{3,25}[ ]{0,2}$', 'g').test(formulaire.email.value);
+                    new RegExp('^[^0-9][a-zA-Z.-]{3,25}[ ]{0,2}$', 'g').test(formulaire.adress.value);
+                    new RegExp('^[a-zA-Z0-9.,-_ ]{5,50}[ ]{0,2}$', 'g').test(formulaire.city.value);
+
+                };
+
+
+                input.addEventListener('change', () => {
+
+
+                    verification();
+
+
+                });
+
+
+            };
+
+*/
+
+
