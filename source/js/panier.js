@@ -370,46 +370,46 @@ function majPanier() {
                     const produit = mesProduitsEnregistrer[i];
                     
 
-                    let idObj = new Object();
+                    // let idObj = new Object();
 
-                    idObj["_id"] = produit.id;
+                    // idObj["_id"] = produit.id;
                     
-                    products.push(idObj);
+                    products.push(produit.id);
                     
-                    //`_id = ${produit.id}`
+                    //`_id = ${produit.id}` lid UNIQUEMENT !!! PAS le _id = produit.id !!!
                 };
 
                 // OBJET CONTENANT LES ELEMENTS A ENVOIER AU BACK END
                 let MesInformationsPourLeBackEnd = {
 
                     contact: contact,
-                    products: JSON.stringify(products)
+                    products: products
 
                     // JSON.stringify(products) AVEC OU SANS A VOIR 
                 };
 
-                console.log(MesInformationsPourLeBackEnd);
 
-                // http://localhost:3000/api/cameras/order
-
+                //  POST REQUEST pour envoyé les données au back END au format JS et choppé les erreurs possibles
                 function postServer() {
 
                     return fetch('http://localhost:3000/api/cameras/order', {
 
-                      method: 'post',
+                      method: 'POST',
                       headers: { "Content-Type": "application/json"},
                       body: JSON.stringify(MesInformationsPourLeBackEnd)
 
                     }).then(function(response) {
+
                       return response.json();
+
+                    }).catch(function(error) {
+
+                        return console.log(error);
+                
                     });
                 };
 
                 postServer();
-
-
-
-
 
 
             });
