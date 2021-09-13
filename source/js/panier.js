@@ -144,6 +144,7 @@ function majPanier() {
             e.preventDefault();
             commander.style.display ='none';
 
+            // INSERT LE FORMULAIRE AU CLIQUE SUR COMMANDER 
             myPanier.insertAdjacentHTML('beforeend',
             
                 `
@@ -188,7 +189,7 @@ function majPanier() {
             
 
             // FORMULAIRE ET VALIDATION DE L'INPUT VIA LES REGEXP
-            formulaire = document.querySelector('#formulaireCommande');
+            let formulaire = document.querySelector('#formulaireCommande');
 
             
             formulaire.lastName.addEventListener('change', function() {
@@ -260,7 +261,6 @@ function majPanier() {
             };
 
 
-
             // LES REGEX et APPEL A CONDITION VALIDATION    
             const validationLastName = function(inputLastName) {
 
@@ -317,6 +317,9 @@ function majPanier() {
 
             };
 
+            
+
+
         });
 
     };
@@ -331,7 +334,7 @@ majPanier();
 
 /*
 
-    formulaire = document.getElementById('formulaireCommande');
+    let formulaire = document.getElementById('formulaireCommande');
 
     // fonction d'ecoute du formulaire en posant des conditions 
             const verificationFormulaire = (input, typeDeVerification) => {
