@@ -192,31 +192,31 @@ function majPanier() {
             let formulaire = document.querySelector('#formulaireCommande');
 
             
-            formulaire.lastName.addEventListener('change', function() {
+            formulaire.lastName.addEventListener('input', function() {
 
                 validationLastName(this);
 
             });
                         
-            formulaire.firstName.addEventListener('change', function() {
+            formulaire.firstName.addEventListener('input', function() {
 
                 validationFirstName(this);
 
             });
             
-            formulaire.email.addEventListener('change', function() {
+            formulaire.email.addEventListener('input', function() {
 
                 validationEmail(this);
 
             });
 
-            formulaire.adress.addEventListener('change', function() {
+            formulaire.adress.addEventListener('input', function() {
 
                 validationAdress(this);
 
             });
 
-            formulaire.city.addEventListener('change', function() {
+            formulaire.city.addEventListener('input', function() {
 
                 validationCity(this);
 
@@ -317,7 +317,7 @@ function majPanier() {
 
             };
 
-            
+
 
 
         });
