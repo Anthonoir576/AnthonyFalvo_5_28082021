@@ -10,7 +10,8 @@ let commander;
 let tab = [];
 let supprimerSelection;
 
-
+// ID POUR LE BACK END
+let products = [];
 
 
 /* Mon parse de prix le même que sur lindex */
@@ -326,6 +327,7 @@ function majPanier() {
 
 
             // FORMULAIRE DE VALIDATION BOUTON VALIDER LA COMMANDE :
+            // + ENVOI AU BACK END
             let validerCommande = document.getElementById('validerCommande');
 
             validerCommande.addEventListener('click', (e) => {
@@ -350,10 +352,67 @@ function majPanier() {
 
                 // };
 
-                
+
+                // OBJET CONTACT  :
+                let contact = {
+
+                    firstName: formulaire.firstName.value,
+                    lastName: formulaire.lastName.value,
+                    address: formulaire.address.value,
+                    city: formulaire.city.value,
+                    email: formulaire.email.value
+
+                }
+               
+                // RECUPERE CHAQUE ID DU PANIER  
+                for (let i = 0; i < mesProduitsEnregistrer.length; i++) {
+
+                    const produit = mesProduitsEnregistrer[i];
+                    
+
+                    let idObj = new Object();
+
+                    idObj["_id"] = produit.id;
+                    
+                    products.push(idObj);
+                    
+                    //`_id = ${produit.id}`
+                };
+
+                // OBJET CONTENANT LES ELEMENTS A ENVOIER AU BACK END
+                let MesInformationsPourLeBackEnd = {
+
+                    contact: contact,
+                    products: JSON.stringify(products)
+
+                    // JSON.stringify(products) AVEC OU SANS A VOIR 
+                };
+
+                console.log(MesInformationsPourLeBackEnd);
+
+                // http://localhost:3000/api/cameras/order
+
+                function postServer() {
+
+                    return fetch('http://localhost:3000/api/cameras/order', {
+
+                      method: 'post',
+                      headers: { "Content-Type": "application/json"},
+                      body: JSON.stringify(MesInformationsPourLeBackEnd)
+
+                    }).then(function(response) {
+                      return response.json();
+                    });
+                };
+
+                postServer();
+
+
+
+
+
 
             });
-
 
         });
 
