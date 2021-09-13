@@ -5,9 +5,12 @@ let myPanier = document.getElementById('main-panier');
 let close = document.getElementById('closePop');
 let bodyTab;
 let commander;
-let supprimerSelection;
+
+// variable SUPPRIMER SELECTION
 let tab = [];
-let validerCommande;
+let supprimerSelection;
+
+
 
 
 /* Mon parse de prix le même que sur lindex */
@@ -136,7 +139,7 @@ function majPanier() {
         };
 
 
-        // Formulaire apparait au clique
+        // FORMULAIRE apparait au clique
         commander = document.getElementById('commander');
 
         commander.addEventListener('click', (e) => {
@@ -169,8 +172,8 @@ function majPanier() {
                         <small></small>
                     </div>
                     <div>
-                        <label for="adress">Adresse :</label>
-                        <input id="adress" name="adress" type="text" placeholder="adresse" />
+                        <label for="address">Adresse :</label>
+                        <input id="address" name="address" type="text" placeholder="adresse" />
                         <small></small>
                     </div>
                     <div>
@@ -210,9 +213,9 @@ function majPanier() {
 
             });
 
-            formulaire.adress.addEventListener('input', function() {
+            formulaire.address.addEventListener('input', function() {
 
-                validationAdress(this);
+                validationAddress(this);
 
             });
 
@@ -221,6 +224,8 @@ function majPanier() {
                 validationCity(this);
 
             });
+
+
 
 
             // AFFICHAGE DUN MESSAGE EN CAS DERREUR 
@@ -260,6 +265,8 @@ function majPanier() {
 
             };
 
+            
+
 
             // LES REGEX et APPEL A CONDITION VALIDATION    
             const validationLastName = function(inputLastName) {
@@ -295,14 +302,14 @@ function majPanier() {
 
             };
 
-            const validationAdress = function(inputAdress) {
+            const validationAddress = function(inputAdress) {
 
-                let adressRegex = new RegExp('^[a-zA-Z0-9.,-_ ]{5,50}[ ]{0,2}$', 'g');
+                let addressRegex = new RegExp('^[a-zA-Z0-9.,-_ ]{5,50}[ ]{0,2}$', 'g');
 
-                let testAdress = adressRegex.test(inputAdress.value);
+                let testAddress = addressRegex.test(inputAdress.value);
                 let affichage = inputAdress.nextElementSibling;
 
-                conditionValidation(testAdress, inputAdress, affichage);
+                conditionValidation(testAddress, inputAdress, affichage);
 
             };
   
@@ -318,14 +325,39 @@ function majPanier() {
             };
 
 
+            // FORMULAIRE DE VALIDATION BOUTON VALIDER LA COMMANDE :
+            let validerCommande = document.getElementById('validerCommande');
+
+            validerCommande.addEventListener('click', (e) => {
+
+                e.preventDefault();
+
+
+                // A Décommenté !!!!! 
+
+                // VERIFICATION QUE LE FORMULAIRE ET BIEN REMPLI AVANT LENVOI AU BACK-END
+                // if (!new RegExp('^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$', 'g').test(formulaire.email.value) ||
+                //     !new RegExp('^[^0-9][a-zA-Z.-]{3,25}$', 'g').test(formulaire.city.value)  || 
+                //     !new RegExp('^[^0-9][a-zA-Z.-]{3,25}$', 'g').test(formulaire.firstName.value)  ||
+                //     !new RegExp('^[^0-9][a-zA-Z.-]{3,25}$', 'g').test(formulaire.lastName.value)  || 
+                //     !new RegExp('^[a-zA-Z0-9.,-_ ]{5,50}$', 'g').test(formulaire.address.value) ) {
+
+                //     console.log('une des conditions nest pas rempli');
+                                      
+                // } else { 
+                    
+                //     console.log('tous est béné ');
+
+                // };
+
+                
+
+            });
 
 
         });
 
     };
-
-
-
 };
 
 majPanier();
@@ -392,11 +424,11 @@ majPanier();
             verificationFormulaire(formulaire.city, new RegExp('^[^0-9][a-zA-Z.-]{3,25}[ ]{0,2}$', 'g'));
             verificationFormulaire(formulaire.firstName, new RegExp('^[^0-9][a-zA-Z.-]{3,25}[ ]{0,2}$', 'g'));
             verificationFormulaire(formulaire.lastName, new RegExp('^[^0-9][a-zA-Z.-]{3,25}[ ]{0,2}$', 'g'));
-            verificationFormulaire(formulaire.adress, new RegExp('^[a-zA-Z0-9.,-_ ]{5,50}[ ]{0,2}$', 'g'));
+            verificationFormulaire(formulaire.address, new RegExp('^[a-zA-Z0-9.,-_ ]{5,50}[ ]{0,2}$', 'g'));
 
 
             // BOUTON DENVOI FORMULAIRE / COMMANDE
-            validerCommande = document.getElementById('validerCommande');
+            let validerCommande = document.getElementById('validerCommande');
 
             validerCommande.addEventListener('click', (e) => {
 
@@ -408,7 +440,7 @@ majPanier();
                     !new RegExp('^[^0-9][a-zA-Z.-]{3,25}$', 'g').test(formulaire.city.value)  || 
                     !new RegExp('^[^0-9][a-zA-Z.-]{3,25}$', 'g').test(formulaire.firstName.value)  ||
                     !new RegExp('^[^0-9][a-zA-Z.-]{3,25}$', 'g').test(formulaire.lastName.value)  || 
-                    !new RegExp('^[a-zA-Z0-9.,-_ ]{5,50}$', 'g').test(formulaire.adress.value) ) {
+                    !new RegExp('^[a-zA-Z0-9.,-_ ]{5,50}$', 'g').test(formulaire.address.value) ) {
 
                     console.log('une des conditions nest pas rempli');
                                       
@@ -441,7 +473,7 @@ majPanier();
                     new RegExp('^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}[ ]{0,2}$', 'g').test(formulaire.lastName.value);
                     new RegExp('^[^0-9][a-zA-Z.-]{3,25}[ ]{0,2}$', 'g').test(formulaire.firstName.value);
                     new RegExp('^[^0-9][a-zA-Z.-]{3,25}[ ]{0,2}$', 'g').test(formulaire.email.value);
-                    new RegExp('^[^0-9][a-zA-Z.-]{3,25}[ ]{0,2}$', 'g').test(formulaire.adress.value);
+                    new RegExp('^[^0-9][a-zA-Z.-]{3,25}[ ]{0,2}$', 'g').test(formulaire.address.value);
                     new RegExp('^[a-zA-Z0-9.,-_ ]{5,50}[ ]{0,2}$', 'g').test(formulaire.city.value);
 
                 };
