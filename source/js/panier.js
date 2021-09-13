@@ -10,7 +10,7 @@ let commander;
 let tab = [];
 let supprimerSelection;
 
-// ID POUR LE BACK END
+// ID POUR ENVOIE AU BACK END
 let products = [];
 
 
@@ -376,7 +376,7 @@ function majPanier() {
                     
                     products.push(produit.id);
                     
-                    //`_id = ${produit.id}` lid UNIQUEMENT !!! PAS le _id = produit.id !!!
+
                 };
 
                 // OBJET CONTENANT LES ELEMENTS A ENVOIER AU BACK END
@@ -385,22 +385,28 @@ function majPanier() {
                     contact: contact,
                     products: products
 
-                    // JSON.stringify(products) AVEC OU SANS A VOIR 
                 };
 
 
                 //  POST REQUEST pour envoyé les données au back END au format JS et choppé les erreurs possibles
-                function postServer() {
+                let postServer = async function() {
 
-                    return fetch('http://localhost:3000/api/cameras/order', {
+                    return await fetch('http://localhost:3000/api/cameras/order', {
 
                       method: 'POST',
                       headers: { "Content-Type": "application/json"},
                       body: JSON.stringify(MesInformationsPourLeBackEnd)
 
-                    }).then(function(response) {
 
-                      return response.json();
+                    // recuperation des informations orderId, nom, prenom, prix total 
+                    }).then(async function(response) {
+
+                      const laReponseDuBackEnd = await response.json();
+                      
+                             console.log(laReponseDuBackEnd);
+                             console.log(laReponseDuBackEnd.contact.firstName);
+                             console.log(laReponseDuBackEnd.contact.lastName);
+                      return console.log(laReponseDuBackEnd.orderId);
 
                     }).catch(function(error) {
 
@@ -409,8 +415,9 @@ function majPanier() {
                     });
                 };
 
+                console.log(totaux);
                 postServer();
-
+                
 
             });
 
