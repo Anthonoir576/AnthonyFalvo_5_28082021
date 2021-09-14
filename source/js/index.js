@@ -1,20 +1,23 @@
 
-// Mes variables est constantes 
+/*  ******* APPEL ET AFFICHAGE DES ELEMENTS CONTENU DANS L'API ******** */
 
-/* declarations de ma variable en globale */
+/* VARIABLE / CONSTANTE */
+/* declarations de mes variables en globale */
 let cameras;
 const showShop = document.getElementById('myBoutique');
 const buttonShop = document.getElementById('buttonShop');
 
 
-/* constantes stockant ma fonction pour récupérer les données de l'api */
+/* FETCH par defaut (get) */
+/* constantes stockant ma fonction pour récupérer les données de l'api en json dans la variable cameras, avec une fonction asynchrone et attend la réponse grace a await renvoi le resultat grace a une promesse. Par defaut lors de la methode fetch, on récupère en get, on peux aussi utilisé le post pour l'envoi via cette methode, certaine information sont a saisir pour utilisé cette methode afin de palier au comportement par defaut */
 const fetchCameras = async() => {
 
     cameras = await fetch('http://localhost:3000/api/cameras/').then(res => res.json());
 
 };
 
-/* Fonction qui fait appel a l'api et l'ecrit sous forme html */
+/* Fonction ASYNC ou Asynchrone / Methode d'affichage via L'appel de FETCH => FILTER => MAP */
+/* Fonction qui fait appel a l'api et attend la réponse de celle-ci, une fois faite parcours chaque element de l'api et en crée un element unique en html, ce qui a pours effet de faire apparaitre chaque element de l'api + si d'autre venez a y être ajouté . En temps normal le innerHTML aurait ecrasé lelement déjà présent, mais grace a la combinaison de MAP et filter methode, on a pas ce problème. Join permet en concaténant tous les éléments d'un tableau ou similaire au tableau en chaine de caractère, permettant ici l'assemblage des éléments récupérés via l'api */
 const showCameras = async() => {
 
     await fetchCameras();
@@ -43,7 +46,8 @@ const showCameras = async() => {
 
 };
 
-/* dans un premier temps la fonction utilise un separateur de millier et remplace par un point tous les trois chiffre on parle de tostring et replace. Ensuite on emglobe cette methode dans un parsefloat, suivi dun tous fixed avec pour argument 2 . parseFloat transforme une chaine de caractère en nombre, et to fixed nous donne 2 chiffres après la virgule grace a largument 2. Si javais mis 5, j'en aurait donc .... 5 MAJ remplacement par la methode toLocalString */
+/* CALCULE PRIX et CONVERSION  */
+/* Le prix est afficher en centime, cette fonction me permet dans un premier temps de convertir les prix en les divisants par 100, 100 centimes fait ... 01 euros, et me return un resultat sous forme d'euros grace a la methode toLocalString(). Elle permet de le faire d'en d'autre devise. */
 function pricesSpace(prix) {
 
     let calcule = (prix / 100);  
@@ -52,7 +56,8 @@ function pricesSpace(prix) {
 
 };
 
-/* Ma fonction permet au click d'afficher la boutique via le bouton voir nos produits et créer un bouton fermer pour la masqué */
+/* PETIT BONUS !!!!! */
+/* Mon Listener permet au click d'afficher la boutique via le bouton voir nos produits et créer un bouton fermer pour la masqué, rien de compliqué mon choix était purement estetique, le choix de la methode getComputedStyle() ma permis de palier au problème rencontré avec .style qui me forcer a cliquer deux fois dessus, une fois pour créer un display, qui netait pas présent dans le html (normal) et l'autre fois pour lui attribué "none", pas évident pour un utilisateur */
 buttonShop.addEventListener("click", () => {
 
     if(getComputedStyle(showShop).display != "none") {
@@ -78,8 +83,3 @@ buttonShop.addEventListener("click", () => {
     };
 
 });
-
-
-
-
-//console.log(pricesSpace(10000));
