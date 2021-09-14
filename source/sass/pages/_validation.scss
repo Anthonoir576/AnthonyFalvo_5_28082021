@@ -1,0 +1,79 @@
+.body-validation {
+
+    background: linear-gradient(rgba(0, 0, 0, .95), rgba(0, 0, 0, .85)), url(../image/banner11.jpg) center/cover no-repeat;
+
+    & .main-validation {
+
+        margin-top: 10px;
+
+        & section {
+
+            margin: 0 auto;
+            padding: 20px 0;
+            max-width: 1000px;
+
+            text-align: center;
+
+            background: #32cd32;
+            border: 2px solid white;
+            border-radius: 5px;
+
+            // ori & pixs
+            & :nth-child(5) {
+
+                margin: 1rem 0;
+
+                & strong {
+
+                    display: block;
+                    margin-top: 1rem;
+
+
+                    font-weight: 900;
+                    letter-spacing: 5px;
+                    text-shadow: 0 0 5px black;
+    
+                }
+    
+                & em {
+    
+                    color: red;
+                    font-weight: 600;
+    
+                }
+
+            }
+
+            & h2 {
+
+                margin-bottom: 1rem;
+                font-size: 3rem;
+                text-shadow: 2px 0px 1.5px rgba(150, 150, 150, 1);
+
+                background: white;
+                color: #32cd32;
+
+            }
+
+            & p {
+
+                font-size: 1.5rem;
+
+            }
+
+            & a {
+
+                display: inline-block;
+                margin-top: 20px;
+                padding: 10px 20px;
+
+                font-size: 1.3rem;
+                background: white;
+                color: #32cd32;
+            }
+
+        }
+
+    }
+
+}

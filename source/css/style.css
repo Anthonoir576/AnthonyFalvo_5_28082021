@@ -778,6 +778,54 @@ body {
   transition: all 0.4s ease-in-out;
 }
 
+.body-validation {
+  background: linear-gradient(rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.85)), url(../image/banner11.jpg) center/cover no-repeat;
+}
+.body-validation .main-validation {
+  margin-top: 10px;
+}
+.body-validation .main-validation section {
+  margin: 0 auto;
+  padding: 20px 0;
+  max-width: 1000px;
+  text-align: center;
+  background: #32cd32;
+  border: 2px solid white;
+  border-radius: 5px;
+}
+.body-validation .main-validation section :nth-child(5) {
+  margin: 1rem 0;
+}
+.body-validation .main-validation section :nth-child(5) strong {
+  display: block;
+  margin-top: 1rem;
+  font-weight: 900;
+  letter-spacing: 5px;
+  text-shadow: 0 0 5px black;
+}
+.body-validation .main-validation section :nth-child(5) em {
+  color: red;
+  font-weight: 600;
+}
+.body-validation .main-validation section h2 {
+  margin-bottom: 1rem;
+  font-size: 3rem;
+  text-shadow: 2px 0px 1.5px #969696;
+  background: white;
+  color: #32cd32;
+}
+.body-validation .main-validation section p {
+  font-size: 1.5rem;
+}
+.body-validation .main-validation section a {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1.3rem;
+  background: white;
+  color: #32cd32;
+}
+
 @media only screen and (max-width: 716px) {
   .header-nav {
     display: block;
@@ -1152,6 +1200,12 @@ body {
     right: 10px;
     bottom: 16px;
     font-size: 1.2rem;
+  }
+}
+@media only screen and (max-width: 800px) {
+  .body-validation .main-validation {
+    margin-left: 10px;
+    margin-right: 10px;
   }
 }
 
