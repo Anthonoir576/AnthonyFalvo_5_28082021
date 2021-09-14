@@ -149,8 +149,7 @@ function majProduit(produit) {
             choice : valueInputLenses
 
         };
-        console.log(produit.price, parseFloat(valueInputQuantity), parseInt(valueInputQuantity));
-
+        
 
         let mesProduitsEnregistrer = JSON.parse(localStorage.getItem("mon panier"));
 
