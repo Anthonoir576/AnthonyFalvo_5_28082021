@@ -29,6 +29,6 @@ if (informationTemporaire == null) {
     );
     
     // effacer le local storage Panier vide pour qu'il puisse commander a nouveau et information client vide (pour la sécurité)
-    //localStorage.clear();
+    localStorage.clear();
 
 };
