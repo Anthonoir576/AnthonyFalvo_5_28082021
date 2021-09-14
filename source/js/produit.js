@@ -142,7 +142,7 @@ function majProduit(produit) {
             id : produit._id,
             picture : produit.imageUrl,
             name : produit.name,
-            price : parseFloat(pricesSpace(produit.price) * valueInputQuantity).toFixed(2),
+            price : parseFloat(pricesSpace(produit.price)),
             quantity : valueInputQuantity,
             choice : valueInputLenses
 
