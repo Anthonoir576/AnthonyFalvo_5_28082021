@@ -341,9 +341,6 @@ function majPanier() {
 
                 e.preventDefault();
 
-
-                // A Décommenté !!!!! 
-
                 //VERIFICATION QUE LE FORMULAIRE ET BIEN REMPLI AVANT LENVOI AU BACK-END
                 if (!new RegExp('^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}[ ]{0,2}$', 'g').test(formulaire.email.value) ||
                     !new RegExp('^[^0-9][a-zA-Z.-]{3,25}[ ]{0,2}$', 'g').test(formulaire.city.value)  || 
@@ -353,7 +350,7 @@ function majPanier() {
 
                     return console.log('une des conditions nest pas rempli');
                 
-                // Si aucune des valeurs du formulaire ne renvoi false, appliqué la request POST    
+                // Si aucune des valeurs du formulaire ne renvoi pas false, appliqué la request POST    
                 } else { 
                      
                     console.log('tous va béné');
@@ -373,11 +370,7 @@ function majPanier() {
 
                         const produit = mesProduitsEnregistrer[i];
                         
-
-                        // let idObj = new Object();
-
-                        // idObj["_id"] = produit.id;
-                        
+                        // Attention ! l'annotation du back end dit qu'il faut un id avec un key _id: mais il faut stocker uniquement l'id
                         products.push(produit.id);
                         
 
@@ -392,7 +385,7 @@ function majPanier() {
                     };
 
 
-                    //  POST REQUEST pour envoyé les données au back END au format JS et choppé les erreurs possibles
+                    //  POST REQUEST pour envoyé les données au back END au format JSON et choppé les erreurs possibles
                     let postServer = async function() {
 
                         return await fetch('http://localhost:3000/api/cameras/order', {
@@ -405,17 +398,23 @@ function majPanier() {
                         // recuperation des informations orderId, nom, prenom, prix total 
                         }).then(async function(response) {
 
-                        const laReponseDuBackEnd = await response.json();
+                            const laReponseDuBackEnd = await response.json();
+                                
+                            // Création dun objet contenant ces informations 
+                            let objetRetourAulocalStorage = new Object();
+                            objetRetourAulocalStorage["prix"] = totaux.toString();  
+                            objetRetourAulocalStorage["Numéros de commande"] = laReponseDuBackEnd.orderId;  
+                            objetRetourAulocalStorage["Nom"] = laReponseDuBackEnd.contact.lastName;  
+                            objetRetourAulocalStorage["Prénom"] = laReponseDuBackEnd.contact.firstName;  
+                            
+                            console.log(objetRetourAulocalStorage);
 
-                        let objetRetourAulocalStorage = new Object();
-                        objetRetourAulocalStorage["prix"] = totaux.toString();  
-                        objetRetourAulocalStorage["Numéros de commande"] = laReponseDuBackEnd.orderId;  
-                        objetRetourAulocalStorage["Nom"] = laReponseDuBackEnd.contact.lastName;  
-                        objetRetourAulocalStorage["Prénom"] = laReponseDuBackEnd.contact.firstName;  
-                        
-                        console.log(objetRetourAulocalStorage);
+                            // stockage temporaire dans le local le temps de changé de page, et serra supprimé après recuperation avec un clear sur la totalité du panier, et information personnel (Pas top en matière de sécurité car les informations ne sont pas sécurisé)
+                            localStorage.setItem("commande", JSON.stringify(objetRetourAulocalStorage));
 
-                        return;
+                            // changement de page
+                            return window.location.href ="validation.html";
+                    
 
                         }).catch(function(error) {
 
@@ -423,14 +422,10 @@ function majPanier() {
                     
                         });
                     };
-
-                    
+    
                     postServer();
                 
-
                 };
-
-
 
             });
 
