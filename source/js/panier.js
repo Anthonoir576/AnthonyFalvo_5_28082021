@@ -402,7 +402,7 @@ function majPanier() {
                     }).then(async function(response) {
 
                       const laReponseDuBackEnd = await response.json();
-                      
+                            console.log(totaux);
                              console.log(laReponseDuBackEnd);
                              console.log(laReponseDuBackEnd.contact.firstName);
                              console.log(laReponseDuBackEnd.contact.lastName);
@@ -415,7 +415,7 @@ function majPanier() {
                     });
                 };
 
-                console.log(totaux);
+                
                 postServer();
                 
 
