@@ -13,9 +13,10 @@ EN COURS DE DEVELOPPEMENT ...
     - Dans le terminal accéder au dossier du projet back-end
     - npm install ( Pour les modules nodes)
     - lancer : "nodemon server" ou "node server"
-3. Accéder au site à l'adresse: http://localhost:3000/api/cameras 
+3. Accéder au site à l'adresse :
     - Via live server sous vsCode avec un port différent de l'api
     - Ou via ce liens => [Lien de la page WEB](https://anthonoir576.github.io/Projet_Officiel_OpenClassRooms_P5/) une fois le serveur lancer
+4. Adresse de l'API : http://localhost:3000/api/cameras 
 
 ## Scénario
 L'objectif est développer en **JavaScript**, et **sans framework**, le **Front-End** d'un site e-commerce.  
