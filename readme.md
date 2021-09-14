@@ -11,7 +11,7 @@ EN COURS DE DEVELOPPEMENT ...
 1. Cloner le repository
 2. Lancer le serveur NodeJs :
     - Dans le terminal accéder au dossier du projet back-end
-    - npm install ( Pour les modules nodes)
+    - npm install (Pour les modules nodes)
     - lancer : "nodemon server" ou "node server"
 3. Accéder au site à l'adresse :
     - Via live server sous vsCode avec un port différent de l'api
