@@ -9,14 +9,15 @@
         & section {
 
             margin: 0 auto;
-            padding: 20px 0;
-            max-width: 1000px;
+            padding: 25px 0;
+            max-width: 1500px;
 
             text-align: center;
 
-            background: #32cd32;
-            border: 2px solid white;
+            background: #32cd325e;
+            border: 1px solid rgba(255, 255, 255, 0.815);
             border-radius: 5px;
+            box-shadow: 0 0 10px 4px rgba(255, 255, 255, 0.253);
 
             // ori & pixs
             & :nth-child(5) {
@@ -30,6 +31,7 @@
 
 
                     font-weight: 900;
+                    font-size: 1.35rem;
                     letter-spacing: 5px;
                     text-shadow: 0 0 5px black;
     
@@ -39,6 +41,7 @@
     
                     color: red;
                     font-weight: 600;
+                    font-size: 1.5rem;
     
                 }
 
@@ -47,10 +50,11 @@
             & h2 {
 
                 margin-bottom: 1rem;
+                padding-bottom: 5px;
                 font-size: 3rem;
                 text-shadow: 2px 0px 1.5px rgba(150, 150, 150, 1);
 
-                background: white;
+                background: rgb(255, 255, 255);
                 color: #32cd32;
 
             }
@@ -64,12 +68,35 @@
             & a {
 
                 display: inline-block;
-                margin-top: 20px;
+                margin: 20px 5px 0 5px;
                 padding: 10px 20px;
 
                 font-size: 1.3rem;
+                font-weight: 600;
+                letter-spacing: 1px;
+
                 background: white;
                 color: #32cd32;
+                border: 1px solid rgba(0, 0, 0, 0.336);
+                border-radius: 7px;
+
+                box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.322);
+                text-shadow: -1px -1px 1px rgba(150, 150, 150, 1);
+
+                transition: all .3s ease-in-out;
+
+                &:hover {
+
+                    transition: all .3s ease-in-out;
+
+                    padding: 10px 35px;
+                    box-shadow: 0 0 15px 5px rgba(0, 0, 0, .15);
+                    //text-shadow: 1px 1px 1px rgba(150, 150, 150, 1);
+                    border: 1px solid rgba(255, 255, 255, 1);
+                    background: red;
+                    color: white;
+
+                }
             }
 
         }

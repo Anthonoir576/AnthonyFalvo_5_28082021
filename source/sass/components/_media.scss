@@ -847,6 +847,31 @@
 }
 
 // page de VALIDATION 
+@media only screen and (max-width: 1520px) {
+
+    .body-validation {
+
+        & .main-validation {
+
+            margin-left: 50px;
+            margin-right: 50px;
+
+            & section {
+
+                a:hover {
+
+                    padding: 10px 20px;
+
+                }
+
+            }
+
+        }
+
+    }
+
+}
+
 @media only screen and (max-width: 800px) {
 
     .body-validation {
@@ -856,9 +881,42 @@
             margin-left: 10px;
             margin-right: 10px;
 
+            padding: 25px 3px;
+
+            & section {
+
+                a:hover {
+
+                    padding: 10px 20px;
+
+                }
+
+            }
+
         }
 
     }
 
 }
 
+@media only screen and (max-width: 430px) {
+
+    .body-validation {
+
+        & .main-validation {
+
+            & section {
+
+                & a {
+
+                    font-size: .9rem;
+    
+                }
+
+            }
+
+        }
+
+    }
+
+}
