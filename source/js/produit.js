@@ -1,14 +1,13 @@
+
 /************* PARTIE AFFICHAGE INDIVIDUEL DU PRODUIT SELECTIONNER ***************/
 
-/* Fonction qui sappelle elle meme declare deux variables et fait appelle a la fonction majProduit() */
+/* Fonction recursive declare deux variables et fait appelle a la fonction majProduit() */
 (async function() {
-
-    
+ 
     const produitId = getProduitId();
     const produit = await getProduit(produitId);
 
     majProduit(produit);
-
 
 })()
 

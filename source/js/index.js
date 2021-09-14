@@ -1,5 +1,5 @@
 
-/*  ******* APPEL ET AFFICHAGE DES ELEMENTS CONTENU DANS L'API ******** */
+/*  ******* APPEL ET AFFICHAGE DES ELEMENTS CONTENU DANS L'API VIA LE BOUTON => 'Voir nos produits' ******** */
 
 /* VARIABLE / CONSTANTE */
 /* declarations de mes variables en globale */
