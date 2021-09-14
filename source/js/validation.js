@@ -17,8 +17,8 @@ if (informationTemporaire == null) {
         
         <section>
             <h2>Merci pour votre commande :</h2>
-            <p>Madame, monsieur <span>${informationTemporaire.Nom}, ${informationTemporaire.Prénom}</span> nous vous remercions pour votre confiance .</p>
-            <p>Nous confirmons votre commande n° <span>${informationTemporaire['Numéros de commande']}</span> pour un montant total de : <span>${parseFloat(informationTemporaire.prix).toLocaleString("EUR", { style: "currency", currency: "EUR"})}</span> .</p>
+            <p>Madame, monsieur, <span>${informationTemporaire.Nom} ${informationTemporaire.Prénom}</span> nous vous remercions pour votre confiance .</p>
+            <p>Nous confirmons votre commande n° <span>${informationTemporaire['Numéros de commande']}</span> pour un montant total de : <span>${parseFloat(informationTemporaire.prix).toLocaleString("EUR", { style: "currency", currency: "EUR"})}</span> TTC.</p>
             <p>Elle serra expédié dans les plus bref délais. En espérant vous revoir très bientôt.</p>
             <p>Amicalement <strong> Ori <em>&</em> pix's .fr</strong></p>
             <a href="index.html"> Retour à votre boutique préférer ? </a>
@@ -29,6 +29,6 @@ if (informationTemporaire == null) {
     );
     
     // effacer le local storage Panier vide pour qu'il puisse commander a nouveau et information client vide (pour la sécurité)
-    localStorage.clear();
+    //localStorage.clear();
 
 };

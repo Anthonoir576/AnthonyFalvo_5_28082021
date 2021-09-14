@@ -70,11 +70,13 @@ function majPanier() {
         
         for (let i = 0; i < mesProduitsEnregistrer.length; i++) {
 
-            let price = Number(mesProduitsEnregistrer[i].price);
+            let price = parseFloat((mesProduitsEnregistrer[i].price)*(mesProduitsEnregistrer[i].quantity));
 
             totaux += price; 
 
         }
+
+
         
         myPanier.innerHTML = (
 
@@ -94,7 +96,7 @@ function majPanier() {
                 <tfoot>
                 <tr>
                     <td>TOTAL :</td>
-                    <td>${totaux.toLocaleString("EUR", { style: "currency", currency: "EUR"})}</td>
+                    <td>${(totaux).toLocaleString("EUR", { style: "currency", currency: "EUR"})}</td>
                 </tr>
                 </tfoot>
             </table>
@@ -116,7 +118,7 @@ function majPanier() {
                     <td data-label="Nom :">${mesProduitsEnregistrer[i].name}</td>
                     <td data-label="Option :">${mesProduitsEnregistrer[i].choice}</td>
                     <td data-label="Quantité :">${mesProduitsEnregistrer[i].quantity}</td>
-                    <td data-label="Prix :">${parseFloat(mesProduitsEnregistrer[i].price).toLocaleString("EUR", { style: "currency", currency: "EUR"})}</td>
+                    <td data-label="Prix :">${parseFloat((mesProduitsEnregistrer[i].price)*(mesProduitsEnregistrer[i].quantity)).toLocaleString("EUR", { style: "currency", currency: "EUR"})}</td>
                     <td data-label="Supprimer :" class="supprimerProduit"><i class="far fa-trash-alt"></i></td>
                 </tr>
                 

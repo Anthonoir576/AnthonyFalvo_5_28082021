@@ -137,19 +137,18 @@ function majProduit(produit) {
         let valueInputQuantity = document.getElementById('inputQuantity').value;
         let valueInputLenses = document.getElementById('choiseLenses').value;
 
-       
-
         let selectionUtilisateur = {
 
             id : produit._id,
             picture : produit.imageUrl,
             name : produit.name,
-            price : parseFloat(pricesSpace(produit.price) * parseInt(valueInputQuantity)).toFixed(2),
+            price : parseFloat(pricesSpace(produit.price) * valueInputQuantity).toFixed(2),
             quantity : valueInputQuantity,
             choice : valueInputLenses
 
         };
         
+
 
         let mesProduitsEnregistrer = JSON.parse(localStorage.getItem("mon panier"));
 

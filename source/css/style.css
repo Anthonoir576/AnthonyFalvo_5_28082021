@@ -810,6 +810,9 @@ body {
   font-weight: 600;
   font-size: 1.5rem;
 }
+.body-validation .main-validation section :nth-child(2) span {
+  text-transform: uppercase;
+}
 .body-validation .main-validation section h2 {
   margin-bottom: 1rem;
   padding-bottom: 5px;

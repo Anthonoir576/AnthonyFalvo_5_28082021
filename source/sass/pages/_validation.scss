@@ -47,6 +47,13 @@
 
             }
 
+            // nom prénom user
+            & :nth-child(2) span {
+
+                text-transform: uppercase;
+
+            }
+
             & h2 {
 
                 margin-bottom: 1rem;
