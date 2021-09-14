@@ -1,10 +1,17 @@
+// recupère le local storage 
 let mesProduitsEnregistrer = JSON.parse(localStorage.getItem("mon panier"));
 //console.log(mesProduitsEnregistrer);
 
+// mypanier permet de recupere la balise main ou tous serra injecté dedans et close permet de fermé la popup du panier vide
 let myPanier = document.getElementById('main-panier');
 let close = document.getElementById('closePop');
-let bodyTab;
+
+// Bouton commander après le tableau du panier des articles selectionnés + tableau produit vide qui me permet d'injecter des elements dedans de manière dynamique
 let commander;
+let bodyTab;
+
+// Total du panier 
+let totaux = 0; 
 
 // variable SUPPRIMER SELECTION
 let tab = [];
@@ -59,7 +66,7 @@ function majPanier() {
     } else {
 
 
-        let totaux = 0;    
+           
         
         for (let i = 0; i < mesProduitsEnregistrer.length; i++) {
 
@@ -337,87 +344,93 @@ function majPanier() {
 
                 // A Décommenté !!!!! 
 
-                // VERIFICATION QUE LE FORMULAIRE ET BIEN REMPLI AVANT LENVOI AU BACK-END
-                // if (!new RegExp('^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$', 'g').test(formulaire.email.value) ||
-                //     !new RegExp('^[^0-9][a-zA-Z.-]{3,25}$', 'g').test(formulaire.city.value)  || 
-                //     !new RegExp('^[^0-9][a-zA-Z.-]{3,25}$', 'g').test(formulaire.firstName.value)  ||
-                //     !new RegExp('^[^0-9][a-zA-Z.-]{3,25}$', 'g').test(formulaire.lastName.value)  || 
-                //     !new RegExp('^[a-zA-Z0-9.,-_ ]{5,50}$', 'g').test(formulaire.address.value) ) {
+                //VERIFICATION QUE LE FORMULAIRE ET BIEN REMPLI AVANT LENVOI AU BACK-END
+                if (!new RegExp('^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}[ ]{0,2}$', 'g').test(formulaire.email.value) ||
+                    !new RegExp('^[^0-9][a-zA-Z.-]{3,25}[ ]{0,2}$', 'g').test(formulaire.city.value)  || 
+                    !new RegExp('^[^0-9][a-zA-Z.-]{3,25}[ ]{0,2}$', 'g').test(formulaire.firstName.value)  ||
+                    !new RegExp('^[^0-9][a-zA-Z.-]{3,25}[ ]{0,2}$', 'g').test(formulaire.lastName.value)  || 
+                    !new RegExp('^[a-zA-Z0-9.,-_ ]{5,50}[ ]{0,2}$', 'g').test(formulaire.address.value) ) {
 
-                //     console.log('une des conditions nest pas rempli');
-                                      
-                // } else { 
+                    return console.log('une des conditions nest pas rempli');
+                
+                // Si aucune des valeurs du formulaire ne renvoi false, appliqué la request POST    
+                } else { 
+                     
+                    console.log('tous va béné');
+                    // OBJET CONTACT  :
+                    let contact = {
+
+                        firstName: formulaire.firstName.value,
+                        lastName: formulaire.lastName.value,
+                        address: formulaire.address.value,
+                        city: formulaire.city.value,
+                        email: formulaire.email.value
+
+                    }
+                
+                    // RECUPERE CHAQUE ID DU PANIER  
+                    for (let i = 0; i < mesProduitsEnregistrer.length; i++) {
+
+                        const produit = mesProduitsEnregistrer[i];
+                        
+
+                        // let idObj = new Object();
+
+                        // idObj["_id"] = produit.id;
+                        
+                        products.push(produit.id);
+                        
+
+                    };
+
+                    // OBJET CONTENANT LES ELEMENTS A ENVOIER AU BACK END
+                    let MesInformationsPourLeBackEnd = {
+
+                        contact: contact,
+                        products: products
+
+                    };
+
+
+                    //  POST REQUEST pour envoyé les données au back END au format JS et choppé les erreurs possibles
+                    let postServer = async function() {
+
+                        return await fetch('http://localhost:3000/api/cameras/order', {
+
+                        method: 'POST',
+                        headers: { "Content-Type": "application/json"},
+                        body: JSON.stringify(MesInformationsPourLeBackEnd)
+
+
+                        // recuperation des informations orderId, nom, prenom, prix total 
+                        }).then(async function(response) {
+
+                        const laReponseDuBackEnd = await response.json();
+
+                        let objetRetourAulocalStorage = new Object();
+                        objetRetourAulocalStorage["prix"] = totaux.toString();  
+                        objetRetourAulocalStorage["Numéros de commande"] = laReponseDuBackEnd.orderId;  
+                        objetRetourAulocalStorage["Nom"] = laReponseDuBackEnd.contact.lastName;  
+                        objetRetourAulocalStorage["Prénom"] = laReponseDuBackEnd.contact.firstName;  
+                        
+                        console.log(objetRetourAulocalStorage);
+
+                        return;
+
+                        }).catch(function(error) {
+
+                            return console.log(error);
                     
-                //     console.log('tous est béné ');
+                        });
+                    };
 
-                // };
-
-
-                // OBJET CONTACT  :
-                let contact = {
-
-                    firstName: formulaire.firstName.value,
-                    lastName: formulaire.lastName.value,
-                    address: formulaire.address.value,
-                    city: formulaire.city.value,
-                    email: formulaire.email.value
-
-                }
-               
-                // RECUPERE CHAQUE ID DU PANIER  
-                for (let i = 0; i < mesProduitsEnregistrer.length; i++) {
-
-                    const produit = mesProduitsEnregistrer[i];
                     
-
-                    // let idObj = new Object();
-
-                    // idObj["_id"] = produit.id;
-                    
-                    products.push(produit.id);
-                    
+                    postServer();
+                
 
                 };
 
-                // OBJET CONTENANT LES ELEMENTS A ENVOIER AU BACK END
-                let MesInformationsPourLeBackEnd = {
 
-                    contact: contact,
-                    products: products
-
-                };
-
-
-                //  POST REQUEST pour envoyé les données au back END au format JS et choppé les erreurs possibles
-                let postServer = async function() {
-
-                    return await fetch('http://localhost:3000/api/cameras/order', {
-
-                      method: 'POST',
-                      headers: { "Content-Type": "application/json"},
-                      body: JSON.stringify(MesInformationsPourLeBackEnd)
-
-
-                    // recuperation des informations orderId, nom, prenom, prix total 
-                    }).then(async function(response) {
-
-                      const laReponseDuBackEnd = await response.json();
-                            console.log(totaux);
-                             console.log(laReponseDuBackEnd);
-                             console.log(laReponseDuBackEnd.contact.firstName);
-                             console.log(laReponseDuBackEnd.contact.lastName);
-                      return console.log(laReponseDuBackEnd.orderId);
-
-                    }).catch(function(error) {
-
-                        return console.log(error);
-                
-                    });
-                };
-
-                
-                postServer();
-                
 
             });
 
