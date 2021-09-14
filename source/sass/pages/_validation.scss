@@ -99,6 +99,23 @@
                 }
             }
 
+            // information fournis par les données utilisateurs Nom, prénom, id, prix du panier
+            & span {
+
+                font-weight: 600;
+                letter-spacing: 1px;
+                
+            }
+
+            & :nth-child(2),
+              :nth-child(3) {
+
+                margin-bottom: 1rem;
+
+              }
+            
+
+
         }
 
     }

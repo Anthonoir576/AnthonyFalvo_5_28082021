@@ -844,6 +844,14 @@ body {
   background: red;
   color: white;
 }
+.body-validation .main-validation section span {
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+.body-validation .main-validation section :nth-child(2),
+.body-validation .main-validation section :nth-child(3) {
+  margin-bottom: 1rem;
+}
 
 @media only screen and (max-width: 716px) {
   .header-nav {
@@ -1226,6 +1234,10 @@ body {
     margin-left: 50px;
     margin-right: 50px;
   }
+  .body-validation .main-validation section p {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
   .body-validation .main-validation section a:hover {
     padding: 10px 20px;
   }
@@ -1234,7 +1246,6 @@ body {
   .body-validation .main-validation {
     margin-left: 10px;
     margin-right: 10px;
-    padding: 25px 3px;
   }
   .body-validation .main-validation section a:hover {
     padding: 10px 20px;
