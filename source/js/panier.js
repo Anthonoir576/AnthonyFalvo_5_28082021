@@ -116,7 +116,7 @@ function majPanier() {
             );
 
         };
-        
+
         tableauHtml();
 
         // On donne une valeur a la variable déclarer en global 
@@ -183,47 +183,53 @@ function majPanier() {
             commander.style.display ='none';
 
             // INSERT LE FORMULAIRE AU CLIQUE SUR COMMANDER - Après la partie tableau
-            myPanier.insertAdjacentHTML('beforeend',
+            let insertFormulaire = () => {
+
+                myPanier.insertAdjacentHTML('beforeend',
             
-                `
-                <form id="formulaireCommande">
-                    <div>
-                        <h2> Valider votre commande :</h2>
-                    </div>
+                    `
+                    <form id="formulaireCommande">
+                        <div>
+                            <h2> Valider votre commande :</h2>
+                        </div>
 
-                    <div>
-                        <label for="lastName">Nom :</label>
-                        <input id="lastName" name="lastName" type="text" placeholder="nom" />
-                        <small></small>
-                    </div>
-                    <div>
-                        <label for="firstName">Prénom :</label>
-                        <input id="firstName" name="firstName" type="text" placeholder="prénom" />
-                        <small></small>
-                    </div>
-                    <div>
-                        <label for="email">E-mail :</label>
-                        <input id="email" name="email" type="text" placeholder="e-mail" />
-                        <small></small>
-                    </div>
-                    <div>
-                        <label for="address">Adresse :</label>
-                        <input id="address" name="address" type="text" placeholder="adresse" />
-                        <small></small>
-                    </div>
-                    <div>
-                        <label for="city">Ville :</label>
-                        <input id="city" name="city" type="text" placeholder="ville" />
-                        <small></small>
-                    </div>
+                        <div>
+                            <label for="lastName">Nom :</label>
+                            <input id="lastName" name="lastName" type="text" placeholder="nom" />
+                            <small></small>
+                        </div>
+                        <div>
+                            <label for="firstName">Prénom :</label>
+                            <input id="firstName" name="firstName" type="text" placeholder="prénom" />
+                            <small></small>
+                        </div>
+                        <div>
+                            <label for="email">E-mail :</label>
+                            <input id="email" name="email" type="text" placeholder="e-mail" />
+                            <small></small>
+                        </div>
+                        <div>
+                            <label for="address">Adresse :</label>
+                            <input id="address" name="address" type="text" placeholder="adresse" />
+                            <small></small>
+                        </div>
+                        <div>
+                            <label for="city">Ville :</label>
+                            <input id="city" name="city" type="text" placeholder="ville" />
+                            <small></small>
+                        </div>
 
-                    <button id="validerCommande" type="submit"> Valider la commande </button>
-                </form>
+                        <button id="validerCommande" type="submit"> Valider la commande </button>
+                    </form>
+                    
+                    ` 
                 
-                ` 
-            
-            );
+                );
 
+
+            };
+
+            insertFormulaire();
             
 
             // FORMULAIRE ET VALIDATION DE L'INPUT VIA LES REGEXP
