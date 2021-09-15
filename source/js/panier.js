@@ -111,46 +111,57 @@ function majPanier() {
         bodyTab = document.getElementById('bodyTab');
 
         /* CHAQUE PRODUIT du localStorage, et ajouté dynamiquement dans le tableau grace a une boucle FOR */    
-        for(let i = 0; i < mesProduitsEnregistrer.length; i++) {
+        let ajoutProduitPanier = () => {
 
-            bodyTab.insertAdjacentHTML('beforeend', 
-                
-                `
-                <tr data-content="${mesProduitsEnregistrer[i].id}">
-                    <td data-label="Produit :"><img class="produit-img" src="${mesProduitsEnregistrer[i].picture}" alt="produit selectionné" /></td>
-                    <td data-label="Nom :">${mesProduitsEnregistrer[i].name}</td>
-                    <td data-label="Option :">${mesProduitsEnregistrer[i].choice}</td>
-                    <td data-label="Quantité :">${mesProduitsEnregistrer[i].quantity}</td>
-                    <td data-label="Prix :">${parseFloat((mesProduitsEnregistrer[i].price)*(mesProduitsEnregistrer[i].quantity)).toLocaleString("EUR", { style: "currency", currency: "EUR"})}</td>
-                    <td data-label="Supprimer :" class="supprimerProduit"><i class="far fa-trash-alt"></i></td>
-                </tr>
-                
-                `
-            );
+            for(let i = 0; i < mesProduitsEnregistrer.length; i++) {
+
+                bodyTab.insertAdjacentHTML('beforeend', 
+                    
+                    `
+                    <tr data-content="${mesProduitsEnregistrer[i].id}">
+                        <td data-label="Produit :"><img class="produit-img" src="${mesProduitsEnregistrer[i].picture}" alt="produit selectionné" /></td>
+                        <td data-label="Nom :">${mesProduitsEnregistrer[i].name}</td>
+                        <td data-label="Option :">${mesProduitsEnregistrer[i].choice}</td>
+                        <td data-label="Quantité :">${mesProduitsEnregistrer[i].quantity}</td>
+                        <td data-label="Prix :">${parseFloat((mesProduitsEnregistrer[i].price)*(mesProduitsEnregistrer[i].quantity)).toLocaleString("EUR", { style: "currency", currency: "EUR"})}</td>
+                        <td data-label="Supprimer :" class="supprimerProduit"><i class="far fa-trash-alt"></i></td>
+                    </tr>
+                    
+                    `
+                );
+    
+            };
 
         };
+
+        ajoutProduitPanier();
+
 
         /* SUPPRESSION PRODUIT - VISUEL ET LOCALSTORAGE */
         /* .supprimerProduit et une cellule avec icone, une fois pointer, je convertis le format node.list en array pour mieux itérer dessus. Jutilise alors une boucle permettant de detecté le clique sur un des éléments, et le supprime visuellement en selectionnant le parent DONC la ligne complète, je met a jour le local en utilisant la methode splice, choisissant dans un premier temps l'élément a supprimer et le nombre d'élément a supprimer. En l'occurence juste la ligne de l'icone. Et je refresh le localstorage et la page */
-        supprimerSelection = Array.from(document.querySelectorAll('.supprimerProduit'));
+
+        let deleteProduit = () => {
+
+            supprimerSelection = Array.from(document.querySelectorAll('.supprimerProduit'));
         
-        for (let i = 0; i < supprimerSelection.length; i++) {
-
-            supprimerSelection[i].addEventListener('click', () => {
-
-                supprimerSelection[i].parentElement.style.display ="none";
-                 
-                tab = mesProduitsEnregistrer;
-                tab.splice([i], 1);
-                
-                mesProduitsEnregistrer = localStorage.setItem('mon panier', JSON.stringify(tab));
-
-                window.location.href ="panier.html";
-
-            });
-
+            for (let i = 0; i < supprimerSelection.length; i++) {
+    
+                supprimerSelection[i].addEventListener('click', () => {
+    
+                    supprimerSelection[i].parentElement.style.display ="none";
+                     
+                    tab = mesProduitsEnregistrer;
+                    tab.splice([i], 1);
+                    
+                    mesProduitsEnregistrer = localStorage.setItem('mon panier', JSON.stringify(tab));
+    
+                    window.location.href ="panier.html";
+    
+                });
+            };
         };
 
+        deleteProduit();
 
         /* LE FORMULAIRE - Apparait uniquement lors du clique sur commander */
         commander = document.getElementById('commander');
