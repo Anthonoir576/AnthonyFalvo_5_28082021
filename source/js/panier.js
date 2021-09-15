@@ -386,35 +386,45 @@ function majPanier() {
                 /* Si aucune des valeurs du formulaire ne renvoi FALSE , appliqué la request POST */ 
                 } else { 
                      
-                    // OBJET CONTACT :
-                    let contact = {
+                    let contact;
+                    let MesInformationsPourLeBackEnd;
 
-                        firstName: formulaire.firstName.value,
-                        lastName: formulaire.lastName.value,
-                        address: formulaire.address.value,
-                        city: formulaire.city.value,
-                        email: formulaire.email.value
+                    // RECUPERATION DES DATA A ENVOYER :
+                    let recuperationData = () => {
 
-                    }
-                
-                    // RECUPERE CHAQUE ID PRODUIT DU PANIER  
-                    for (let i = 0; i < mesProduitsEnregistrer.length; i++) {
+                        // OBJET CONTACT :
+                        contact = {
 
-                        const produit = mesProduitsEnregistrer[i];
-                        
-                        products.push(produit.id);
-                        
+                            firstName: formulaire.firstName.value,
+                            lastName: formulaire.lastName.value,
+                            address: formulaire.address.value,
+                            city: formulaire.city.value,
+                            email: formulaire.email.value
+
+                        }
+                    
+                        // RECUPERE CHAQUE ID PRODUIT DU PANIER  
+                        for (let i = 0; i < mesProduitsEnregistrer.length; i++) {
+
+                            const produit = mesProduitsEnregistrer[i];
+                            
+                            products.push(produit.id);
+                            
+                        };
+
+                        // OBJET CONTENANT LES ELEMENTS A ENVOYER AU BACK END
+                        /* DONC le formulaire rempli par l'utilisateur ENSUITE les ID produits selectionné par lui même */
+                        MesInformationsPourLeBackEnd = {
+
+                            contact: contact,
+                            products: products
+
+                        };
+
+
                     };
 
-                    // OBJET CONTENANT LES ELEMENTS A ENVOYER AU BACK END
-                    /* DONC le formulaire rempli par l'utilisateur ENSUITE les ID produits selectionné par lui même */
-                    let MesInformationsPourLeBackEnd = {
-
-                        contact: contact,
-                        products: products
-
-                    };
-
+                    recuperationData();
 
                     /* POST REQUEST pour envoyé les données au back END au format JSON et recupérer les erreurs possibles */
                     /* Par rapport a la methode get par defaut, si on défini la methode nous même il appliquera celle choisis
