@@ -1,6 +1,6 @@
 // recupère le local storage 
 let mesProduitsEnregistrer = JSON.parse(localStorage.getItem("mon panier"));
-//console.log(mesProduitsEnregistrer);
+
 
 // mypanier permet de recupere la balise main ou tous serra injecté dedans et close permet de fermé la popup du panier vide
 let myPanier = document.getElementById('main-panier');
@@ -438,6 +438,9 @@ function majPanier() {
 
 majPanier();
 
+
+
+/*************************** MES TEST *************************************************/
 //console.log((1000).toLocaleString("EUR", { style: "currency", currency: "EUR",}));
 
 /*
@@ -532,7 +535,6 @@ majPanier();
             
 
 */
-
 
 /* 
 

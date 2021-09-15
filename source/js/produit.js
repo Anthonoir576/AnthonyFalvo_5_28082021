@@ -50,10 +50,23 @@ function pricesSpace(prix) {
 
 
 /* LA STRUCTURE COMPLETE */
-/*  */
+/* Creation produit - ajoute option - ecoute du clique et agit (voir detail) - Ajout au localStorage */
 function majProduit(produit) {
 
+    /**
+     ******* 01: Création de la fiche produit individuel *******
+     *  => Injection dans le html partie main, une section avec les differentes informations via l'URL
+     * 
+     ******* 02: Ajoute des lentilles pour chaque produit en option dynamiquement *******
+     *  => Boucle FOR qui parcours toute les lentilles du tableau lenses pour chaque produit individuellement via l'id et les ajoute dans le select chaque option dynamiquement . Même si on en rajoute dans le tableau par le back-end.
+     * 
+     ******* 03: Listener qui ecoute l'ajoute du produit au clique et verifie certaine information *******
+     *  => Tel que la quantité qui est envoyé au panier, l'option choisit, et pose une condition SI, l'option et l'id est le même n'ajoute que la quantité afin d'éviter les doublons. Affiche le panier est plein une fois celui ci arrivé a dix articles différents et empêche l'ajoute de tiers, et affiche un message de confirmation soit au singulier, soit pluriel avec le nom produit et l'option. Les produits sont stocker dans le local storage ou un ajout de quantité uniquement dans le local, grace a un systeme de mise a jour manuel de ce dernier.
+     *  => la partie 03 est commenté en totalité Ainsi qu'une explication sur la logique de la condition d'ajout produit au localStorage
+    */
     
+
+    /* 01: Création de la fiche produit individuel */
     mySelection.innerHTML = (
 
         `
@@ -74,13 +87,13 @@ function majProduit(produit) {
                             <label for="choiseLenses">
                                 Modèles optiques :
                             </label>
-                            <select name="choix" id="choiseLenses"></select>
+                            <select name="choiseLenses" id="choiseLenses"></select>
                         </div>
                         <div>
                             <label for="inputQuantity">
                                 Quantité :
                             </label>
-                            <input type="number" name="quantité" aria-label="quantité de produit" id="inputQuantity" value="1" min="1" max="100" />
+                            <input type="number" name="inputQuantity" aria-label="quantité de produit" id="inputQuantity" value="1" min="1" max="10" />
                         </div>
                     </div>
                     <p id="confirmationAjoutPanier"></p>
@@ -95,7 +108,7 @@ function majProduit(produit) {
 
     );
 
-    /* Boucle qui parcours toute les lentilles du tableau lenses pour chaque produit individuellement et les ajoute dans le select chaque option dynamiquement . Même si on en rajoute dans le tableau :D */
+    /* 02: Ajoute des lentilles pour chaque produit en option dynamiquement */
     for(let i = 0; i < produit.lenses.length; i++) {
 
         let lentille = produit.lenses[i];
@@ -112,32 +125,19 @@ function majProduit(produit) {
 
     };
 
-    /* Element qui permet de confirmer lenvoi dans le panier avec un message de confirmation  */
+    /* 03: Listener qui ecoute l'ajoute du produit au clique et verifie certaine information  */
     document.getElementById('panier').addEventListener('click', (e) => {
 
-        /**
-            * e.preventDefault() stoppe le comportement pas defaut, en l'occurence me permet de pas quitter la page lors de l'envoi via le btn
-            * 
-            * confirm = Valeur de la quantité selectionné par l'utilisateur et la selection de la lentille.
-            * 
-            * valueInputQuantity = valeur de l'input quantité choissit par l'utilisateur.
-            * 
-            * valueIputLenses = valeur de l'input Modèles choissit par l'utilisateur.
-            * 
-            * selectionUtilisateur =  objet créer au clique, permettant d'avoir les données du produit, ainsi que la quantité et le choix de l'utilisateur.
-            * 
-            * // 01 = affiche le message grace au changement de display, LE ou LES par rapport à la quantité, affiche le nom produit, ainsi que la lentille choisis dans le select, petit plus, injecte une icone de validation.
-            * 
-            * // 02 = regarde si le produit ajouter au local existe ou non, si il existe, il push le produit uniquement, mais si il existe pas il en crée un tableau, et l'injecte . JSON.stringify permet de convertir du js en json, et inversement pour JSON.parse.
-        */
-
+        // stop le comportement par defaut du bouton
         e.preventDefault();
 
-
+        // Element au stocker le message de confirmation ET panier plein SI il l'es
         let confirm = document.getElementById('confirmationAjoutPanier');
+        // valeur quantité / option
         let valueInputQuantity = document.getElementById('inputQuantity').value;
         let valueInputLenses = document.getElementById('choiseLenses').value;
 
+        // Object contenant le choix de l'utilisateur
         let selectionUtilisateur = {
 
             id : produit._id,
@@ -150,10 +150,10 @@ function majProduit(produit) {
         };
         
 
-
+        // recuperation du local storage
         let mesProduitsEnregistrer = JSON.parse(localStorage.getItem("mon panier"));
 
-        /* Fonction afin de push dans le local storage afin deviter de repeter le code deux fois */  
+        /* Fonction push dans le local storage l'objet selectionUtilisateur */  
         let localSto = (selection, enregistrer) => {
 
             enregistrer.push(selection);
@@ -161,8 +161,10 @@ function majProduit(produit) {
 
         };
    
+        // REND VISIBLE le message de confirmation 
         confirm.style.display = "block"; 
-        // la confirmation du panier a était mise en fonction pour evité les repetitions 
+        
+        // MESSAGE VISIBLE + Condition si un article est selectionner appliqué le singulier / Sinon pluriel
         let confirmationFonction = () => {
 
             confirm.style.background ="#32CD32";
@@ -181,8 +183,14 @@ function majProduit(produit) {
 
         };
 
-        // VERIFICATION DOUBLON !!!! 
-        // condition qui permet de pas avoir de doublon darticle via lid et loption choisis . et limite aussi le panier a 10 artiques différent. avec une quantité max de 100 pour chacun directement dans linput
+        // VERIFICATION DOUBLON - via le même ID et la même option : equivaut au même article add que la quantité
+
+        /**
+         * IF la key mon panier n'existe pas dans le local storage ALORS crée un tableau + fonction de confirmation + injecte le choix utlisateur dans le local storage
+         * 
+         * ELSE IF la key mon panier existe donc, elle est différente de null, du coup je parcours le tableau du local, et j'y repose une condition. Si le choix et lid que lutilisateur a selectionné sont identique a un article dans le local, alors je recupere le local dans un tableau, je met a jour la quantité, et le renvoi. la logique permet de parcourir tous le tableau intégralement, pour vérifier si lelement n'est pas existant. A la fin du tableau si cette element nest pas existant, alors il ajoute le produit au local storage
+        */
+
         if (mesProduitsEnregistrer == null) {
 
             mesProduitsEnregistrer = [];
@@ -236,5 +244,6 @@ function majProduit(produit) {
 
         };
   
-    });     
+    });
+
 };
