@@ -1,7 +1,8 @@
 
-/************* PARTIE AFFICHAGE INDIVIDUEL DU PRODUIT SELECTIONNER ***************/
+/************* AFFICHAGE INDIVIDUEL DU PRODUIT SELECTIONNER PAR LUTILISATEUR ***************/
 
-/* Fonction recursive declare deux variables et fait appelle a la fonction majProduit() */
+/* FONCTION PRINCIPALE */
+/* Fonction recursive declare deux constantes fessant appel une entre elle, cette fonction s'appelle elle même après réponse du serveur grace au await */
 (async function() {
  
     const produitId = getProduitId();
@@ -11,19 +12,19 @@
 
 })()
 
-
-// Mes variables est constantes 
-/* Lendroit ou afficher le resultat */
+/* BALISE MAIN en HTML OU SERRA AFFICHER LE PRODUIT */
 const mySelection = document.querySelector('.main-produit');
 
-/* Recupere dans lURL l'id en l'occurence chaque article serra celui cliqué */
+/* URL PAR ID */
+/* Recupere dans l'url existante une information placé en argument, en l'occurence on cherche a récupéré l'iD du produit, elle est souvent représenté de cette façon '?id=' dans l'url. cette fonction est donc stocker dans une variable et sert d'argument au moment de l'appel de l'url, ce qui permet de nous retourner une url + l'id */
 function getProduitId() {
 
     return new URL(location.href).searchParams.get("id");
 
 };
 
-/* on nous retourne le produit selection en fonction de sont id grace a la fonction getProduitId */
+/* FETCH */
+/* On récupere l'url comme sur l'ensemble des produits, a l'inverse, on y incrémente à la fin l'argument, cette argument fait appel a la fonction getproduitid() récupérant lid. Du coup cette fonction nous return l'url du produit selectionner via une promesse et retourne la reponse en json */
 function getProduit(produitId) {
 
     return fetch(`http://localhost:3000/api/cameras/${produitId}`)
@@ -40,7 +41,7 @@ function getProduit(produitId) {
 
 };
 
-/* Mon parse de prix le même que sur lindex */
+/* CONVERSION CENTIME / EUROS */
 function pricesSpace(prix) {
 
     return parseFloat(prix / 100);
@@ -48,7 +49,8 @@ function pricesSpace(prix) {
 };
 
 
-/* lecriture sur le html du resultat final apres selection du produit ainsi qu'une boucle qui recupere dynamiquement chaque option presente pour le produit, même si on en ajoute via le back-end, au clique sur le btn panier retourne un message de confirmation dajout panier avec le nom du produit implémenté dynamiquement . jannule le comportement par defaut du clique avec e.preventDefault fonction afin de pas quitter la page par defaut lors dun clique sur un bouton */
+/* LA STRUCTURE COMPLETE */
+/*  */
 function majProduit(produit) {
 
     
@@ -236,20 +238,3 @@ function majProduit(produit) {
   
     });     
 };
-
-
-
- 
-//  ******************* TEST ************************
-
-//console.log(selectionUtilisateur.id);  
-//console.log(mesProduitsEnregistrer[0].id);  
-//console.log(selectionUtilisateur.choice);
-//console.log(selectionUtilisateur.quantity);
-//console.log(mesProduitsEnregistrer[0].quantity);
-//console.log(parseInt(mesProduitsEnregistrer[0].quantity, 10) + parseInt( selectionUtilisateur.quantity, 10));
-//console.log(JSON.parse(selectionUtilisateur.name));  
-
-
-// UNE FOIS la quantité et le choix selectionné, direction automatique au panier !
-//window.location.href ="panier.html";
