@@ -1,13 +1,17 @@
-// recupère le local storage 
+
+/************* AFFICHAGE PANIER ET MAJ + ENVOI BACK END ***************/
+
+// Récupère le tableau du localstorage
 let mesProduitsEnregistrer = JSON.parse(localStorage.getItem("mon panier"));
 
-
-// mypanier permet de recupere la balise main ou tous serra injecté dedans et close permet de fermé la popup du panier vide
+// mypanier permet de recupere la balise main 
 let myPanier = document.getElementById('main-panier');
+// permet de récupérer licone close du panier vide
 let close = document.getElementById('closePop');
 
-// Bouton commander après le tableau du panier des articles selectionnés + tableau produit vide qui me permet d'injecter des elements dedans de manière dynamique
+// Bouton commander affiche le formulaire 
 let commander;
+// Tableau produit vide qui me permet d'injecter des elements de manière dynamique
 let bodyTab;
 
 // Total du panier 
@@ -21,16 +25,17 @@ let supprimerSelection;
 let products = [];
 
 
-/* Mon parse de prix le même que sur lindex */
+/* CONVERSION CENTIME / EUROS avec deux chiffres après la virgule */
 function pricesSpace(prix) {
 
     return parseFloat(prix / 100).toFixed(2);
 
 };
 
+/* FONCTION PANIER  */
 function majPanier() {
 
-    // si la page panier ne contient rien, afficher ce message :
+    /* MESSAGE PAR DEFAUT SI PANIER VIDE */
     if (mesProduitsEnregistrer == null || mesProduitsEnregistrer == 0) {
 
         myPanier.innerHTML = (
@@ -54,7 +59,7 @@ function majPanier() {
 
         );
             
-        // Enlever le tableau vide si les elements ont été supprimé 
+        /* UNE FOIS LES ARTICLE SUPPRIMER DU PANIER SI LE TABLEAU ET VIDE => SUPPRIMER LE LOCALSTORAGE */
         if (mesProduitsEnregistrer == 0) {
 
             localStorage.clear();
@@ -62,22 +67,19 @@ function majPanier() {
         }
 
 
-    // sinon c'est que des articles on été ajouté au panier / localStorage :
+    /* SINON par deduction le panier contiens des articles DONC le reste du code s'applique ici */
     } else {
 
-
-           
-        
+        // BOUCLE parcourant le local et crée un total des produits en fonction de leur (prix * quantité) stocker dans totaux
         for (let i = 0; i < mesProduitsEnregistrer.length; i++) {
 
             let price = parseFloat((mesProduitsEnregistrer[i].price)*(mesProduitsEnregistrer[i].quantity));
 
             totaux += price; 
 
-        }
+        };
 
-
-        
+        // INJECTION DU TABLEAU PRODUIT un id bodyTab permet donc d'ajouter les objets stocker du local
         myPanier.innerHTML = (
 
             `
@@ -104,10 +106,11 @@ function majPanier() {
             
             `
         );
-     
+        
+        // on donne une valeur a la variable déclarer en global 
         bodyTab = document.getElementById('bodyTab');
 
-        /* Chaque produit du localStorage, et ajouté dynamiquement dans mon tableau */    
+        /* CHAQUE PRODUIT du localStorage, et ajouté dynamiquement dans le tableau grace a une boucle FOR */    
         for(let i = 0; i < mesProduitsEnregistrer.length; i++) {
 
             bodyTab.insertAdjacentHTML('beforeend', 
@@ -127,10 +130,10 @@ function majPanier() {
 
         };
 
-
+        /* SUPPRESSION PRODUIT - VISUEL ET LOCALSTORAGE */
+        /* .supprimerProduit et une cellule avec icone, une fois pointer, je convertis le format node.list en array pour mieux itérer dessus. Jutilise alors une boucle permettant de detecté le clique sur un des éléments, et le supprime visuellement en selectionnant le parent DONC la ligne complète, je met a jour le local en utilisant la methode splice, choisissant dans un premier temps l'élément a supprimer et le nombre d'élément a supprimer. En l'occurence juste la ligne de l'icone. Et je refresh le localstorage et la page */
         supprimerSelection = Array.from(document.querySelectorAll('.supprimerProduit'));
         
-        // supprimer element panier au clique
         for (let i = 0; i < supprimerSelection.length; i++) {
 
             supprimerSelection[i].addEventListener('click', () => {
@@ -149,7 +152,7 @@ function majPanier() {
         };
 
 
-        // FORMULAIRE apparait au clique
+        /* LE FORMULAIRE - Apparait uniquement lors du clique sur commander */
         commander = document.getElementById('commander');
 
         commander.addEventListener('click', (e) => {
@@ -157,7 +160,7 @@ function majPanier() {
             e.preventDefault();
             commander.style.display ='none';
 
-            // INSERT LE FORMULAIRE AU CLIQUE SUR COMMANDER 
+            // INSERT LE FORMULAIRE AU CLIQUE SUR COMMANDER - Après la partie tableau
             myPanier.insertAdjacentHTML('beforeend',
             
                 `
@@ -202,6 +205,7 @@ function majPanier() {
             
 
             // FORMULAIRE ET VALIDATION DE L'INPUT VIA LES REGEXP
+            /* On écoute chaque champs de formulaire est on y lance une fonction comme argument l'element a ecouté */
             let formulaire = document.querySelector('#formulaireCommande');
 
             
@@ -236,9 +240,8 @@ function majPanier() {
             });
 
 
-
-
             // AFFICHAGE DUN MESSAGE EN CAS DERREUR 
+            /* Affiche un message d'erreur rouge et une bordure rouge si false, et l'input et vert si les conditions des regexp sont respectés */
             const conditionValidation = function(elementTest, input, affichage) {
 
                 if (elementTest) {
@@ -276,9 +279,8 @@ function majPanier() {
             };
 
             
-
-
-            // LES REGEX et APPEL A CONDITION VALIDATION    
+            // LES REGEX et APPEL A CONDITION VALIDATION 
+            /* on y place les conditions a verifier (regexp) - lentrer a tester - et lelement ou l'on va envoier le message si la condition n'est pas respecter  VIA LA FONCTION conditionValidation */  
             const validationLastName = function(inputLastName) {
 
                 let lastNameRegex = new RegExp('^[^0-9][a-zA-Z.-]{3,25}[ ]{0,2}$', 'g');
@@ -335,28 +337,28 @@ function majPanier() {
             };
 
 
-            // FORMULAIRE DE VALIDATION BOUTON VALIDER LA COMMANDE :
-            // + ENVOI AU BACK END
+            // FORMULAIRE - Valider la commande :
+            /* Lors du clique, on verifie encore une fois que les éléments input sont tous TRUE */
+            // button valider la commande
             let validerCommande = document.getElementById('validerCommande');
 
             validerCommande.addEventListener('click', (e) => {
 
                 e.preventDefault();
 
-                //VERIFICATION QUE LE FORMULAIRE ET BIEN REMPLI AVANT LENVOI AU BACK-END
+                /* VERIFICATION QUE LE FORMULAIRE ET BIEN REMPLI AVANT LENVOI AU BACK-END */
                 if (!new RegExp('^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}[ ]{0,2}$', 'g').test(formulaire.email.value) ||
                     !new RegExp('^[^0-9][a-zA-Z.-]{3,25}[ ]{0,2}$', 'g').test(formulaire.city.value)  || 
                     !new RegExp('^[^0-9][a-zA-Z.-]{3,25}[ ]{0,2}$', 'g').test(formulaire.firstName.value)  ||
                     !new RegExp('^[^0-9][a-zA-Z.-]{3,25}[ ]{0,2}$', 'g').test(formulaire.lastName.value)  || 
                     !new RegExp('^[a-zA-Z0-9.,-_ ]{5,50}[ ]{0,2}$', 'g').test(formulaire.address.value) ) {
 
-                    return console.log('une des conditions nest pas rempli');
+                    return;
                 
-                // Si aucune des valeurs du formulaire ne renvoi pas false, appliqué la request POST    
+                /* Si aucune des valeurs du formulaire ne renvoi FALSE , appliqué la request POST */ 
                 } else { 
                      
-                    console.log('tous va béné');
-                    // OBJET CONTACT  :
+                    // OBJET CONTACT :
                     let contact = {
 
                         firstName: formulaire.firstName.value,
@@ -367,18 +369,17 @@ function majPanier() {
 
                     }
                 
-                    // RECUPERE CHAQUE ID DU PANIER  
+                    // RECUPERE CHAQUE ID PRODUIT DU PANIER  
                     for (let i = 0; i < mesProduitsEnregistrer.length; i++) {
 
                         const produit = mesProduitsEnregistrer[i];
                         
-                        // Attention ! l'annotation du back end dit qu'il faut un id avec un key _id: mais il faut stocker uniquement l'id
                         products.push(produit.id);
                         
-
                     };
 
-                    // OBJET CONTENANT LES ELEMENTS A ENVOIER AU BACK END
+                    // OBJET CONTENANT LES ELEMENTS A ENVOYER AU BACK END
+                    /* DONC le formulaire rempli par l'utilisateur ENSUITE les ID produits selectionné par lui même */
                     let MesInformationsPourLeBackEnd = {
 
                         contact: contact,
@@ -387,7 +388,9 @@ function majPanier() {
                     };
 
 
-                    //  POST REQUEST pour envoyé les données au back END au format JSON et choppé les erreurs possibles
+                    /* POST REQUEST pour envoyé les données au back END au format JSON et recupérer les erreurs possibles */
+                    /* Par rapport a la methode get par defaut, si on défini la methode nous même il appliquera celle choisis
+                    on lui precise un type de contenu en application/json, et l'element a prendre en compte pour l'envoi via le body => on fini par une promesse, et on attend la réponse serveur */
                     let postServer = async function() {
 
                         return await fetch('http://localhost:3000/api/cameras/order', {
@@ -402,19 +405,17 @@ function majPanier() {
 
                             const laReponseDuBackEnd = await response.json();
                                 
-                            // Création dun objet contenant ces informations 
+                            // Création dun objet contenant ces informations (orderID, nom, prénom, et prix total)
                             let objetRetourAulocalStorage = new Object();
                             objetRetourAulocalStorage["prix"] = totaux.toString();  
                             objetRetourAulocalStorage["Numéros de commande"] = laReponseDuBackEnd.orderId;  
                             objetRetourAulocalStorage["Nom"] = laReponseDuBackEnd.contact.lastName;  
                             objetRetourAulocalStorage["Prénom"] = laReponseDuBackEnd.contact.firstName;  
-                            
-                            console.log(objetRetourAulocalStorage);
 
-                            // stockage temporaire dans le local le temps de changé de page, et serra supprimé après recuperation avec un clear sur la totalité du panier, et information personnel (Pas top en matière de sécurité car les informations ne sont pas sécurisé)
+                            /* On stock c'est information une fraction de seconde dans le local storage => on récupère => on supprime instantanément  A SAVOIR que cette pratique d'envoyé les informations clients dans le local storage n'est pas une pratique sécurisé, il est fait dans cette exercice dans un but purement visuel */
                             localStorage.setItem("commande", JSON.stringify(objetRetourAulocalStorage));
 
-                            // changement de page
+                            // Redirection sur la page de validation 
                             return window.location.href ="validation.html";
                     
 
@@ -424,18 +425,17 @@ function majPanier() {
                     
                         });
                     };
-    
+                    
+                    // lancement de la fonction après definitions des directives à appliqué
                     postServer();
                 
                 };
-
             });
-
         });
-
     };
 };
 
+// Appel de la fonction global
 majPanier();
 
 

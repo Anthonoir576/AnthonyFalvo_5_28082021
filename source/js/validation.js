@@ -1,11 +1,15 @@
+
+/************* RECUPERATION DES DONNEES SUR LA NOUVELLE PAGE - AFFICHAGE et SUPPRESSION DONNEES ***************/
+
+/* LES INFORMATIONS CLIENTS */
 let informationTemporaire = JSON.parse(localStorage.getItem("commande"));
 
-// pour ne rien afficher si rien n'as ete commander et retourner a laccueil si on accede a la page validation via l'URL
+/* Cette CONDITION me permet de ne pas pouvoir être présent sur cette page, si aucune commande a été valider. Et renvoi a l'index */   
 if (informationTemporaire == null) {
 
     window.location.href ="index.html";
 
-// sinon Créer a partir des informations de commande, du des élements avec certaine information essentiel au client
+// SINON Créer a partir des informations de commande des élements, avec certaine information essentiel au client
 } else {
 
 
@@ -28,7 +32,7 @@ if (informationTemporaire == null) {
 
     );
     
-    // effacer le local storage Panier vide pour qu'il puisse commander a nouveau et information client vide (pour la sécurité)
+    /* effacer le local storage Panier vide pour qu'il puisse commander a nouveau et information client vide (pour la sécurité) Même si je répète, cette pratique n'est pas du tous sécurisé */
     localStorage.clear();
 
 };
