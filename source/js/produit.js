@@ -67,46 +67,52 @@ function majProduit(produit) {
     
 
     /* 01: Création de la fiche produit individuel */
-    mySelection.innerHTML = (
+    let produitSeul = () => {
 
-        `
-        <section class="produit">
-            <div class="camera-item">
-                <img class="camera-img" src="${produit.imageUrl}" alt="appareil photo en vente" />
-                <div class="camera-info">
-                    <h2 class="camera-name">${produit.name}</h2>
-                    <div class="camera-description">
-                        <p>Description :</p>
-                        <p> ${produit.description}</p>
+        mySelection.innerHTML = (
+
+            `
+            <section class="produit">
+                <div class="camera-item">
+                    <img class="camera-img" src="${produit.imageUrl}" alt="appareil photo en vente" />
+                    <div class="camera-info">
+                        <h2 class="camera-name">${produit.name}</h2>
+                        <div class="camera-description">
+                            <p>Description :</p>
+                            <p> ${produit.description}</p>
+                        </div>
+                        <p class="camera-price">${(produit.price / 100).toLocaleString("EUR", { style: "currency", currency: "EUR"})}<span> /<em>Unité</em></span></p>
                     </div>
-                    <p class="camera-price">${(produit.price / 100).toLocaleString("EUR", { style: "currency", currency: "EUR"})}<span> /<em>Unité</em></span></p>
+                    <form class="choiseForCart">
+                        <div class="cartQuantity">
+                            <div>
+                                <label for="choiseLenses">
+                                    Modèles optiques :
+                                </label>
+                                <select name="choiseLenses" id="choiseLenses"></select>
+                            </div>
+                            <div>
+                                <label for="inputQuantity">
+                                    Quantité :
+                                </label>
+                                <input type="number" name="inputQuantity" aria-label="quantité de produit" id="inputQuantity" value="1" min="1" max="10" />
+                            </div>
+                        </div>
+                        <p id="confirmationAjoutPanier"></p>
+                        <button id="panier" type="submit" aria-label="ajouter votre appareil-photo au panier">
+                            Ajouter au panier
+                        </button>
+                    </form>
                 </div>
-                <form class="choiseForCart">
-                    <div class="cartQuantity">
-                        <div>
-                            <label for="choiseLenses">
-                                Modèles optiques :
-                            </label>
-                            <select name="choiseLenses" id="choiseLenses"></select>
-                        </div>
-                        <div>
-                            <label for="inputQuantity">
-                                Quantité :
-                            </label>
-                            <input type="number" name="inputQuantity" aria-label="quantité de produit" id="inputQuantity" value="1" min="1" max="10" />
-                        </div>
-                    </div>
-                    <p id="confirmationAjoutPanier"></p>
-                    <button id="panier" type="submit" aria-label="ajouter votre appareil-photo au panier">
-                        Ajouter au panier
-                    </button>
-                </form>
-            </div>
-        </section>
-        
-        `
+            </section>
+            
+            `
+    
+        );
 
-    );
+    };
+
+    produitSeul();
 
     /* 02: Ajoute des lentilles pour chaque produit en option dynamiquement */
     let optionProduit = () => {
@@ -191,7 +197,7 @@ function majProduit(produit) {
         };
 
         // VERIFICATION DOUBLON - via le même ID et la même option : equivaut au même article add que la quantité
-        
+
         /**
          * IF la key mon panier n'existe pas dans le local storage ALORS crée un tableau + fonction de confirmation + injecte le choix utlisateur dans le local storage
          * 
