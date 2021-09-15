@@ -109,21 +109,29 @@ function majProduit(produit) {
     );
 
     /* 02: Ajoute des lentilles pour chaque produit en option dynamiquement */
-    for(let i = 0; i < produit.lenses.length; i++) {
+    let optionProduit = () => {
 
-        let lentille = produit.lenses[i];
-        const choixLentilles = document.getElementById('choiseLenses');
+        for(let i = 0; i < produit.lenses.length; i++) {
 
-        choixLentilles.insertAdjacentHTML('afterbegin',
-
-            `
-            <option value="${lentille}" name="choiseLenses" aria-label="choix de lentille format ${lentille}">${lentille}</option>
-            
-            `
-
-        );
-
+            let lentille = produit.lenses[i];
+            const choixLentilles = document.getElementById('choiseLenses');
+    
+            choixLentilles.insertAdjacentHTML('afterbegin',
+    
+                `
+                <option value="${lentille}" name="choiseLenses" aria-label="choix de lentille format ${lentille}">${lentille}</option>
+                
+                `
+    
+            );
+    
+        };
+    
     };
+
+    optionProduit();
+    
+
 
     /* 03: Listener qui ecoute l'ajoute du produit au clique et verifie certaine information  */
     document.getElementById('panier').addEventListener('click', (e) => {
@@ -149,7 +157,6 @@ function majProduit(produit) {
 
         };
         
-
         // recuperation du local storage
         let mesProduitsEnregistrer = JSON.parse(localStorage.getItem("mon panier"));
 
@@ -184,66 +191,71 @@ function majProduit(produit) {
         };
 
         // VERIFICATION DOUBLON - via le même ID et la même option : equivaut au même article add que la quantité
-
+        
         /**
          * IF la key mon panier n'existe pas dans le local storage ALORS crée un tableau + fonction de confirmation + injecte le choix utlisateur dans le local storage
          * 
          * ELSE IF la key mon panier existe donc, elle est différente de null, du coup je parcours le tableau du local, et j'y repose une condition. Si le choix et lid que lutilisateur a selectionné sont identique a un article dans le local, alors je recupere le local dans un tableau, je met a jour la quantité, et le renvoi. la logique permet de parcourir tous le tableau intégralement, pour vérifier si lelement n'est pas existant. A la fin du tableau si cette element nest pas existant, alors il ajoute le produit au local storage
         */
+        let verificationDesProduits = () => {
+       
+            if (mesProduitsEnregistrer == null) {
 
-        if (mesProduitsEnregistrer == null) {
+                mesProduitsEnregistrer = [];
+                confirmationFonction();
+                localSto(selectionUtilisateur, mesProduitsEnregistrer);
 
-            mesProduitsEnregistrer = [];
-            confirmationFonction();
-            localSto(selectionUtilisateur, mesProduitsEnregistrer);
+            } else if (mesProduitsEnregistrer != null) {
 
-        } else if (mesProduitsEnregistrer != null) {
+                for(let i = 0; i < mesProduitsEnregistrer.length; i++) {
 
-            for(let i = 0; i < mesProduitsEnregistrer.length; i++) {
-
-                if (mesProduitsEnregistrer[i].id === selectionUtilisateur.id && mesProduitsEnregistrer[i].choice === selectionUtilisateur.choice) {
-                 
-                    let totalQuantité = parseInt(mesProduitsEnregistrer[i].quantity, 10) + parseInt(selectionUtilisateur.quantity ,10);
+                    if (mesProduitsEnregistrer[i].id === selectionUtilisateur.id && mesProduitsEnregistrer[i].choice === selectionUtilisateur.choice) {
                     
-                    let updateStorage = mesProduitsEnregistrer;
-        
-                    updateStorage[i].quantity = totalQuantité;
-        
-                    mesProduitsEnregistrer = updateStorage;
-                    
-                    confirmationFonction();
-                    localStorage.setItem('mon panier', JSON.stringify(mesProduitsEnregistrer));
-        
-                } else if ( (i + 1) < mesProduitsEnregistrer.length) {
-
-                    if (mesProduitsEnregistrer.length < 10) {
-
-                        continue;
-
-                    } else if ( mesProduitsEnregistrer.length == 10) {
-
-                        confirm.style.background ="red";
-                
-                        confirm.textContent = `VOTRE PANIER EST PLEIN`;
-                        confirm.insertAdjacentHTML('beforeend', `<i class="far fa-times-circle"></i>`);
+                        let totalQuantité = parseInt(mesProduitsEnregistrer[i].quantity, 10) + parseInt(selectionUtilisateur.quantity ,10);
+                        
+                        let updateStorage = mesProduitsEnregistrer;
             
-                        return;
+                        updateStorage[i].quantity = totalQuantité;
+            
+                        mesProduitsEnregistrer = updateStorage;
+                        
+                        confirmationFonction();
+                        localStorage.setItem('mon panier', JSON.stringify(mesProduitsEnregistrer));
+            
+                    } else if ( (i + 1) < mesProduitsEnregistrer.length) {
+
+                        if (mesProduitsEnregistrer.length < 10) {
+
+                            continue;
+
+                        } else if ( mesProduitsEnregistrer.length == 10) {
+
+                            confirm.style.background ="red";
+                    
+                            confirm.textContent = `VOTRE PANIER EST PLEIN`;
+                            confirm.insertAdjacentHTML('beforeend', `<i class="far fa-times-circle"></i>`);
+                
+                            return;
+
+                        };
+    
+                    } else if ((i + 1) == mesProduitsEnregistrer.length && mesProduitsEnregistrer[i].id != selectionUtilisateur.id || mesProduitsEnregistrer[i].choice != selectionUtilisateur.choice) {
+    
+                        confirmationFonction();
+                        localSto(selectionUtilisateur, mesProduitsEnregistrer);
 
                     };
-   
-                } else if ((i + 1) == mesProduitsEnregistrer.length && mesProduitsEnregistrer[i].id != selectionUtilisateur.id || mesProduitsEnregistrer[i].choice != selectionUtilisateur.choice) {
-   
-                    confirmationFonction();
-                    localSto(selectionUtilisateur, mesProduitsEnregistrer);
+
+                    return;
 
                 };
 
-                return;
-
             };
-
-        };
   
+        };
+
+        verificationDesProduits();
+
     });
 
 };
