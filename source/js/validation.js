@@ -41,4 +41,4 @@ let affichageMerci = () => {
 
 };
 
-affichageMerci();
+affichageMerci(); 
