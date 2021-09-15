@@ -426,6 +426,7 @@ function majPanier() {
 
                     recuperationData();
 
+
                     /* POST REQUEST pour envoyé les données au back END au format JSON et recupérer les erreurs possibles */
                     /* Par rapport a la methode get par defaut, si on défini la methode nous même il appliquera celle choisis
                     on lui precise un type de contenu en application/json, et l'element a prendre en compte pour l'envoi via le body => on fini par une promesse, et on attend la réponse serveur */
@@ -455,7 +456,7 @@ function majPanier() {
 
                             // Redirection sur la page de validation 
                             return window.location.href ="validation.html";
-                    
+                            
 
                         }).catch(function(error) {
 
