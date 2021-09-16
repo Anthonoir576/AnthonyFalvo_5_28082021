@@ -3,7 +3,7 @@
 ### <p align="right">[Lien de la page WEB](https://anthonoir576.github.io/Projet_Officiel_OpenClassRooms_P5/)</p>
 
 ![screen Site](./source/md-picture/mdpix.png)
-![screen PlanTest](./source/md-picture/mdpix2.png)
+![screen PlanTest](./source/md-picture/mdpix2.jpg)
 
 
 
