@@ -403,11 +403,11 @@ body {
   padding: 10px;
   text-align: left;
 }
-.body-panier #main-panier tr:nth-child(1), .body-panier #main-panier tr:nth-child(3), .body-panier #main-panier tr:nth-child(5), .body-panier #main-panier tr:nth-child(7), .body-panier #main-panier tr:nth-child(9) {
+.body-panier #main-panier tr:nth-child(0n+1), .body-panier #main-panier tr:nth-child(0n+3), .body-panier #main-panier tr:nth-child(0n+5), .body-panier #main-panier tr:nth-child(0n+7), .body-panier #main-panier tr:nth-child(0n+9) {
   border: 1px solid rgba(255, 255, 255, 0.555);
   background: rgba(255, 255, 255, 0.123);
 }
-.body-panier #main-panier tr:nth-child(2), .body-panier #main-panier tr:nth-child(4), .body-panier #main-panier tr:nth-child(6), .body-panier #main-panier tr:nth-child(8), .body-panier #main-panier tr:nth-child(10) {
+.body-panier #main-panier tr:nth-child(0n+2), .body-panier #main-panier tr:nth-child(0n+4), .body-panier #main-panier tr:nth-child(0n+6), .body-panier #main-panier tr:nth-child(0n+8), .body-panier #main-panier tr:nth-child(0n+10) {
   border-right: 1px solid rgba(255, 255, 255, 0.555);
   border-left: 1px solid rgba(255, 255, 255, 0.555);
 }
@@ -794,10 +794,10 @@ body {
   border-radius: 5px;
   box-shadow: 0 0 10px 4px rgba(255, 255, 255, 0.253);
 }
-.body-validation .main-validation section :nth-child(5) {
+.body-validation .main-validation section :nth-child(0n+5) {
   margin: 1rem 0;
 }
-.body-validation .main-validation section :nth-child(5) strong {
+.body-validation .main-validation section :nth-child(0n+5) strong {
   display: block;
   margin-top: 1rem;
   font-weight: 900;
@@ -805,12 +805,12 @@ body {
   letter-spacing: 5px;
   text-shadow: 0 0 5px black;
 }
-.body-validation .main-validation section :nth-child(5) em {
+.body-validation .main-validation section :nth-child(0n+5) em {
   color: red;
   font-weight: 600;
   font-size: 1.5rem;
 }
-.body-validation .main-validation section :nth-child(2) span {
+.body-validation .main-validation section :nth-child(0n+2) span {
   text-transform: uppercase;
 }
 .body-validation .main-validation section h2 {
@@ -851,8 +851,8 @@ body {
   font-weight: 600;
   letter-spacing: 1px;
 }
-.body-validation .main-validation section :nth-child(2),
-.body-validation .main-validation section :nth-child(3) {
+.body-validation .main-validation section :nth-child(0n+2),
+.body-validation .main-validation section :nth-child(0n+3) {
   margin-bottom: 1rem;
 }
 

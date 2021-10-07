@@ -194,22 +194,22 @@
 
         & tr {
 
-            &:nth-child(1),
-            &:nth-child(3),
-            &:nth-child(5),
-            &:nth-child(7),
-            &:nth-child(9) {
+            &:nth-child(0n+1),
+            &:nth-child(0n+3),
+            &:nth-child(0n+5),
+            &:nth-child(0n+7),
+            &:nth-child(0n+9) {
              
                 border: 1px solid rgba(255, 255, 255, 0.555);
                 background: rgba(255, 255, 255, 0.123);
 
             }
 
-            &:nth-child(2),
-            &:nth-child(4),
-            &:nth-child(6),
-            &:nth-child(8),
-            &:nth-child(10) {
+            &:nth-child(0n+2),
+            &:nth-child(0n+4),
+            &:nth-child(0n+6),
+            &:nth-child(0n+8),
+            &:nth-child(0n+10) {
              
                 border-right: 1px solid rgba(255, 255, 255, 0.555);
                 border-left: 1px solid rgba(255, 255, 255, 0.555);
