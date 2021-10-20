@@ -1,11 +1,12 @@
 {
-  "name": "projet",
+  "name": "orinoko",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "sass": "sass --watch ./source/sass/main.scss:./source/css/style.css"
+    "sass": "sass --watch ./source/sass/main.scss:./source/css/style.css --style compressed",
+    "start": "nodemon server"
   },
-  "author": "",
+  "author": "Anthony FALVO",
   "license": "ISC"
 }
