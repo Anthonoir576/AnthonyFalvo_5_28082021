@@ -202,6 +202,8 @@ function majProduit(produit) {
          * IF la key mon panier n'existe pas dans le local storage ALORS crée un tableau + fonction de confirmation + injecte le choix utlisateur dans le local storage
          * 
          * ELSE IF la key mon panier existe donc, elle est différente de null, du coup je parcours le tableau du local, et j'y repose une condition. Si le choix et lid que lutilisateur a selectionné sont identique a un article dans le local, alors je recupere le local dans un tableau, je met a jour la quantité, et le renvoi. la logique permet de parcourir tous le tableau intégralement, pour vérifier si lelement n'est pas existant. A la fin du tableau si cette element nest pas existant, alors il ajoute le produit au local storage
+         * 
+         * MAJ ajout contrôle nombre NEGATIF. 
         */
         let verificationDesProduits = () => {
        
@@ -230,7 +232,7 @@ function majProduit(produit) {
             
                     } else if ( (i + 1) < mesProduitsEnregistrer.length) {
 
-                        if (mesProduitsEnregistrer.length < 10) {
+                        if (mesProduitsEnregistrer.length < 10 && mesProduitsEnregistrer.length > 0) {
 
                             continue;
 
@@ -239,6 +241,15 @@ function majProduit(produit) {
                             confirm.style.background ="red";
                     
                             confirm.textContent = `VOTRE PANIER EST PLEIN`;
+                            confirm.insertAdjacentHTML('beforeend', `<i class="far fa-times-circle"></i>`);
+                
+                            return;
+
+                        } else if (mesProduitsEnregistrer.length < 0) {
+
+                            confirm.style.background ="red";
+                    
+                            confirm.textContent = `Le nombre ne peut être negatif ...`;
                             confirm.insertAdjacentHTML('beforeend', `<i class="far fa-times-circle"></i>`);
                 
                             return;
