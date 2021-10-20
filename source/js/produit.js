@@ -207,13 +207,24 @@ function majProduit(produit) {
         */
         let verificationDesProduits = () => {
        
-            if (mesProduitsEnregistrer == null) {
+            if (mesProduitsEnregistrer == null && valueInputQuantity >= 0) {
 
                 mesProduitsEnregistrer = [];
                 confirmationFonction();
                 localSto(selectionUtilisateur, mesProduitsEnregistrer);
+                
 
-            } else if (mesProduitsEnregistrer != null) {
+            } else if (valueInputQuantity <= 0) {
+
+                console.log(valueInputQuantity + 'Je suis bien a cette etape');
+                confirm.style.background ="red";
+        
+                confirm.textContent = `Le nombre ne peut être negatif ...`;
+                confirm.insertAdjacentHTML('beforeend', `<i class="far fa-times-circle"></i>`);
+    
+                return;
+
+            } else if (mesProduitsEnregistrer != null && valueInputQuantity > 0) {
 
                 for(let i = 0; i < mesProduitsEnregistrer.length; i++) {
 
@@ -241,15 +252,6 @@ function majProduit(produit) {
                             confirm.style.background ="red";
                     
                             confirm.textContent = `VOTRE PANIER EST PLEIN`;
-                            confirm.insertAdjacentHTML('beforeend', `<i class="far fa-times-circle"></i>`);
-                
-                            return;
-
-                        } else if (mesProduitsEnregistrer.length < 0) {
-
-                            confirm.style.background ="red";
-                    
-                            confirm.textContent = `Le nombre ne peut être negatif ...`;
                             confirm.insertAdjacentHTML('beforeend', `<i class="far fa-times-circle"></i>`);
                 
                             return;
