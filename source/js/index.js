@@ -13,7 +13,7 @@ const buttonShop = document.getElementById('buttonShop');
 const fetchCameras = async() => {
 
     cameras = await fetch('http://localhost:3000/api/cameras/').then(res => res.json());
-
+    
 };
 
 /* Fonction ASYNC ou Asynchrone / Methode d'affichage via L'appel de FETCH => FILTER => MAP */
@@ -25,7 +25,7 @@ const showCameras = async() => {
     showShop.innerHTML = (
 
         cameras
-            .filter(camera => camera)
+            //.filter(camera => camera)
             .map(camera => (
 
                 `
@@ -43,6 +43,7 @@ const showCameras = async() => {
 
             )).join('')
     );
+
 
 };
 

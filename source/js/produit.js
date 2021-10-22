@@ -3,14 +3,14 @@
 
 /* FONCTION PRINCIPALE */
 /* Fonction recursive declare deux constantes fessant appel une entre elle, cette fonction s'appelle elle même après réponse du serveur grace au await */
-(async function() {
+const recuperationProduitSeul = async function() {
  
     const produitId = getProduitId();
     const produit = await getProduit(produitId);
 
     majProduit(produit);
-
-})()
+};
+recuperationProduitSeul();
 
 /* BALISE MAIN en HTML OU SERRA AFFICHER LE PRODUIT */
 const mySelection = document.querySelector('.main-produit');
