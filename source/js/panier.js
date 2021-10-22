@@ -219,7 +219,7 @@ function majPanier() {
                             <small></small>
                         </div>
 
-                        <button id="validerCommande" type="submit"> Valider la commande </button>
+                        <button id="validerCommande" type="submit" aria-label="Valider la commande"> Valider la commande </button>
                     </form>
                     
                     ` 
@@ -272,6 +272,7 @@ function majPanier() {
             /* Affiche un message d'erreur rouge et une bordure rouge si false, et l'input et vert si les conditions des regexp sont respectés */
             const conditionValidation = function(elementTest, input, affichage) {
 
+                // si valeur vraie
                 if (elementTest) {
 
                     affichage.style.display ="none";

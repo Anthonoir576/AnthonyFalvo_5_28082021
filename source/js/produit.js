@@ -206,14 +206,15 @@ function majProduit(produit) {
          * MAJ ajout contrôle nombre NEGATIF. 
         */
         let verificationDesProduits = () => {
-       
+            
+            // si aucun elements n'est present dans le local
             if (mesProduitsEnregistrer == null && valueInputQuantity >= 0) {
 
                 mesProduitsEnregistrer = [];
                 confirmationFonction();
                 localSto(selectionUtilisateur, mesProduitsEnregistrer);
                 
-
+            // verification valeur negative input quantité
             } else if (valueInputQuantity <= 0) {
 
                 console.log(valueInputQuantity + 'Je suis bien a cette etape');
@@ -223,11 +224,12 @@ function majProduit(produit) {
                 confirm.insertAdjacentHTML('beforeend', `<i class="far fa-times-circle"></i>`);
     
                 return;
-
+            // si un tableau et present 
             } else if (mesProduitsEnregistrer != null && valueInputQuantity > 0) {
 
                 for(let i = 0; i < mesProduitsEnregistrer.length; i++) {
 
+                    // si un produit et une meme option sont déjà present 
                     if (mesProduitsEnregistrer[i].id === selectionUtilisateur.id && mesProduitsEnregistrer[i].choice === selectionUtilisateur.choice) {
                     
                         let totalQuantité = parseInt(mesProduitsEnregistrer[i].quantity, 10) + parseInt(selectionUtilisateur.quantity ,10);
@@ -240,13 +242,15 @@ function majProduit(produit) {
                         
                         confirmationFonction();
                         localStorage.setItem('mon panier', JSON.stringify(mesProduitsEnregistrer));
-            
+                    
+                    // tant que l'on a pas fini de parcourir le tableau
                     } else if ( (i + 1) < mesProduitsEnregistrer.length) {
 
                         if (mesProduitsEnregistrer.length < 10 && mesProduitsEnregistrer.length > 0) {
 
                             continue;
 
+                        // maximum article different 
                         } else if ( mesProduitsEnregistrer.length == 10) {
 
                             confirm.style.background ="red";
@@ -257,7 +261,8 @@ function majProduit(produit) {
                             return;
 
                         };
-    
+                    
+                    // si le tableau et parcourus en integralité, et que aucun produit nest identique sur lid ou le choix on add
                     } else if ((i + 1) == mesProduitsEnregistrer.length && mesProduitsEnregistrer[i].id != selectionUtilisateur.id || mesProduitsEnregistrer[i].choice != selectionUtilisateur.choice) {
     
                         confirmationFonction();
