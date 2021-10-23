@@ -54,22 +54,6 @@ const getProduit = (produitId) => {
     })
 
 };
-
-// 03. LOGIQUE DE ROOTING
-const recuperationProduitSeul = async() => {
-
-    // Recuperation id => assigne dans fetch dynamiquement
-    const produitId = getProduitId();
-    const produit = await getProduit(produitId);
-
-    // affichage produit + option
-    produitSeul(produit);
-    optionProduit(produit);
-
-    // MAJ produit en clique
-    majProduit(produit);
-
-};
 /* ########################################################### */
 /* ----------------------------------------------------------- */
 
@@ -146,6 +130,8 @@ const optionProduit = (produit) => {
     };
 
 };
+/* ########################################################### */
+/* ----------------------------------------------------------- */
 
 
 
@@ -154,8 +140,7 @@ const optionProduit = (produit) => {
 /* ########################################################### */
 /* -----------------   MISE A JOUR PANIER   ------------------ */
 /* ########################################################### */
-
-// 00. CONVERSION en euros selection utilisateur 
+// 00. CONVERSION en euros la selection utilisateur 
 const pricesSpace = (prix) => {
 
     return parseFloat(prix / 100);
@@ -294,7 +279,7 @@ const majProduit = (produit) => {
         // Comfirmation visuel d'ajout au panier
         confirm.style.display = "block";
 
-        // Verification produit ET la selection utilisateur
+        // Verification produit ET la selection utilisateur => PUIS INJECTION LOCAL STORAGE
         verificationDesProduits(produit);
 
     });
@@ -303,5 +288,29 @@ const majProduit = (produit) => {
 /* ########################################################### */
 /* ----------------------------------------------------------- */
 
+
+
+
+
+/* ########################################################### */
+/* -----------------  LOGIQUE PAGE PRODUIT  ------------------ */
+/* ########################################################### */
 // LOGIQUE DE ROOTING
+const recuperationProduitSeul = async() => {
+
+    // Recuperation id => assigne dans fetch dynamiquement
+    const produitId = getProduitId();
+    const produit = await getProduit(produitId);
+
+    // affichage produit + option
+    produitSeul(produit);
+    optionProduit(produit);
+
+    // MAJ produit en clique
+    majProduit(produit);
+
+};
+
 recuperationProduitSeul();
+/* ########################################################### */
+/* ----------------------------------------------------------- */
