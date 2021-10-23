@@ -1,26 +1,77 @@
 
 /*  ******* APPEL ET AFFICHAGE DES ELEMENTS CONTENU DANS L'API VIA LE BOUTON => 'Voir nos produits' ******** */
 
+
+
+/* ########################################################### */
 /* ---------------- VARIABLE / CONSTANTE --------------------- */
+/* ########################################################### */
 // URL API
 let cameras;
 // BOUTIQUE AFFICHAGE
 const showShop = document.getElementById('myBoutique');
 // BOUTON AFFICHAGE/MASQUAGE BOUTIQUE
 const buttonShop = document.getElementById('buttonShop');
+/* ########################################################### */
 /* ----------------------------------------------------------- */
 
 
-/* -------------------    FONCTION    ------------------------ */
 
-/* FETCH par defaut (get) */
+/* ########################################################### */
+/* ----------------    ECOUTE EVENEMENT    ------------------- */
+/* ########################################################### */
+// AFFICHER / MASQUER => Boutique 
+buttonShop.addEventListener("click", () => {
+
+    if(getComputedStyle(showShop).display != "none") {
+
+        showShop.style.display = "none";
+        buttonShop.innerHTML = (
+
+            `Voir nos produits`
+
+        );
+
+    } else {
+
+        showCameras();
+
+        showShop.style.display = "grid";
+        buttonShop.innerHTML = (
+
+            `FERMER`
+
+        );
+
+    };
+
+});
+/* ########################################################### */
+/* ----------------------------------------------------------- */
+
+
+
+/* ########################################################### */
+/* -------------------    FONCTION    ------------------------ */
+/* ########################################################### */
+/* PRIX => Convertion centime en euros */
+const pricesSpace = (prix) => {
+
+    let calcule = (prix / 100);  
+    
+    return calcule.toLocaleString("EUR", { style: "currency", currency: "EUR"});
+
+};
+
+/* ----------------    LOGIQUE REQUETE     ------------------- */
+/* 01. URL API via FETCH (GET) par defaut */
 const fetchCameras = async() => {
 
     cameras = await fetch('http://localhost:3000/api/cameras/').then(res => res.json());
     
 };
 
-/* ATTENTE fetchCameras => Puis ajoute chaque élément en HTML via MAP */
+/* 02. ATTENTE la réponse de fetchCameras() => Puis ajoute chaque élément en HTML via MAP */
 const showCameras = async() => {
 
     await fetchCameras();
@@ -49,40 +100,5 @@ const showCameras = async() => {
 
 
 };
-
-/* CALCULE PRIX et CONVERSION  */
-const pricesSpace = (prix) => {
-
-    let calcule = (prix / 100);  
-    
-    return calcule.toLocaleString("EUR", { style: "currency", currency: "EUR"});
-
-};
+/* ########################################################### */
 /* ----------------------------------------------------------- */
-
-
-buttonShop.addEventListener("click", () => {
-
-    if(getComputedStyle(showShop).display != "none") {
-
-        showShop.style.display = "none";
-        buttonShop.innerHTML = (
-
-            `Voir nos produits`
-
-        );
-
-    } else {
-
-        showCameras();
-
-        showShop.style.display = "grid";
-        buttonShop.innerHTML = (
-
-            `FERMER`
-
-        );
-
-    };
-
-});
