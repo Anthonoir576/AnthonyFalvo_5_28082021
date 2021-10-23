@@ -4,7 +4,7 @@
 /* ########################################################### */
 /* ---------------- VARIABLE / CONSTANTE --------------------- */
 /* ########################################################### */
-// L'endroit ou l'on injecte le html 
+// L'endroit ou l'on injecte le html
 const mySelection = document.querySelector('.main-produit');
 
 // Message visuel de confirmation
@@ -20,7 +20,9 @@ let mesProduitsEnregistrer = JSON.parse(localStorage.getItem("mon panier"));
 // Objet utilisateur qui contiendra le choix produit
 let selectionUtilisateur;
 /* ########################################################### */
-/* ----------------------------------------------------------- */ 
+/* ----------------------------------------------------------- */
+
+
 
 
 
@@ -29,33 +31,23 @@ let selectionUtilisateur;
 /* ########################################################### */
 /* ---------  RECUPERATION ID PRODUIT INDIVIDUEL  ------------ */
 /* ########################################################### */
-const recuperationProduitSeul = async() => {
- 
-    const produitId = getProduitId();
-    const produit = await getProduit(produitId);
-
-    produitSeul(produit);
-    optionProduit(produit);
-    majProduit(produit);
-};
-
-// Recuperation ID produit via URL injecter dans la balise <a href="./produit.html?id=${camera._id}"
+// 01. Recuperation ID produit via URL injecter dans la balise <a href="./produit.html?id=${camera._id}"
 const getProduitId = () => {
 
     return new URL(location.href).searchParams.get("id");
 
 };
 
-// Fetch dynamique en injectant l'id afin d'avoir le produit selectionner
+// 02. REQUETE FETCH (GET) dynamique en injectant l'id afin d'avoir le produit selectionner
 const getProduit = (produitId) => {
 
     return fetch(`http://localhost:3000/api/cameras/${produitId}`)
-    .then(function(response) {
+    .then((response) => {
 
         return response.json()
 
     })
-    .catch(function(error) {
+    .catch((error) => {
 
         return console.log(error);
 
@@ -63,21 +55,30 @@ const getProduit = (produitId) => {
 
 };
 
-recuperationProduitSeul();
+// 03. LOGIQUE DE ROOTING
+const recuperationProduitSeul = async() => {
+
+    // Recuperation id => assigne dans fetch dynamiquement
+    const produitId = getProduitId();
+    const produit = await getProduit(produitId);
+
+    // affichage produit + option
+    produitSeul(produit);
+    optionProduit(produit);
+
+    // MAJ produit en clique
+    majProduit(produit);
+
+};
 /* ########################################################### */
 /* ----------------------------------------------------------- */
 
 
-/* CONVERSION CENTIME / EUROS */
-const pricesSpace = (prix) => {
 
-    return parseFloat(prix / 100);
-
-};
 
 
 /* ########################################################### */
-/* ---------- FONCTIONS INCLUES DANS MAJPRODUIT() ------------ */
+/* ------------  AFFICHAGE PRODUIT + OPTION   ---------------- */
 /* ########################################################### */
 // 01. AFFICHAGE Produit de facon visuel
 const produitSeul = (produit) => {
@@ -118,7 +119,7 @@ const produitSeul = (produit) => {
                 </form>
             </div>
         </section>
-        
+
         `
 
     );
@@ -137,7 +138,7 @@ const optionProduit = (produit) => {
 
             `
             <option value="${lentille}" name="choiseLenses" aria-label="choix de lentille format ${lentille}">${lentille}</option>
-            
+
             `
 
         );
@@ -146,26 +147,41 @@ const optionProduit = (produit) => {
 
 };
 
-// MESSAGE VISUEL + Condition si singulier = 1 / Sinon pluriel
+
+
+
+
+/* ########################################################### */
+/* -----------------   MISE A JOUR PANIER   ------------------ */
+/* ########################################################### */
+
+// 00. CONVERSION en euros selection utilisateur 
+const pricesSpace = (prix) => {
+
+    return parseFloat(prix / 100);
+
+};
+
+// 01. MESSAGE VISUEL + Condition si singulier = 1 / Sinon pluriel
 const confirmationFonction = (produit) => {
 
     confirm.style.background ="#32CD32";
 
     if(valueInputQuantity == 1) {
 
-        confirm.textContent = `Merci pour votre confiance. Le ${produit.name} ${valueInputLenses} est ajouté au panier`; 
+        confirm.textContent = `Merci pour votre confiance. Le ${produit.name} ${valueInputLenses} est ajouté au panier`;
 
     } else {
 
         confirm.textContent = `Merci pour votre confiance. Les ${produit.name} ${valueInputLenses} sont ajoutés au panier`;
-        
+
     };
 
     confirm.insertAdjacentHTML('beforeend', `<i class="far fa-check-square"></i>`);
 
 };
 
-// Fonction push dans le local storage l'objet selectionUtilisateur
+// 02. Fonction push dans le local storage l'objet selectionUtilisateur
 const localSto = (selection, enregistrer) => {
 
     enregistrer.push(selection);
@@ -173,16 +189,16 @@ const localSto = (selection, enregistrer) => {
 
 };
 
-// Verification du produit selectionner dans le local storage         
+// 03. Verification du produit selectionner dans le local storage
 const verificationDesProduits = (produit) => {
-            
+
     // si aucun elements n'est present dans le local
     if (mesProduitsEnregistrer == null && valueInputQuantity >= 0) {
 
         mesProduitsEnregistrer = [];
         confirmationFonction(produit);
         localSto(selectionUtilisateur, mesProduitsEnregistrer);
-        
+
     // verification valeur negative input quantité
     } else if (valueInputQuantity <= 0) {
 
@@ -200,18 +216,18 @@ const verificationDesProduits = (produit) => {
 
             // si un produit ID et une meme OPTION sont déjà present alors => MAJ quantité
             if (mesProduitsEnregistrer[i].id === selectionUtilisateur.id && mesProduitsEnregistrer[i].choice === selectionUtilisateur.choice) {
-            
+
                 let totalQuantité = parseInt(mesProduitsEnregistrer[i].quantity, 10) + parseInt(selectionUtilisateur.quantity ,10);
-                
+
                 let updateStorage = mesProduitsEnregistrer;
-    
+
                 updateStorage[i].quantity = totalQuantité;
-    
+
                 mesProduitsEnregistrer = updateStorage;
-                
+
                 confirmationFonction(produit);
                 localStorage.setItem('mon panier', JSON.stringify(mesProduitsEnregistrer));
-            
+
             // tant que l'on a pas fini de parcourir le tableau
             } else if ( (i + 1) < mesProduitsEnregistrer.length) {
 
@@ -224,14 +240,14 @@ const verificationDesProduits = (produit) => {
                 } else if ( mesProduitsEnregistrer.length == 10) {
 
                     confirm.style.background ="red";
-            
+
                     confirm.textContent = `VOTRE PANIER EST PLEIN`;
                     confirm.insertAdjacentHTML('beforeend', `<i class="far fa-times-circle"></i>`);
-        
+
                     return;
 
                 };
-            
+
             // si le tableau et parcourus en integralité, et que aucun produit nest identique sur lid ou le choix on add
             } else if ((i + 1) == mesProduitsEnregistrer.length && mesProduitsEnregistrer[i].id != selectionUtilisateur.id || mesProduitsEnregistrer[i].choice != selectionUtilisateur.choice) {
 
@@ -248,12 +264,7 @@ const verificationDesProduits = (produit) => {
 
 };
 
-
-/* ########################################################### */
-/* -----------------   MISE A JOUR PANIER   ------------------ */
-/* ########################################################### */
-
-// Ecoute devenement au clique mettant a jour le localStorage + Message visuel
+// 04. ECOUTE EVENEMENT => AU CLIQUE : mettant a jour le localStorage + Message visuel
 const majProduit = (produit) => {
 
     document.getElementById('panier').addEventListener('click', (e) => {
@@ -261,13 +272,12 @@ const majProduit = (produit) => {
         // stop le comportement par defaut du bouton
         e.preventDefault();
 
-
         // Element au stocker le message de confirmation ET panier plein SI il l'es
         confirm = document.getElementById('confirmationAjoutPanier');
+
         // valeur quantité / option
         valueInputQuantity = document.getElementById('inputQuantity').value;
         valueInputLenses = document.getElementById('choiseLenses').value;
-
 
         // Objet contenant le choix de l'utilisateur
         selectionUtilisateur = {
@@ -280,19 +290,18 @@ const majProduit = (produit) => {
             choice : valueInputLenses
 
         };
-        
 
-        // Comfirmation visuel d'ajout au panier 
-        confirm.style.display = "block"; 
-        
+        // Comfirmation visuel d'ajout au panier
+        confirm.style.display = "block";
 
+        // Verification produit ET la selection utilisateur
         verificationDesProduits(produit);
 
     });
 
 };
-
 /* ########################################################### */
 /* ----------------------------------------------------------- */
 
-
+// LOGIQUE DE ROOTING
+recuperationProduitSeul();
