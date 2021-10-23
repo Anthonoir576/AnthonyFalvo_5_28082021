@@ -48,6 +48,74 @@ function pricesSpace(prix) {
 
 };
 
+/* 01: Création de la fiche produit individuel */
+let produitSeul = (produit) => {
+
+    mySelection.innerHTML = (
+
+        `
+        <section class="produit">
+            <div class="camera-item">
+                <img class="camera-img" src="${produit.imageUrl}" alt="appareil photo en vente" />
+                <div class="camera-info">
+                    <h2 class="camera-name">${produit.name}</h2>
+                    <div class="camera-description">
+                        <p>Description :</p>
+                        <p> ${produit.description}</p>
+                    </div>
+                    <p class="camera-price">${(produit.price / 100).toLocaleString("EUR", { style: "currency", currency: "EUR"})}<span> /<em>Unité</em></span></p>
+                </div>
+                <form class="choiseForCart">
+                    <div class="cartQuantity">
+                        <div>
+                            <label for="choiseLenses">
+                                Modèles optiques :
+                            </label>
+                            <select name="choiseLenses" id="choiseLenses"></select>
+                        </div>
+                        <div>
+                            <label for="inputQuantity">
+                                Quantité :
+                            </label>
+                            <input type="number" name="inputQuantity" aria-label="quantité de produit" id="inputQuantity" value="1" min="1" max="10" />
+                        </div>
+                    </div>
+                    <p id="confirmationAjoutPanier"></p>
+                    <button id="panier" type="submit" aria-label="ajouter votre appareil-photo au panier">
+                        Ajouter au panier
+                    </button>
+                </form>
+            </div>
+        </section>
+        
+        `
+
+    );
+
+};
+
+
+/* 02: Ajoute des lentilles pour chaque produit en option dynamiquement */
+let optionProduit = (produit) => {
+
+    for(let i = 0; i < produit.lenses.length; i++) {
+
+        let lentille = produit.lenses[i];
+        const choixLentilles = document.getElementById('choiseLenses');
+
+        choixLentilles.insertAdjacentHTML('afterbegin',
+
+            `
+            <option value="${lentille}" name="choiseLenses" aria-label="choix de lentille format ${lentille}">${lentille}</option>
+            
+            `
+
+        );
+
+    };
+
+};
+
 
 /* LA STRUCTURE COMPLETE */
 /* Creation produit - ajoute option - ecoute du clique et agit (voir detail) - Ajout au localStorage */
@@ -66,76 +134,10 @@ function majProduit(produit) {
     */
     
 
-    /* 01: Création de la fiche produit individuel */
-    let produitSeul = () => {
+    produitSeul(produit);
 
-        mySelection.innerHTML = (
 
-            `
-            <section class="produit">
-                <div class="camera-item">
-                    <img class="camera-img" src="${produit.imageUrl}" alt="appareil photo en vente" />
-                    <div class="camera-info">
-                        <h2 class="camera-name">${produit.name}</h2>
-                        <div class="camera-description">
-                            <p>Description :</p>
-                            <p> ${produit.description}</p>
-                        </div>
-                        <p class="camera-price">${(produit.price / 100).toLocaleString("EUR", { style: "currency", currency: "EUR"})}<span> /<em>Unité</em></span></p>
-                    </div>
-                    <form class="choiseForCart">
-                        <div class="cartQuantity">
-                            <div>
-                                <label for="choiseLenses">
-                                    Modèles optiques :
-                                </label>
-                                <select name="choiseLenses" id="choiseLenses"></select>
-                            </div>
-                            <div>
-                                <label for="inputQuantity">
-                                    Quantité :
-                                </label>
-                                <input type="number" name="inputQuantity" aria-label="quantité de produit" id="inputQuantity" value="1" min="1" max="10" />
-                            </div>
-                        </div>
-                        <p id="confirmationAjoutPanier"></p>
-                        <button id="panier" type="submit" aria-label="ajouter votre appareil-photo au panier">
-                            Ajouter au panier
-                        </button>
-                    </form>
-                </div>
-            </section>
-            
-            `
-    
-        );
-
-    };
-
-    produitSeul();
-
-    /* 02: Ajoute des lentilles pour chaque produit en option dynamiquement */
-    let optionProduit = () => {
-
-        for(let i = 0; i < produit.lenses.length; i++) {
-
-            let lentille = produit.lenses[i];
-            const choixLentilles = document.getElementById('choiseLenses');
-    
-            choixLentilles.insertAdjacentHTML('afterbegin',
-    
-                `
-                <option value="${lentille}" name="choiseLenses" aria-label="choix de lentille format ${lentille}">${lentille}</option>
-                
-                `
-    
-            );
-    
-        };
-    
-    };
-
-    optionProduit();
+    optionProduit(produit);
     
 
 
@@ -217,7 +219,6 @@ function majProduit(produit) {
             // verification valeur negative input quantité
             } else if (valueInputQuantity <= 0) {
 
-                console.log(valueInputQuantity + 'Je suis bien a cette etape');
                 confirm.style.background ="red";
         
                 confirm.textContent = `Le nombre ne peut être negatif ...`;
