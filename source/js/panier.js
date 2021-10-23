@@ -1,16 +1,20 @@
 
 /************* AFFICHAGE PANIER ET MAJ + ENVOI BACK END ***************/
 
+/* ########################################################### */
+/* ---------------- VARIABLE / CONSTANTE --------------------- */
+/* ########################################################### */
 // Récupère le tableau du localstorage
 let mesProduitsEnregistrer = JSON.parse(localStorage.getItem("mon panier"));
 
-// mypanier permet de recupere la balise main 
+// L'endroit ou l'on injecte la partie visuel
 let myPanier = document.getElementById('main-panier');
 // permet de récupérer licone close du panier vide
 let close = document.getElementById('closePop');
 
 // Bouton commander affiche le formulaire 
 let commander;
+
 // Tableau produit vide qui me permet d'injecter des elements de manière dynamique
 let bodyTab;
 
@@ -23,6 +27,9 @@ let supprimerSelection;
 
 // ID POUR ENVOIE AU BACK END
 let products = [];
+/* ########################################################### */
+/* ----------------------------------------------------------- */
+
 
 
 /* CONVERSION CENTIME / EUROS avec deux chiffres après la virgule */
@@ -31,6 +38,109 @@ function pricesSpace(prix) {
     return parseFloat(prix / 100).toFixed(2);
 
 };
+
+
+/* ----------------------- FONCTIONS  ------------------------ */
+
+/* ########################################################### */
+/* ---------------------    PANIER    ------------------------ */
+/* ########################################################### */
+
+    // CALCULE TOTAL PANIER
+    let totalPanier = () => {
+
+        for (let i = 0; i < mesProduitsEnregistrer.length; i++) {
+
+            let price = parseFloat((mesProduitsEnregistrer[i].price)*(mesProduitsEnregistrer[i].quantity));
+
+            totaux += price; 
+
+        };
+
+    };
+
+    // CRÉATION d'un tableau HTML 
+    let tableauHtml = () => {
+
+        myPanier.innerHTML = (
+
+            `
+            <table>
+                <thead>
+                <tr class="tab-title">
+                    <th>Produit :</th>
+                    <th>Nom :</th>
+                    <th>Option :</th>
+                    <th>Quantité :</th>
+                    <th>Prix :</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody id="bodyTab"></tbody>
+                <tfoot>
+                <tr>
+                    <td>TOTAL :</td>
+                    <td>${(totaux).toLocaleString("EUR", { style: "currency", currency: "EUR"})}</td>
+                </tr>
+                </tfoot>
+            </table>
+            <button id="commander" type="button">Commander</button>
+            
+            `
+        );
+
+    };
+
+    // CHAQUE PRODUIT du localStorage, et ajouté dynamiquement dans <TBODY> via <TR> 
+    let ajoutProduitPanier = () => {
+
+        for(let i = 0; i < mesProduitsEnregistrer.length; i++) {
+
+            bodyTab.insertAdjacentHTML('beforeend', 
+                
+                `
+                <tr data-content="${mesProduitsEnregistrer[i].id}">
+                    <td data-label="Produit :"><img class="produit-img" src="${mesProduitsEnregistrer[i].picture}" alt="produit selectionné" /></td>
+                    <td data-label="Nom :">${mesProduitsEnregistrer[i].name}</td>
+                    <td data-label="Option :">${mesProduitsEnregistrer[i].choice}</td>
+                    <td data-label="Quantité :">${mesProduitsEnregistrer[i].quantity}</td>
+                    <td data-label="Prix :">${parseFloat((mesProduitsEnregistrer[i].price)*(mesProduitsEnregistrer[i].quantity)).toLocaleString("EUR", { style: "currency", currency: "EUR"})}</td>
+                    <td data-label="Supprimer :" class="supprimerProduit"><i class="far fa-trash-alt"></i></td>
+                </tr>
+                
+                `
+            );
+
+        };
+
+    };
+
+    
+    // SUPPRESSION PRODUIT - VISUEL ET LOCALSTORAGE
+    let deleteProduit = () => {
+
+        supprimerSelection = Array.from(document.querySelectorAll('.supprimerProduit'));
+    
+        for (let i = 0; i < supprimerSelection.length; i++) {
+
+            supprimerSelection[i].addEventListener('click', () => {
+
+                supprimerSelection[i].parentElement.style.display ="none";
+                    
+                tab = mesProduitsEnregistrer;
+                tab.splice([i], 1);
+                
+                mesProduitsEnregistrer = localStorage.setItem('mon panier', JSON.stringify(tab));
+
+                window.location.href ="panier.html";
+
+            });
+        };
+    };
+    
+
+/* ########################################################### */
+/* ----------------------------------------------------------- */
 
 /* FONCTION PANIER  */
 function majPanier() {
@@ -70,108 +180,19 @@ function majPanier() {
     /* SINON par deduction le panier contiens des articles DONC le reste du code s'applique ici */
     } else {
 
-        // BOUCLE parcourant le local et crée un total des produits en fonction de leur (prix * quantité) stocker dans totaux
-        let totalPanier = () => {
-
-            for (let i = 0; i < mesProduitsEnregistrer.length; i++) {
-
-                let price = parseFloat((mesProduitsEnregistrer[i].price)*(mesProduitsEnregistrer[i].quantity));
-    
-                totaux += price; 
-    
-            };
-
-        };
-
+        // CALCULE TOTAL PANIER
         totalPanier();
 
-        // INJECTION DU TABLEAU PRODUIT un id bodyTab permet donc d'ajouter les objets stocker du local
-        let tableauHtml = () => {
-
-            myPanier.innerHTML = (
-
-                `
-                <table>
-                    <thead>
-                    <tr class="tab-title">
-                        <th>Produit :</th>
-                        <th>Nom :</th>
-                        <th>Option :</th>
-                        <th>Quantité :</th>
-                        <th>Prix :</th>
-                        <th></th>
-                    </tr>
-                    </thead>
-                    <tbody id="bodyTab"></tbody>
-                    <tfoot>
-                    <tr>
-                        <td>TOTAL :</td>
-                        <td>${(totaux).toLocaleString("EUR", { style: "currency", currency: "EUR"})}</td>
-                    </tr>
-                    </tfoot>
-                </table>
-                <button id="commander" type="button">Commander</button>
-                
-                `
-            );
-
-        };
-
+        // CRÉATION d'un tableau HTML
         tableauHtml();
 
-        // On donne une valeur a la variable déclarer en global 
+        // ON RECUPERE <TBODY> en HTML crée via tableauHtml() 
         bodyTab = document.getElementById('bodyTab');
 
-        /* CHAQUE PRODUIT du localStorage, et ajouté dynamiquement dans le tableau grace a une boucle FOR */    
-        let ajoutProduitPanier = () => {
-
-            for(let i = 0; i < mesProduitsEnregistrer.length; i++) {
-
-                bodyTab.insertAdjacentHTML('beforeend', 
-                    
-                    `
-                    <tr data-content="${mesProduitsEnregistrer[i].id}">
-                        <td data-label="Produit :"><img class="produit-img" src="${mesProduitsEnregistrer[i].picture}" alt="produit selectionné" /></td>
-                        <td data-label="Nom :">${mesProduitsEnregistrer[i].name}</td>
-                        <td data-label="Option :">${mesProduitsEnregistrer[i].choice}</td>
-                        <td data-label="Quantité :">${mesProduitsEnregistrer[i].quantity}</td>
-                        <td data-label="Prix :">${parseFloat((mesProduitsEnregistrer[i].price)*(mesProduitsEnregistrer[i].quantity)).toLocaleString("EUR", { style: "currency", currency: "EUR"})}</td>
-                        <td data-label="Supprimer :" class="supprimerProduit"><i class="far fa-trash-alt"></i></td>
-                    </tr>
-                    
-                    `
-                );
-    
-            };
-
-        };
-
+        // CHAQUE PRODUIT du localStorage, et ajouté dynamiquement dans <TBODY> via <TR> 
         ajoutProduitPanier();
 
-
-        /* SUPPRESSION PRODUIT - VISUEL ET LOCALSTORAGE */
-        /* .supprimerProduit et une cellule avec icone, une fois pointer, je convertis le format node.list en array pour mieux itérer dessus. Jutilise alors une boucle permettant de detecté le clique sur un des éléments, et le supprime visuellement en selectionnant le parent DONC la ligne complète, je met a jour le local en utilisant la methode splice, choisissant dans un premier temps l'élément a supprimer et le nombre d'élément a supprimer. En l'occurence juste la ligne de l'icone. Et je refresh le localstorage et la page */
-        let deleteProduit = () => {
-
-            supprimerSelection = Array.from(document.querySelectorAll('.supprimerProduit'));
-        
-            for (let i = 0; i < supprimerSelection.length; i++) {
-    
-                supprimerSelection[i].addEventListener('click', () => {
-    
-                    supprimerSelection[i].parentElement.style.display ="none";
-                     
-                    tab = mesProduitsEnregistrer;
-                    tab.splice([i], 1);
-                    
-                    mesProduitsEnregistrer = localStorage.setItem('mon panier', JSON.stringify(tab));
-    
-                    window.location.href ="panier.html";
-    
-                });
-            };
-        };
-
+        // SUPPRESSION PRODUIT - VISUEL ET LOCALSTORAGE
         deleteProduit();
 
         /* LE FORMULAIRE - Apparait uniquement lors du clique sur commander */
