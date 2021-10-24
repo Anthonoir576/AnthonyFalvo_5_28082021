@@ -21,7 +21,8 @@ let informationTemporaire = JSON.parse(localStorage.getItem("commande"));
 /* ########################################################### */
 /* -------------------    VALIDATION    ---------------------- */
 /* ########################################################### */
-/* Cette CONDITION me permet de ne pas pouvoir être présent sur cette page, si aucune commande a été valider. Et renvoi a l'index */   
+
+// MESSAGE DE CONFIRMATION    
 let affichageMerci = () => {
 
     if (informationTemporaire == null) {
