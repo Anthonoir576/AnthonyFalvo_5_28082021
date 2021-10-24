@@ -528,20 +528,18 @@
             cursor: pointer;
             width: 100%;
             padding: 10px;
-            margin: 1rem auto;
+            margin: 2rem auto 1rem auto;
 
             border-radius: 5px;
-            background: red;
-            color: #fff;
+            border: 3px solid red;
+            background: white;
+            color: red;
             font-size: 1.5rem;
             transition: all .3s ease-in-out;
 
             &:hover {
 
                 transition: all .3s ease-in-out;
-                
-                background: #fff;
-                color: red;
                 box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.3);
 
             }

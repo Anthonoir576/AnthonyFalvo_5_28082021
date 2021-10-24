@@ -194,27 +194,27 @@ let insertFormulaire = () => {
 
             <div>
                 <label for="lastName">Nom :</label>
-                <input id="lastName" name="lastName" type="text" placeholder="nom" />
+                <input id="lastName" name="lastName" type="text" placeholder="nom" required />
                 <small></small>
             </div>
             <div>
                 <label for="firstName">Prénom :</label>
-                <input id="firstName" name="firstName" type="text" placeholder="prénom" />
+                <input id="firstName" name="firstName" type="text" placeholder="prénom" required />
                 <small></small>
             </div>
             <div>
                 <label for="email">E-mail :</label>
-                <input id="email" name="email" type="text" placeholder="e-mail" />
+                <input id="email" name="email" type="text" placeholder="e-mail" required />
                 <small></small>
             </div>
             <div>
                 <label for="address">Adresse :</label>
-                <input id="address" name="address" type="text" placeholder="adresse" />
+                <input id="address" name="address" type="text" placeholder="adresse" required />
                 <small></small>
             </div>
             <div>
                 <label for="city">Ville :</label>
-                <input id="city" name="city" type="text" placeholder="ville" />
+                <input id="city" name="city" type="text" placeholder="ville" required />
                 <small></small>
             </div>
 
@@ -327,20 +327,22 @@ const controleStrictForm = () => {
         // si valeur vraie
         if (elementTest) {
 
+            // Visuel input
             affichage.style.display ="none";
             affichage.style.color ="#32CD32";
-
             input.style.border ="4px solid #32CD32";
 
         // si aucune valeur    
         } else if (input.value.length == 0) {
 
+            // Visuel input
             affichage.style.display ="none";
             input.style.border ="none";
 
         // si valeur fausse    
         } else if (!elementTest) {
 
+            // Visuel input
             affichage.style.display ="inline-block";
             affichage.style.color ="red";
             input.style.border ="4px solid red";
@@ -448,8 +450,8 @@ const validationFinalFormulaire = () => {
         !new RegExp('^[^0-9][a-zA-Z.-]{3,25}[ ]{0,2}$', 'g').test(formulaire.firstName.value)  ||
         !new RegExp('^[^0-9][a-zA-Z.-]{3,25}[ ]{0,2}$', 'g').test(formulaire.lastName.value)  || 
         !new RegExp('^[a-zA-Z0-9.,-_ ]{5,50}[ ]{0,2}$', 'g').test(formulaire.address.value) ) {
-
-        return;
+    
+        return alert('Le formulaire n\'est pas valide ...');
 
     /* Si aucune des valeurs du formulaire ne renvoi FALSE , appliqué la request POST */ 
     } else { 
@@ -467,34 +469,36 @@ const validationFinalFormulaire = () => {
 /* FONCTION PANIER  */
 const majPanier = () => {
 
-    /* MESSAGE PAR DEFAUT SI PANIER VIDE */
+    // Si panier vide
     if (mesProduitsEnregistrer == null || mesProduitsEnregistrer == 0) {
 
         panierVide();
             
-        /* UNE FOIS LES ARTICLE SUPPRIMER DU PANIER SI LE TABLEAU ET VIDE => SUPPRIMER LE LOCALSTORAGE */
         if (mesProduitsEnregistrer == 0) {
 
             localStorage.clear();
 
         }
 
-
-    /* SINON par deduction le panier contiens des articles DONC le reste du code s'applique ici */
+    // Sinon =>    
     } else {
 
-        // CALCULE TOTAL PANIER
+        // CALCULE Total panier
         totalPanier();
-        // CRÉATION d'un tableau HTML
+
+        // CRÉATION Tableau HTML
         tableauHtml();
 
         // ON RECUPERE <TBODY> en HTML crée via tableauHtml() 
         bodyTab = document.getElementById('bodyTab');
 
-        // CHAQUE PRODUIT du localStorage, et ajouté dynamiquement dans <TBODY> via <TR> 
+        // CHAQUE PRODUIT du localStorage
         ajoutProduitPanier();
-        // SUPPRESSION PRODUIT - VISUEL ET LOCALSTORAGE
+
+        // SUPPRESSION Produit
         deleteProduit();
+
+
 
         // AFFICHAGE FORMULAIRE
         commander = document.getElementById('commander');
@@ -504,7 +508,7 @@ const majPanier = () => {
 
             commander.style.display ='none';
 
-            // INSERT LE FORMULAIRE AU CLIQUE SUR COMMANDER - Après la partie tableau
+            // AFFICHAGE formulaire
             insertFormulaire();
             
             /* balise FORM */
@@ -513,15 +517,11 @@ const majPanier = () => {
             // CONTROLE FORM REGEX
             controleStrictForm();
 
-            // FORMULAIRE - Valider la commande :
-            /* Lors du clique, on verifie encore une fois que les éléments input sont tous TRUE */
-            // button valider la commande
+            // FORMULAIRE - Valider la commande 
             validerCommande = document.getElementById('validerCommande');
-
             validerCommande.addEventListener('click', (e) => {
 
                 e.preventDefault();
-
                 validationFinalFormulaire();
 
             });
@@ -530,6 +530,4 @@ const majPanier = () => {
     };
 };
 
-// Appel de la fonction global
 majPanier();
-

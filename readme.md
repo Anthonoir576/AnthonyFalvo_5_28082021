@@ -10,13 +10,13 @@
 ## Pour tester l'application
 1. Cloner le repository
 2. Lancer le serveur NodeJs :
-    - Dans le terminal accéder au dossier du projet back-end
-    - npm install (Pour les modules nodes)
-    - lancer : "nodemon server", "node server" ou "npm start" via ce même dossier back-end
+    - Dans le terminal accéder au dossier du projet puis aller dans 'back-end'
+    - Executer npm install (Pour les modules nodes) à l'intérieur de 'back-end'
+    - Lancer : "nodemon server", "node server" ou "npm start" via ce même dossier 'back-end'
+    - Adresse de l'API : http://localhost:3000/api/cameras 
 3. Accéder au site à l'adresse :
-    - Via live server sous vsCode avec un port différent de l'api
-    - Ou via ce liens => [Lien de la page WEB](https://anthonoir576.github.io/Projet_Officiel_OpenClassRooms_P5/) une fois le serveur lancer
-4. Adresse de l'API : http://localhost:3000/api/cameras 
+    - Via live server sous vsCode (avec un port différent de l'api) via index.html
+    - Ou via ce liens => [Lien de la page WEB](https://anthonoir576.github.io/AnthonyFalvo_5_28082021/) une fois le serveur lancer
 
 ## Scénario
 L'objectif est développer en **JavaScript**, et **sans framework**, le **Front-End** d'un site e-commerce.  
