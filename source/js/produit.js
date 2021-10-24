@@ -4,20 +4,20 @@
 /* ########################################################### */
 /* ---------------- VARIABLE / CONSTANTE --------------------- */
 /* ########################################################### */
-// L'endroit ou l'on injecte le html
+// DIV Html ou le produit serra afficher
 const mySelection = document.querySelector('.main-produit');
 
-// Message visuel de confirmation
+// MESSAGE Visuel ajout panier
 let confirm;
 
-// Choix option / Quantité de l'utilisateur
+// CHOIX Option / Quantité de l'utilisateur
 let valueInputLenses;
 let valueInputQuantity;
 
-// recuperation du local storage
+// RECUPERATION du local storage
 let mesProduitsEnregistrer = JSON.parse(localStorage.getItem("mon panier"));
 
-// Objet utilisateur qui contiendra le choix produit
+// OBJET utilisateur qui contiendra le choix produit
 let selectionUtilisateur;
 /* ########################################################### */
 /* ----------------------------------------------------------- */
@@ -31,7 +31,7 @@ let selectionUtilisateur;
 /* ########################################################### */
 /* ---------  RECUPERATION ID PRODUIT INDIVIDUEL  ------------ */
 /* ########################################################### */
-// 01. Recuperation ID produit via URL injecter dans la balise <a href="./produit.html?id=${camera._id}"
+// 01. RECUPERATION ID produit via URL injecter dans la balise <a href="./produit.html?id=${camera._id}"
 const getProduitId = () => {
 
     return new URL(location.href).searchParams.get("id");
@@ -44,14 +44,14 @@ const getProduit = (produitId) => {
     return fetch(`http://localhost:3000/api/cameras/${produitId}`)
     .then((response) => {
 
-        return response.json()
+        return response.json();
 
     })
     .catch((error) => {
 
         return console.log(error);
 
-    })
+    });
 
 };
 /* ########################################################### */
@@ -110,7 +110,7 @@ const produitSeul = (produit) => {
 
 };
 
-// 02: Ajout des options produit dynamiquement
+// 02: AJOUT Options produit dynamiquement
 const optionProduit = (produit) => {
 
     for(let i = 0; i < produit.lenses.length; i++) {
@@ -166,7 +166,7 @@ const confirmationFonction = (produit) => {
 
 };
 
-// 02. Fonction push dans le local storage l'objet selectionUtilisateur
+// 02. PUSH Selection utilisateur => LocalStorage
 const localSto = (selection, enregistrer) => {
 
     enregistrer.push(selection);
@@ -174,7 +174,7 @@ const localSto = (selection, enregistrer) => {
 
 };
 
-// 03. Verification du produit selectionner dans le local storage
+// 03. VERIFICATION du produit selectionner dans le local storage
 const verificationDesProduits = (produit) => {
 
     // si aucun elements n'est present dans le local
@@ -254,17 +254,17 @@ const majProduit = (produit) => {
 
     document.getElementById('panier').addEventListener('click', (e) => {
 
-        // stop le comportement par defaut du bouton
+        // STOP le comportement par defaut du bouton
         e.preventDefault();
 
-        // Element au stocker le message de confirmation ET panier plein SI il l'es
+        // MESSAGE VISUEL AJOUT PANIER
         confirm = document.getElementById('confirmationAjoutPanier');
 
-        // valeur quantité / option
+        // VALEUR quantité / option <= INPUT
         valueInputQuantity = document.getElementById('inputQuantity').value;
         valueInputLenses = document.getElementById('choiseLenses').value;
 
-        // Objet contenant le choix de l'utilisateur
+        // OBJET contenant le choix de l'utilisateur
         selectionUtilisateur = {
 
             id : produit._id,
@@ -276,10 +276,10 @@ const majProduit = (produit) => {
 
         };
 
-        // Comfirmation visuel d'ajout au panier
+        // CONFIRMATION visuel d'ajout au panier
         confirm.style.display = "block";
 
-        // Verification produit ET la selection utilisateur => PUIS INJECTION LOCAL STORAGE
+        // VERIFICATION produit ET la selection utilisateur => PUIS INJECTION LOCAL STORAGE
         verificationDesProduits(produit);
 
     });
@@ -298,7 +298,7 @@ const majProduit = (produit) => {
 // LOGIQUE DE ROOTING
 const recuperationProduitSeul = async() => {
 
-    // Recuperation id => assigne dans fetch dynamiquement
+    // RECUPERATION id => INJECTER dans fetch dynamiquement
     const produitId = getProduitId();
     const produit = await getProduit(produitId);
 
@@ -312,5 +312,6 @@ const recuperationProduitSeul = async() => {
 };
 
 recuperationProduitSeul();
+
 /* ########################################################### */
 /* ----------------------------------------------------------- */
