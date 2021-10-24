@@ -929,3 +929,89 @@
     }
 
 }
+
+
+
+
+// 404 ERROR 
+@media only screen and (max-width: 900px) {
+
+    body {
+
+        & .messageError_404 {
+        
+            margin: 0 1rem!important;
+            padding: 2rem 2rem;
+        
+           
+            & a {
+
+                font-size: 2rem;
+        
+            }
+        
+            & .errorMesg {
+
+                font-size: 5rem;
+        
+            }
+        
+        }
+
+    }
+
+}
+
+@media only screen and (max-width: 660px) {
+
+    body {
+        
+        & .messageError_404 {
+        
+            margin: 0 auto!important;
+            padding: 2rem 1rem;
+        
+           
+            & a {
+
+                font-size: 2rem;
+        
+            }
+        
+            & .errorMesg {
+
+                font-size: 5rem;
+        
+            }
+        
+        }
+
+    }
+
+}
+
+@media only screen and (max-width: 450px) {
+
+    body {
+        
+        & .messageError_404 {
+        
+            margin: 0 auto!important;
+            padding: 2rem 1rem;
+        
+            & a {
+
+                font-size: 1.5rem
+            }
+        
+            & .errorMesg {
+
+                font-size: 3rem;
+        
+            }
+        
+        }
+
+    }
+
+}
