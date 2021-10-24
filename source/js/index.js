@@ -67,7 +67,26 @@ const pricesSpace = (prix) => {
 /* 01. URL API via FETCH (GET) par defaut */
 const fetchCameras = async() => {
 
-    cameras = await fetch('http://localhost:3000/api/cameras/').then(res => res.json());
+    cameras = await fetch('http://localhost:3000/api/cameras/')
+        .then(res => res.json())
+        .catch((error) => {
+            
+            if (error) {
+
+                document.body.classList.add('error_404');
+                document.querySelector('.accueil-info').classList.add('messageError_404');
+                document.querySelector('.accueil-info').innerHTML = (
+                    `
+                    <span class="errorMesg">404</span> 
+                    <span class="errorMesg">ERROR</span>
+                    <a href="index.html"> ACTUALISER LA PAGE </a>
+
+                    `
+                );
+
+            };
+
+        });
     
 };
 

@@ -49,7 +49,20 @@ const getProduit = (produitId) => {
     })
     .catch((error) => {
 
-        return console.log(error);
+        if (error) {
+
+            document.body.classList.add('error_404');
+            document.querySelector('.main-produit').classList.add('messageError_404');
+            document.querySelector('.main-produit').innerHTML = (
+                `
+                <span class="errorMesg">404</span> 
+                <span class="errorMesg">ERROR</span>
+                <a href="index.html"> ACTUALISER LA PAGE </a>
+    
+                `
+            );
+
+        };
 
     });
 

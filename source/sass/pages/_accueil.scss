@@ -17,7 +17,6 @@
 
 }
 
-
 .main-accueil {
 
     margin: 25px 50px;
@@ -282,7 +281,6 @@
 
 }
 
-
 // Footer identique a chaque page
 .footer {
 
@@ -318,6 +316,73 @@
             }
 
         }
+
+    }
+
+}
+
+// ERROR 404
+.error_404 {
+
+    background: black!important;
+
+}
+
+.messageError_404 {
+
+    margin: 0 auto;
+    padding: 2rem 2rem;
+
+    text-align: center;
+    
+    border: 5px solid red;
+    border-radius: 10px;
+    box-shadow: 0 0 0px 5px rgba(255, 255, 255, 1);
+   
+
+    & :nth-child(0n+1).errorMesg {
+
+        margin: 0 auto;
+        letter-spacing: 10px;
+
+    }
+
+    & a {
+
+        display: inline-block;
+        margin: 2rem auto 2rem auto;
+
+        padding: 20px;
+
+        background: white;
+        color: black;
+        border: 3px solid red;
+        border-radius: 10px;
+        font-size: 4rem;
+
+        transition: all .4s ease-in-out;
+
+        &:hover {
+
+            transition: all .4s ease-in-out;
+            background: rgba(255, 255, 255, 0.95);
+            transform: translateX(10px);
+            box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.267);
+
+        }
+
+    }
+
+    & .errorMesg {
+
+        display: block;
+        font-size: 7rem;
+
+    }
+
+    & .errorMesg::first-letter, a::first-letter {
+
+        color: red;
 
     }
 
