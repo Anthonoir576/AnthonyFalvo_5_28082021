@@ -62,7 +62,7 @@ const getProduit = (produitId) => {
 
 
 /* ########################################################### */
-/* ------------  AFFICHAGE PRODUIT + OPTION   ---------------- */
+/* ------------   AFFICHAGE PRODUIT + OPTION   --------------- */
 /* ########################################################### */
 // 01. AFFICHAGE Produit de facon visuel
 const produitSeul = (produit) => {
@@ -189,7 +189,7 @@ const verificationDesProduits = (produit) => {
 
         confirm.style.background ="red";
 
-        confirm.textContent = `Le nombre ne peut être negatif ...`;
+        confirm.textContent = `Le nombre ne peut être nul ou négatif ...`;
         confirm.insertAdjacentHTML('beforeend', `<i class="far fa-times-circle"></i>`);
 
         return;
@@ -203,7 +203,6 @@ const verificationDesProduits = (produit) => {
             if (mesProduitsEnregistrer[i].id === selectionUtilisateur.id && mesProduitsEnregistrer[i].choice === selectionUtilisateur.choice) {
 
                 let totalQuantité = parseInt(mesProduitsEnregistrer[i].quantity, 10) + parseInt(selectionUtilisateur.quantity ,10);
-
                 let updateStorage = mesProduitsEnregistrer;
 
                 updateStorage[i].quantity = totalQuantité;

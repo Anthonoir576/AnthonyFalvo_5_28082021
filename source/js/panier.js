@@ -54,7 +54,7 @@ const pricesSpace = (prix) => {
 /* ---------------------    PANIER    ------------------------ */
 /* ########################################################### */
 
-// MESSAGE PANIER VIDE
+// --- SI Panier vide ---
 const panierVide = () => {
 
     myPanier.innerHTML = (
@@ -80,7 +80,8 @@ const panierVide = () => {
 
 };
 
-// CALCULE TOTAL PANIER
+// ------ SINON --------
+// CALCULE Total panier
 let totalPanier = () => {
 
     for (let i = 0; i < mesProduitsEnregistrer.length; i++) {
@@ -149,7 +150,7 @@ let ajoutProduitPanier = () => {
 
 };
 
-// SUPPRESSION PRODUIT - VISUEL ET LOCALSTORAGE
+// SUPPRESSION PRODUIT - VISUEL Et localStorage
 let deleteProduit = () => {
 
     supprimerSelection = Array.from(document.querySelectorAll('.supprimerProduit'));
@@ -170,7 +171,8 @@ let deleteProduit = () => {
         });
     };
 };
-    
+// ---------------------
+
 /* ########################################################### */
 /* ----------------------------------------------------------- */
 
@@ -233,31 +235,31 @@ const controleStrictForm = () => {
 
     formulaire.lastName.addEventListener('input', function() {
 
-    validationLastName(this);
+        validationLastName(this);
 
     });
 
     formulaire.firstName.addEventListener('input', function() {
 
-    validationFirstName(this);
+        validationFirstName(this);
 
     });
 
     formulaire.email.addEventListener('input', function() {
 
-    validationEmail(this);
+        validationEmail(this);
 
     });
 
     formulaire.address.addEventListener('input', function() {
 
-    validationAddress(this);
+        validationAddress(this);
 
     });
 
     formulaire.city.addEventListener('input', function() {
 
-    validationCity(this);
+        validationCity(this);
 
     });
 
@@ -416,7 +418,7 @@ const postServer = async() => {
 
 
     // recuperation des informations orderId, nom, prenom, prix total 
-    }).then(async function(response) {
+    }).then(async (response) => {
 
         const laReponseDuBackEnd = await response.json();
             
@@ -434,7 +436,7 @@ const postServer = async() => {
         return window.location.href ="validation.html";
         
 
-    }).catch(function(error) {
+    }).catch((error) => {
 
         return console.log(error);
 
