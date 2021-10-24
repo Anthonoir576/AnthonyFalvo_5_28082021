@@ -68,7 +68,7 @@ const pricesSpace = (prix) => {
 const fetchCameras = async() => {
 
     cameras = await fetch('http://localhost:3000/api/cameras/')
-        .then(res => res.json())
+        .then(response => response.json())
         .catch((error) => {
             
             if (error) {
