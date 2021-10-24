@@ -31,9 +31,11 @@ let supprimerSelection;
 // ID POUR ENVOIE AU BACK END
 let products = [];
 
+// tableau contact + info complet pour le backend
 let contact;
 let MesInformationsPourLeBackEnd;
 
+// BTN validation formulaire
 let validerCommande;
 /* ########################################################### */
 /* ----------------------------------------------------------- */
@@ -439,7 +441,7 @@ let recuperationData = () => {
 };
 
 // 02. ERREUR si la validation est tenté sans les pré-requis
-let controleValidation = () => {
+let errorValidation = () => {
 
     let controle = document.getElementById('errorForm');
     
@@ -466,7 +468,7 @@ const validationFinalFormulaire = () => {
         !new RegExp('^[^0-9][a-zA-Z.-]{3,25}[ ]{0,2}$', 'g').test(formulaire.lastName.value)  || 
         !new RegExp('^[a-zA-Z0-9.,-_ ]{5,50}[ ]{0,2}$', 'g').test(formulaire.address.value) ) {
     
-        return controleValidation();
+        return errorValidation();
 
     /* Si aucune des valeurs du formulaire ne renvoi FALSE , appliqué la request POST */ 
     } else { 
