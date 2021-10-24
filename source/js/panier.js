@@ -451,7 +451,7 @@ const validationFinalFormulaire = () => {
         !new RegExp('^[^0-9][a-zA-Z.-]{3,25}[ ]{0,2}$', 'g').test(formulaire.lastName.value)  || 
         !new RegExp('^[a-zA-Z0-9.,-_ ]{5,50}[ ]{0,2}$', 'g').test(formulaire.address.value) ) {
     
-        return alert('Le formulaire n\'est pas valide ...');
+        return;
 
     /* Si aucune des valeurs du formulaire ne renvoi FALSE , appliqué la request POST */ 
     } else { 
