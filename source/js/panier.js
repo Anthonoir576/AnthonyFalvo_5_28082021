@@ -18,7 +18,7 @@ let commander;
 // Balise FORM
 let formulaire;
 
-// Tableau produit vide qui me permet d'injecter des elements de manière dynamique
+// <Tbody> => injection produit selectionner par l'utilisateur
 let bodyTab;
 
 // Total du panier 
@@ -41,7 +41,7 @@ let validerCommande;
 
 
 /* CONVERSION CENTIME / EUROS avec deux chiffres après la virgule */
-function pricesSpace(prix) {
+const pricesSpace = (prix) => {
 
     return parseFloat(prix / 100).toFixed(2);
 
@@ -54,6 +54,7 @@ function pricesSpace(prix) {
 /* ---------------------    PANIER    ------------------------ */
 /* ########################################################### */
 
+// MESSAGE PANIER VIDE
 const panierVide = () => {
 
     myPanier.innerHTML = (
@@ -92,7 +93,7 @@ let totalPanier = () => {
 
 };
 
-// CRÉATION d'un tableau HTML 
+// CRÉATION d'un tableau HTML si des articles on était ajouté
 let tableauHtml = () => {
 
     myPanier.innerHTML = (
@@ -392,7 +393,6 @@ let recuperationData = () => {
     };
 
     // OBJET CONTENANT LES ELEMENTS A ENVOYER AU BACK END
-    /* DONC le formulaire rempli par l'utilisateur ENSUITE les ID produits selectionné par lui même */
     MesInformationsPourLeBackEnd = {
 
         contact: contact,
@@ -404,8 +404,6 @@ let recuperationData = () => {
 };
 
 /* POST REQUEST pour envoyé les données au back END au format JSON et recupérer les erreurs possibles */
-/* Par rapport a la methode get par defaut, si on défini la methode nous même il appliquera celle choisis
-on lui precise un type de contenu en application/json, et l'element a prendre en compte pour l'envoi via le body => on fini par une promesse, et on attend la réponse serveur */
 const postServer = async() => {
 
     return await fetch('http://localhost:3000/api/cameras/order', {
@@ -441,6 +439,7 @@ const postServer = async() => {
     });
 };
 
+// Controle du form a la validation => recuperationData => envoi back-end + redirection page validation
 const validationFinalFormulaire = () => {
 
     /* VERIFICATION QUE LE FORMULAIRE ET BIEN REMPLI AVANT LENVOI AU BACK-END */
@@ -486,7 +485,6 @@ const majPanier = () => {
 
         // CALCULE TOTAL PANIER
         totalPanier();
-
         // CRÉATION d'un tableau HTML
         tableauHtml();
 
@@ -495,7 +493,6 @@ const majPanier = () => {
 
         // CHAQUE PRODUIT du localStorage, et ajouté dynamiquement dans <TBODY> via <TR> 
         ajoutProduitPanier();
-
         // SUPPRESSION PRODUIT - VISUEL ET LOCALSTORAGE
         deleteProduit();
 
