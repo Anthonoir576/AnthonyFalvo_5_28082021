@@ -503,6 +503,18 @@
     
             }
 
+            & span#errorForm {
+
+                display: none;
+                position: relative;
+                top: 1.5rem;
+
+                text-align: center;
+                background: red;
+                padding: 10px 0;
+
+            }
+
         }
 
         & input {

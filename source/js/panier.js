@@ -213,8 +213,10 @@ let insertFormulaire = () => {
                 <input id="city" name="city" type="text" placeholder="ville" required />
                 <small></small>
             </div>
-
-            <button id="validerCommande" type="submit" aria-label="Valider la commande"> Valider la commande </button>
+            <div>
+                <span id="errorForm"></span>
+                <button id="validerCommande" type="submit" aria-label="Valider la commande"> Valider la commande </button>
+            </div>
         </form>
         
         ` 
@@ -326,6 +328,9 @@ const controleStrictForm = () => {
             affichage.style.display ="none";
             input.style.border ="4px solid #32CD32";
 
+            // Suppression VISUEL Error => bouton validation
+            document.getElementById('errorForm').style.display = 'none';
+
         // si aucune valeur    
         } else if (input.value.length == 0) {
 
@@ -365,7 +370,7 @@ const controleStrictForm = () => {
 /* ########################################################### */
 /* -------------    VALIDATION COMMANDE    ------------------- */
 /* ########################################################### */
-/* 03. POST REQUEST pour envoyé les données au back END au format JSON et recupérer les erreurs possibles */
+/* 04. POST REQUEST pour envoyé les données au back END au format JSON et recupérer les erreurs possibles */
 const postServer = async() => {
 
     return await fetch('http://localhost:3000/api/cameras/order', {
@@ -399,7 +404,7 @@ const postServer = async() => {
     });
 };
 
-// 02. RECUPERATION DES DATA A ENVOYER :
+// 03. RECUPERATION DES DATA A ENVOYER :
 let recuperationData = () => {
 
     // OBJET CONTACT :
@@ -433,6 +438,24 @@ let recuperationData = () => {
 
 };
 
+// 02. ERREUR si la validation est tenté sans les pré-requis
+let controleValidation = () => {
+
+    let controle = document.getElementById('errorForm');
+    
+    controle.style.display ="block";
+
+    controle.innerHTML = (
+
+        `
+            Veuillez rentrer toutes les informations correctement 
+
+        `
+
+    );
+
+};
+
 // 01. Controle du form a la validation => recuperationData() => postServer() envoi back-end
 const validationFinalFormulaire = () => {
 
@@ -443,7 +466,7 @@ const validationFinalFormulaire = () => {
         !new RegExp('^[^0-9][a-zA-Z.-]{3,25}[ ]{0,2}$', 'g').test(formulaire.lastName.value)  || 
         !new RegExp('^[a-zA-Z0-9.,-_ ]{5,50}[ ]{0,2}$', 'g').test(formulaire.address.value) ) {
     
-        return;
+        return controleValidation();
 
     /* Si aucune des valeurs du formulaire ne renvoi FALSE , appliqué la request POST */ 
     } else { 
