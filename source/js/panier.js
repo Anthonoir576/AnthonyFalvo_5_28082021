@@ -372,7 +372,7 @@ const controleStrictForm = () => {
 /* ########################################################### */
 /* -------------    VALIDATION COMMANDE    ------------------- */
 /* ########################################################### */
-/* 04. POST REQUEST pour envoyé les données au back END au format JSON et recupérer les erreurs possibles */
+/* 04. POST REQUEST */
 const postServer = async() => {
 
     return await fetch('http://localhost:3000/api/cameras/order', {
@@ -458,7 +458,7 @@ let errorValidation = () => {
 
 };
 
-// 01. Controle du form a la validation => recuperationData() => postServer() envoi back-end
+// 01. CONTROLE form si ok => recuperationData() => postServer() envoi back-end
 const validationFinalFormulaire = () => {
 
     /* VERIFICATION QUE LE FORMULAIRE ET BIEN REMPLI AVANT LENVOI AU BACK-END */
