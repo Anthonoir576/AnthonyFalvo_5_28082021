@@ -122,7 +122,7 @@ let tableauHtml = () => {
 
 };
 
-// CHAQUE PRODUIT du localStorage, et ajouté dynamiquement dans <TBODY> via <TR> 
+// CHAQUE PRODUIT, et ajouté dynamiquement dans <TBODY> via <TR> 
 let ajoutProduitPanier = () => {
 
     for(let i = 0; i < mesProduitsEnregistrer.length; i++) {
@@ -179,7 +179,7 @@ let deleteProduit = () => {
 /* ########################################################### */
 /* ------------------    FORMULAIRE    ----------------------- */
 /* ########################################################### */
-// INSERT LE FORMULAIRE AU CLIQUE SUR COMMANDER - Après la partie tableau
+// INSERT LE FORMULAIRE AU CLIQUE - Après la partie tableau
 let insertFormulaire = () => {
 
     myPanier.insertAdjacentHTML('beforeend',
@@ -458,7 +458,7 @@ let errorValidation = () => {
 
 };
 
-// 01. CONTROLE form si ok => recuperationData() => postServer() envoi back-end
+// 01. CONTROLE form si ok => recuperationData() => postServer()
 const validationFinalFormulaire = () => {
 
     /* VERIFICATION QUE LE FORMULAIRE ET BIEN REMPLI AVANT LENVOI AU BACK-END */
