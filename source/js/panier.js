@@ -40,12 +40,6 @@ let validerCommande;
 
 
 
-/* CONVERSION CENTIME / EUROS avec deux chiffres après la virgule */
-const pricesSpace = (prix) => {
-
-    return parseFloat(prix / 100).toFixed(2);
-
-};
 
 
 /* ----------------------- FONCTIONS  ------------------------ */
@@ -54,7 +48,7 @@ const pricesSpace = (prix) => {
 /* ---------------------    PANIER    ------------------------ */
 /* ########################################################### */
 
-// --- SI Panier vide ---
+// ------------------  SI Panier vide  -------------------------
 const panierVide = () => {
 
     myPanier.innerHTML = (
@@ -80,7 +74,7 @@ const panierVide = () => {
 
 };
 
-// ------ SINON --------
+// ----------------------  SINON  ------------------------------
 // CALCULE Total panier
 let totalPanier = () => {
 
@@ -171,7 +165,7 @@ let deleteProduit = () => {
         });
     };
 };
-// ---------------------
+// ------------------------------------------------------------
 
 /* ########################################################### */
 /* ----------------------------------------------------------- */
@@ -226,7 +220,6 @@ let insertFormulaire = () => {
         ` 
     
     );
-
 
 };
 
@@ -331,7 +324,6 @@ const controleStrictForm = () => {
 
             // Visuel input
             affichage.style.display ="none";
-            affichage.style.color ="#32CD32";
             input.style.border ="4px solid #32CD32";
 
         // si aucune valeur    
@@ -373,7 +365,41 @@ const controleStrictForm = () => {
 /* ########################################################### */
 /* -------------    VALIDATION COMMANDE    ------------------- */
 /* ########################################################### */
-// RECUPERATION DES DATA A ENVOYER :
+/* 03. POST REQUEST pour envoyé les données au back END au format JSON et recupérer les erreurs possibles */
+const postServer = async() => {
+
+    return await fetch('http://localhost:3000/api/cameras/order', {
+
+    method: 'POST',
+    headers: { "Content-Type": "application/json"},
+    body: JSON.stringify(MesInformationsPourLeBackEnd)
+
+    // recuperation des informations orderId, nom, prenom, prix total 
+    }).then(async (response) => {
+
+        const laReponseDuBackEnd = await response.json();
+            
+        // Création dun objet contenant ces informations (orderID, nom, prénom, et prix total)
+        let objetRetourAulocalStorage = new Object();
+        objetRetourAulocalStorage["prix"] = totaux.toString();  
+        objetRetourAulocalStorage["Numéros de commande"] = laReponseDuBackEnd.orderId;  
+        objetRetourAulocalStorage["Nom"] = laReponseDuBackEnd.contact.lastName;  
+        objetRetourAulocalStorage["Prénom"] = laReponseDuBackEnd.contact.firstName;  
+
+        /* On stock c'est information une fraction de seconde dans le local storage => on récupère => on supprime instantanément  A SAVOIR que cette pratique d'envoyé les informations clients dans le local storage n'est pas une pratique sécurisé, il est fait dans cette exercice dans un but purement visuel */
+        localStorage.setItem("commande", JSON.stringify(objetRetourAulocalStorage));
+
+        // Redirection sur la page de validation 
+        return window.location.href ="validation.html";
+        
+    }).catch((error) => {
+
+        return console.log(error);
+
+    });
+};
+
+// 02. RECUPERATION DES DATA A ENVOYER :
 let recuperationData = () => {
 
     // OBJET CONTACT :
@@ -407,43 +433,7 @@ let recuperationData = () => {
 
 };
 
-/* POST REQUEST pour envoyé les données au back END au format JSON et recupérer les erreurs possibles */
-const postServer = async() => {
-
-    return await fetch('http://localhost:3000/api/cameras/order', {
-
-    method: 'POST',
-    headers: { "Content-Type": "application/json"},
-    body: JSON.stringify(MesInformationsPourLeBackEnd)
-
-
-    // recuperation des informations orderId, nom, prenom, prix total 
-    }).then(async (response) => {
-
-        const laReponseDuBackEnd = await response.json();
-            
-        // Création dun objet contenant ces informations (orderID, nom, prénom, et prix total)
-        let objetRetourAulocalStorage = new Object();
-        objetRetourAulocalStorage["prix"] = totaux.toString();  
-        objetRetourAulocalStorage["Numéros de commande"] = laReponseDuBackEnd.orderId;  
-        objetRetourAulocalStorage["Nom"] = laReponseDuBackEnd.contact.lastName;  
-        objetRetourAulocalStorage["Prénom"] = laReponseDuBackEnd.contact.firstName;  
-
-        /* On stock c'est information une fraction de seconde dans le local storage => on récupère => on supprime instantanément  A SAVOIR que cette pratique d'envoyé les informations clients dans le local storage n'est pas une pratique sécurisé, il est fait dans cette exercice dans un but purement visuel */
-        localStorage.setItem("commande", JSON.stringify(objetRetourAulocalStorage));
-
-        // Redirection sur la page de validation 
-        return window.location.href ="validation.html";
-        
-
-    }).catch((error) => {
-
-        return console.log(error);
-
-    });
-};
-
-// Controle du form a la validation => recuperationData => envoi back-end + redirection page validation
+// 01. Controle du form a la validation => recuperationData() => postServer() envoi back-end
 const validationFinalFormulaire = () => {
 
     /* VERIFICATION QUE LE FORMULAIRE ET BIEN REMPLI AVANT LENVOI AU BACK-END */
@@ -468,7 +458,14 @@ const validationFinalFormulaire = () => {
 /* ----------------------------------------------------------- */
 
 
-/* FONCTION PANIER  */
+
+
+
+/* -----------------  LOGIQUE PAGE PANIER  ------------------- */
+
+/* ########################################################### */
+/* ------------------    MAJ PANIER     ---------------------- */
+/* ########################################################### */
 const majPanier = () => {
 
     // Si panier vide
@@ -533,3 +530,5 @@ const majPanier = () => {
 };
 
 majPanier();
+/* ########################################################### */
+/* ----------------------------------------------------------- */

@@ -1,9 +1,26 @@
 
 /************* RECUPERATION DES DONNEES SUR LA NOUVELLE PAGE - AFFICHAGE et SUPPRESSION DONNEES ***************/
 
-/* LES INFORMATIONS CLIENTS */
+
+/* ########################################################### */
+/* ---------------- VARIABLE / CONSTANTE --------------------- */
+/* ########################################################### */
+
+/* LES INFORMATIONS CLIENT */
 let informationTemporaire = JSON.parse(localStorage.getItem("commande"));
 
+/* ########################################################### */
+/* ----------------------------------------------------------- */
+
+
+
+
+
+/* ----------------------- FONCTIONS  ------------------------ */
+
+/* ########################################################### */
+/* -------------------    VALIDATION    ---------------------- */
+/* ########################################################### */
 /* Cette CONDITION me permet de ne pas pouvoir être présent sur cette page, si aucune commande a été valider. Et renvoi a l'index */   
 let affichageMerci = () => {
 
@@ -41,4 +58,6 @@ let affichageMerci = () => {
 
 };
 
-affichageMerci(); 
+affichageMerci();
+/* ########################################################### */
+/* ----------------------------------------------------------- */ 
