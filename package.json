@@ -1,7 +1,7 @@
 {
-  "name": "orinoko",
+  "name": "orinoco",
   "version": "1.0.0",
-  "description": "e-commerce site en ligne société Orinoko",
+  "description": "e-commerce site en ligne société Orinoco",
   "main": "index.js",
   "scripts": {
     "sass": "sass --watch ./source/sass/main.scss:./source/css/style.css --style compressed",
