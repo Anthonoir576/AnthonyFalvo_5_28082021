@@ -96,7 +96,7 @@ let tableauHtml = () => {
     myPanier.innerHTML = (
 
         `
-        <table>
+        <table id="tableauEnHtml">
             <thead>
             <tr class="tab-title">
                 <th>Produit :</th>
@@ -401,7 +401,23 @@ const postServer = async() => {
         
     }).catch((error) => {
 
-        return console.log(error);
+        if (error) {
+
+            document.body.classList.add('error_404');
+            document.getElementById('formulaireCommande').style.display = 'none';
+            document.getElementById('tableauEnHtml').style.display = 'none';
+
+            document.querySelector('#main-panier').classList.add('messageError_404');
+            document.querySelector('#main-panier').innerHTML = (
+                `
+                <span class="errorMesg">404</span> 
+                <span class="errorMesg">ERROR</span>
+                <a href="index.html"> ACTUALISER LA PAGE </a>
+    
+                `
+            );
+
+        };
 
     });
 };
