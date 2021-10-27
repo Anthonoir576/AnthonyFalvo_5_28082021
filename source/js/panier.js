@@ -328,7 +328,7 @@ const controleStrictForm = () => {
 
             // Visuel input
             affichage.style.display ="none";
-            input.style.border ="4px solid #32CD32";
+            input.style.borderLeft ="6px solid #32CD32";
 
             // Suppression VISUEL Error => bouton validation
             document.getElementById('errorForm').style.display = 'none';
@@ -346,7 +346,7 @@ const controleStrictForm = () => {
             // Visuel input
             affichage.style.display ="inline-block";
             affichage.style.color ="red";
-            input.style.border ="4px solid red";
+            input.style.borderLeft ="6px solid red";
 
             affichage.innerHTML = (
 
@@ -471,6 +471,8 @@ let errorValidation = () => {
         `
 
     );
+
+    setTimeout(() => {controle.style.display = "none";}, 3500);
 
 };
 

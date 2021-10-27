@@ -66,20 +66,12 @@
     
                 transition: all 400ms ease-in-out;
                 background: rgba(0, 0, 0, 0.3);
-                border-color: red;
+                
                 
                 & h2, p {
     
                     color: white;
     
-                }
-    
-    
-                & img {
-        
-                    border-top: 1px solid red;
-                    border-bottom: 1px solid red;
-                    
                 }
     
                 &::after {
@@ -94,7 +86,7 @@
                     width: 15%;
                     height: 2px;
     
-                    background: red;
+                    background: white;
     
                     transform: translateY(10px);
     
@@ -112,7 +104,7 @@
                     width: 15%;
                     height: 2px;
     
-                    background: red;
+                    background: white;
     
                     transform: translateY(-10px);
     
@@ -256,7 +248,7 @@
 
                     &:focus {
 
-                        border: 3px solid red;
+                        border: 2px solid red;
 
                     }
 
@@ -265,9 +257,18 @@
                 & label {
 
                     margin-bottom: .5rem;
-                    background: red;
+                    background: rgba(255, 255, 255, 0.151);
+                   
+                    border: 1px solid white;
                     border-radius: 5px;
                     padding: 5px 5px 10px 5px;
+                    letter-spacing: 2px;
+
+                    &::first-letter {
+
+                        color: red;
+
+                    }
 
                 }
 
@@ -282,7 +283,7 @@
                     letter-spacing: 3px;
                     font-size: 1.5rem;
                     text-transform: uppercase;
-                    border: 5px solid transparent;
+                    
                     border-radius: 5px;
                     outline: none;
 
@@ -292,7 +293,7 @@
                     &:hover {
 
                         width: 65%;
-                        border: 5px solid #32CD32;
+                        
                         box-shadow: 0 0 5px 0 white;
                         //filter: saturate(900%);
 

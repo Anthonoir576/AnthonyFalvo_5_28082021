@@ -40,7 +40,7 @@ let affichageMerci = () => {
             `
             
             <section>
-                <h2>Merci pour votre commande :</h2>
+                <h2><i class="far fa-check-square"></i> Merci pour votre commande <i class="far fa-check-square"></i></h2>
                 <p>Madame, monsieur, <span>${informationTemporaire.Nom} ${informationTemporaire.Prénom}</span> nous vous remercions pour votre confiance .</p>
                 <p>Nous confirmons votre commande n° <span>${informationTemporaire['Numéros de commande']}</span> pour un montant total de : <span>${parseFloat(informationTemporaire.prix).toLocaleString("EUR", { style: "currency", currency: "EUR"})}</span> TTC.</p>
                 <p>Elle serra expédié dans les plus bref délais. En espérant vous revoir très bientôt.</p>

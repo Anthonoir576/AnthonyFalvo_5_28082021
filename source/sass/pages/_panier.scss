@@ -295,12 +295,31 @@
 
         }
 
-        & th, 
+        & th,
         & tfoot td {
 
-            background: red;
+            background: white;
+            border: 1px solid rgba(0, 0, 0, 0.432);
+            color: black;
 
         }
+
+        & .tab-title :last-child {
+
+            border-left: 1px solid transparent;
+
+        }
+
+        
+        & .tab-title :nth-child(5) {
+
+            border-right: 1px solid transparent;
+
+        }
+
+
+
+        &
 
         & thead {
 
@@ -323,8 +342,7 @@
             & tr :last-child {
     
                 text-align: center;
-                background: red;
-                border-top: 1px solid rgba(255, 255, 255, 0.555);
+                background: red;              
 
                 & i {
 
@@ -390,10 +408,10 @@
         font-weight: 700;
         text-transform: uppercase;
         font-size: 1.3rem;
-        background: red;
-        border: 2px solid white;
+        background: white;
+        color: black;
+        
         border-radius: 5px;
-        color: white;
         letter-spacing: 2px;
         outline: none;
 
@@ -405,9 +423,7 @@
             padding: 8px 50px;
 
             filter: saturate(500%);
-            background: white;
-            border: 2px solid red;
-            color: red;
+            
 
             transform: translateX(0px);
             transition: all .35s ease-in-out;
@@ -428,7 +444,7 @@
         border: 1px solid white;
         padding: 10px 50px;
         border-radius: 5px;
-        background: rgba(255, 255, 255, 0.123);
+        background: rgba(0, 0, 0, 0.3);
         width: 60%;
 
         display: block;
@@ -438,10 +454,11 @@
 
             margin: .3rem 0 3rem 0;
 
-            background: red;
+            background: rgba(255, 255, 255, 0);
             color: white;
             padding: 10px 5px 15px 5px;
-            border: 1px solid white;
+            border-top: 5px solid white;
+            border-bottom: 5px solid white;
             border-radius: 5px;
             text-align: center;
 
@@ -466,9 +483,11 @@
             //margin-bottom: 1rem;
             margin: 1rem 0 1rem .1rem;
 
-            background: rgba(255, 0, 0, 0.95);
-            border: 1px solid white;
-            border-radius: 5px;
+            
+            
+            border-top: 1px solid white;
+            border-bottom: 1px solid white;
+            border-radius: 30px;
 
             font-size: 1.15rem;
             text-transform: uppercase;
@@ -510,7 +529,8 @@
                 top: 1.5rem;
 
                 text-align: center;
-                background: red;
+                border-top: 5px solid red;
+                border-bottom: 5px solid red;
                 padding: 10px 0;
 
             }
@@ -537,20 +557,21 @@
 
         & button {
 
+            display: block;
             cursor: pointer;
             width: 100%;
             padding: 10px;
             margin: 2rem auto 1rem auto;
 
             border-radius: 5px;
-            border: 3px solid red;
             background: white;
-            color: red;
+            color: black;
             font-size: 1.5rem;
             transition: all .3s ease-in-out;
 
             &:hover {
 
+                width: 65%;
                 transition: all .3s ease-in-out;
                 box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.3);
 

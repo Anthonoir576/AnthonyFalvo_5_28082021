@@ -14,7 +14,7 @@
 
             text-align: center;
 
-            background: #32cd325e;
+            background: #0000005e;
             border: 1px solid rgba(255, 255, 255, 0.815);
             border-radius: 5px;
             box-shadow: 0 0 10px 4px rgba(255, 255, 255, 0.253);
@@ -62,7 +62,13 @@
                 text-shadow: 2px 0px 1.5px rgba(150, 150, 150, 1);
 
                 background: rgb(255, 255, 255);
-                color: #32cd32;
+                color: #000000;
+
+                & i {
+
+                    color: #32CD32;
+
+                }
 
             }
 
@@ -83,7 +89,7 @@
                 letter-spacing: 1px;
 
                 background: white;
-                color: #32cd32;
+                color: black;
                 border: 1px solid rgba(0, 0, 0, 0.336);
                 border-radius: 7px;
 
@@ -100,8 +106,9 @@
                     box-shadow: 0 0 15px 5px rgba(0, 0, 0, .15);
                     //text-shadow: 1px 1px 1px rgba(150, 150, 150, 1);
                     border: 1px solid rgba(255, 255, 255, 1);
-                    background: red;
+                    background: black;
                     color: white;
+                    transform: translateX(5px);
 
                 }
             }

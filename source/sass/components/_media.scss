@@ -531,6 +531,7 @@
             & td {
 
                 padding-left: 130px;
+                border: 1px solid rgba(255, 255, 255, 0.068);
                 position: relative;
 
             }
@@ -551,19 +552,18 @@
                 bottom: 0;
                 width: 100px;
 
-                background: red;
+                background: white;
+                
+                color: black;
                 display: flex;
                 align-items: center;
                 font-weight: bold;
-
-                border: 1px solid rgba(255, 255, 255, 0.555);
                 
             }
 
             & tr :last-child::before {
 
                 border: none!important;
-                border-right: none!important;
 
             }
 
@@ -573,7 +573,7 @@
     
                     text-align: center;
                     background: red;
-                    border: 1px solid rgba(255, 255, 255, 0.555);
+
                     
     
                     & i {
@@ -740,7 +740,7 @@
                 & i {
 
                     font-size: 1rem;
-
+                    
                 }
 
             }
@@ -762,12 +762,10 @@
                 bottom: 0;
                 width: 70px;
 
-                background: red;
+                background: white;
                 display: flex;
                 align-items: center;
                 font-weight: bold;
-
-                border: 1px solid rgba(255, 255, 255, 0.555);
                 
             }
 
@@ -777,6 +775,8 @@
                 height: auto;
 
             }
+
+
 
         }
 
