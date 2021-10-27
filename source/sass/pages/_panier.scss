@@ -533,6 +533,12 @@
                 border-bottom: 5px solid red;
                 padding: 10px 0;
 
+                & i {
+
+                    margin-left: 1rem;
+                    color: red;
+
+                }
             }
 
         }

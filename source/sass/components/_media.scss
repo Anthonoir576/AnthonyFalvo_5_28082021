@@ -823,16 +823,11 @@
                 padding: 10px 10px;
 
                 & div {
-
-                    position: relative;
-        
+     
                     & i {
-        
-                        position: absolute;
-                        right: 10px;
-                        bottom: 16px;
-        
-                        font-size: 1.2rem;
+                        
+                        margin: .5rem;
+                        font-size: .9rem;
         
                     }
                 }

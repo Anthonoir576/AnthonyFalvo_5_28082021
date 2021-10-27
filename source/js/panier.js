@@ -466,7 +466,7 @@ let errorValidation = () => {
     controle.innerHTML = (
 
         `
-            Veuillez rentrer toutes les informations correctement 
+            <p>Veuillez rentrer toutes les informations correctement<i class="far fa-times-circle"></i></p> 
 
         `
 
