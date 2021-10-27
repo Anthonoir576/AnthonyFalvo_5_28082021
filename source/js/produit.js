@@ -163,7 +163,10 @@ const pricesSpace = (prix) => {
 // 01. MESSAGE VISUEL + Condition si singulier = 1 / Sinon pluriel
 const confirmationFonction = (produit) => {
 
-    confirm.style.background ="#32CD32";
+    confirm.style.border = '3px solid transparent';
+    confirm.style.borderBottom = '10px solid #32CD32';
+    confirm.style.borderTop = '10px solid #32CD32';
+
 
     if(valueInputQuantity == 1) {
 
@@ -200,7 +203,9 @@ const verificationDesProduits = (produit) => {
     // verification valeur negative input quantité
     } else if (valueInputQuantity <= 0) {
 
-        confirm.style.background ="red";
+        confirm.style.border = '5px solid transparent';
+        confirm.style.borderBottom = '10px solid red';
+        confirm.style.borderTop = '10px solid red';
 
         confirm.textContent = `Le nombre ne peut être nul ou négatif ...`;
         confirm.insertAdjacentHTML('beforeend', `<i class="far fa-times-circle"></i>`);
@@ -236,7 +241,9 @@ const verificationDesProduits = (produit) => {
                 // 10 ARTICLE DIFFERENT MAXIMUM
                 } else if ( mesProduitsEnregistrer.length == 10) {
 
-                    confirm.style.background ="red";
+                    confirm.style.border = '5px solid transparent';
+                    confirm.style.borderBottom = '10px solid red';
+                    confirm.style.borderTop = '10px solid red';
 
                     confirm.textContent = `VOTRE PANIER EST PLEIN`;
                     confirm.insertAdjacentHTML('beforeend', `<i class="far fa-times-circle"></i>`);
@@ -290,6 +297,9 @@ const majProduit = (produit) => {
 
         // CONFIRMATION visuel d'ajout au panier
         confirm.style.display = "block";
+
+        // INTERVAL avant disparition confirmation
+        setTimeout(() => {confirm.style.display = "none";}, 3500);
 
         // VERIFICATION produit ET la selection utilisateur => PUIS INJECTION LOCAL STORAGE
         verificationDesProduits(produit);

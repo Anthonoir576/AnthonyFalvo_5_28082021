@@ -65,7 +65,7 @@
             &:hover {
     
                 transition: all 400ms ease-in-out;
-                background: rgba(255, 255, 255, 0.1);
+                background: rgba(0, 0, 0, 0.3);
                 border-color: red;
                 
                 & h2, p {
@@ -214,22 +214,33 @@
                     padding: 10px 5px 13px 5px;
 
                     text-align: center;
-                    background: #32CD32;
+                    background: transparent!important;
+                    color: white;
+                    border: 5px solid transparent;
                     border-radius: 5px;
-                    box-shadow: 0 0 10px 0px rgba(255, 255, 255, .7);
+                    //box-shadow: 0 0 10px 0px rgba(255, 255, 255, .4);
 
                     
                     font-family: 'Lato', sans-serif;
                     font-weight: 400;
                     font-size: 1.2rem;
+                  
                     text-transform: uppercase;
-                    text-shadow: 1px 1px 10px black;
                     letter-spacing: 1px;
 
-                    & i {
+                    & .far.fa-check-square {
 
                         margin-left: 1rem;
                         font-size: 1.5rem;
+                        color: #32CD32;
+
+                    }
+
+                    & .far.fa-times-circle {
+
+                        margin-left: 1rem;
+                        font-size: 1.5rem;
+                        color: red;
 
                     }
 
@@ -262,15 +273,16 @@
 
                 & button {
 
-                    margin: 1rem 0 0 0;
+                    margin: 1rem auto 0 auto;
                     padding: 10px;
+                    width: 100%;
 
-                    background: red;
-                    color: white;
+                    background: white;
+                    color: black;
                     letter-spacing: 3px;
                     font-size: 1.5rem;
                     text-transform: uppercase;
-                    border: 1px solid white;
+                    border: 5px solid transparent;
                     border-radius: 5px;
                     outline: none;
 
@@ -279,9 +291,8 @@
 
                     &:hover {
 
-                        background: #fff;
-                        color: red;
-                        border: 1px solid red;
+                        width: 65%;
+                        border: 5px solid #32CD32;
                         box-shadow: 0 0 5px 0 white;
                         //filter: saturate(900%);
 
